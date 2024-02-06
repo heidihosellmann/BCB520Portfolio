@@ -1,0 +1,77 @@
+---
+title: "BCB 520 Assignment 3 - Task Abstraction"
+author: "Heidi Sellmann"
+format:
+  html:
+    embed-resources: true
+editor: visual
+code-fold: true
+---
+
+## Import Data
+
+```{r Import Data}
+library(readxl)
+Cytokine_summary <- read_excel("Cytokine_summary.xlsx")
+View(Cytokine_summary)
+knitr::kable(Cytokine_summary)
+```
+
+## Load Libraries
+
+```{r Load libraries}
+library(tidyverse)
+library(ggplot2)
+```
+
+Now that I have the necessary data and packages, I want to make a box blot distribution of my various cytokines per pig feeding group - HM, IF, P, and C. Barrie helped me with this! 
+
+## Organize the Data
+
+Here we add another column into Cytokine_summary via R
+```{r Add in diet column}
+Cytokine_summary <- Cytokine_summary %>%
+  mutate(Diet = str_sub(Pig, 1, 1))
+```
+
+## What does each diet look like?
+
+```{r Individual distributions}
+ggplot(Cytokine_summary, aes(x = Diet, y = IL1B_Jej_pg_mL)) + 
+  geom_boxplot() + 
+  geom_jitter()
+```
+### Legend: 
+C = Farm Control
+
+H = HM
+
+I = IF 
+
+P = Lab Control
+
+Now I could create individual ones of these for each column... but we are going to try to work smarter, not harder, and create a new data frame to get all these types of plots into 1 figure.
+
+## Creating 9 plots in 1 figure
+
+First we break up the columns 2-10 to their cytokine and their region. 
+```{r Making new data frame Cytokine_long}
+Cytokine_long <- Cytokine_summary %>%
+  pivot_longer(cols = 2:10, names_to ="Reg_Cyt",
+ values_to = "Expression") %>%
+  separate(Reg_Cyt, into = c("Cytokine", "Region"), sep = "_", remove = FALSE)
+```
+Although error is not ideal, Cytokine_long looks good! 
+
+Now to put that into a boxplot with jitter overlay. We facet_wrapped in order to make subplots from 1 plot (slice it up for the viewers).
+```{r Cytokine_long into boxplot/jitter plot}
+ggplot(Cytokine_long, aes(x = Diet, y = Expression)) + 
+  geom_boxplot() + 
+  geom_jitter() + 
+  facet_wrap(Region ~ Cytokine, scales = "free_y")
+```
+
+Great! Now we can move forward looking into normality assumptions and deeper comparisons between particular feeding groups. Perhaps we can use the different regions of the GI tract as blocking factors... More to come! 
+
+Thoughts to address: Get rid of error output? Add colors? Pick up with Result project! Also, get it so HM and IF?
+

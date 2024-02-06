@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "BCB 520 Assignment 3 - Task Abstraction",
+    "section": "",
+    "text": "Code\nlibrary(readxl)\nCytokine_summary &lt;- read_excel(\"Cytokine_summary.xlsx\")\nView(Cytokine_summary)\nknitr::kable(Cytokine_summary)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPig\nIL1B_Jej_pg_mL\nIL1B_Ile_pg_mL\nIL1B_Col_pg_mL\nTNFA_Jej_pg_mL\nTNFA_Ile_pg_mL\nTNFA_Col_pg_mL\nIL8_Jej_pg_mL\nIL8_Ile_pg_mL\nIL8_Col_pg_mL\n\n\n\n\nP1\n158.107\n258.529\n18.902\n10.084\n191.685\n67.410\n2717.095\n3244.064\n48.389\n\n\nC1\n304.570\n300.510\n173.388\n5.293\n148.321\n53.500\n1807.191\n2747.520\n521.019\n\n\nHM1\n126.749\n92.684\n80.020\n0.000\n163.895\n0.000\n2163.072\n1842.670\n93.936\n\n\nHM2\n90.214\n72.580\n75.545\n0.000\n130.676\n0.000\n3434.170\n3433.543\n194.084\n\n\nHM3\n114.224\n79.751\n239.901\n0.000\n0.000\n28.050\n1649.797\n1678.069\n334.678\n\n\nHM4\n132.318\n107.964\n155.655\n3.612\n5.265\n18.105\n3390.124\n3088.125\n373.427\n\n\nHM5\n68.657\n49.695\n12.045\n0.000\n112.351\n0.000\n3148.633\n3153.588\n172.843\n\n\nHM6\n112.428\n57.860\n52.582\n0.000\n0.000\n0.000\n3088.206\n4084.593\n183.157\n\n\nP2\n194.675\n145.165\n63.666\n12.729\n18.287\n89.610\n2474.794\n2692.826\n880.425\n\n\nC2\n401.575\n564.465\n305.068\n42.442\n17.261\n84.509\n1635.162\n1030.576\n255.938\n\n\nIF1\n174.037\n130.035\n38.956\n0.000\n105.243\n3.978\n2013.397\n1678.351\n49.232\n\n\nIF2\n126.663\n115.666\n76.857\n0.000\n63.294\n4.975\n3399.788\n1727.786\n116.573\n\n\nIF3\n141.120\n53.064\n182.891\n4.574\n0.000\n12.948\n3766.222\n504.454\n38.554\n\n\nIF4\n132.275\n78.283\n18.266\n9.628\n154.257\n0.000\n3705.406\n2293.403\n222.193\n\n\nIF5\n111.800\n91.316\n82.741\n0.000\n223.890\n4.293\n3228.713\n2499.064\n103.378\n\n\nIF6\n159.411\n120.352\n31.099\n0.000\n5.171\n0.000\n2001.489\n2659.008\n173.974"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#import-data",
+    "href": "posts/post-with-code/index.html#import-data",
+    "title": "BCB 520 Assignment 3 - Task Abstraction",
+    "section": "",
+    "text": "Code\nlibrary(readxl)\nCytokine_summary &lt;- read_excel(\"Cytokine_summary.xlsx\")\nView(Cytokine_summary)\nknitr::kable(Cytokine_summary)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPig\nIL1B_Jej_pg_mL\nIL1B_Ile_pg_mL\nIL1B_Col_pg_mL\nTNFA_Jej_pg_mL\nTNFA_Ile_pg_mL\nTNFA_Col_pg_mL\nIL8_Jej_pg_mL\nIL8_Ile_pg_mL\nIL8_Col_pg_mL\n\n\n\n\nP1\n158.107\n258.529\n18.902\n10.084\n191.685\n67.410\n2717.095\n3244.064\n48.389\n\n\nC1\n304.570\n300.510\n173.388\n5.293\n148.321\n53.500\n1807.191\n2747.520\n521.019\n\n\nHM1\n126.749\n92.684\n80.020\n0.000\n163.895\n0.000\n2163.072\n1842.670\n93.936\n\n\nHM2\n90.214\n72.580\n75.545\n0.000\n130.676\n0.000\n3434.170\n3433.543\n194.084\n\n\nHM3\n114.224\n79.751\n239.901\n0.000\n0.000\n28.050\n1649.797\n1678.069\n334.678\n\n\nHM4\n132.318\n107.964\n155.655\n3.612\n5.265\n18.105\n3390.124\n3088.125\n373.427\n\n\nHM5\n68.657\n49.695\n12.045\n0.000\n112.351\n0.000\n3148.633\n3153.588\n172.843\n\n\nHM6\n112.428\n57.860\n52.582\n0.000\n0.000\n0.000\n3088.206\n4084.593\n183.157\n\n\nP2\n194.675\n145.165\n63.666\n12.729\n18.287\n89.610\n2474.794\n2692.826\n880.425\n\n\nC2\n401.575\n564.465\n305.068\n42.442\n17.261\n84.509\n1635.162\n1030.576\n255.938\n\n\nIF1\n174.037\n130.035\n38.956\n0.000\n105.243\n3.978\n2013.397\n1678.351\n49.232\n\n\nIF2\n126.663\n115.666\n76.857\n0.000\n63.294\n4.975\n3399.788\n1727.786\n116.573\n\n\nIF3\n141.120\n53.064\n182.891\n4.574\n0.000\n12.948\n3766.222\n504.454\n38.554\n\n\nIF4\n132.275\n78.283\n18.266\n9.628\n154.257\n0.000\n3705.406\n2293.403\n222.193\n\n\nIF5\n111.800\n91.316\n82.741\n0.000\n223.890\n4.293\n3228.713\n2499.064\n103.378\n\n\nIF6\n159.411\n120.352\n31.099\n0.000\n5.171\n0.000\n2001.489\n2659.008\n173.974"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#load-libraries",
+    "href": "posts/post-with-code/index.html#load-libraries",
+    "title": "BCB 520 Assignment 3 - Task Abstraction",
+    "section": "Load Libraries",
+    "text": "Load Libraries\n\n\nCode\nlibrary(tidyverse)\n\n\nWarning: package 'tidyverse' was built under R version 4.3.2\n\n\nWarning: package 'ggplot2' was built under R version 4.3.2\n\n\nWarning: package 'readr' was built under R version 4.3.2\n\n\nWarning: package 'dplyr' was built under R version 4.3.2\n\n\nWarning: package 'stringr' was built under R version 4.3.2\n\n\nWarning: package 'forcats' was built under R version 4.3.2\n\n\nWarning: package 'lubridate' was built under R version 4.3.2\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nCode\nlibrary(ggplot2)\n\n\nNow that I have the necessary data and packages, I want to make a box blot distribution of my various cytokines per pig feeding group - HM, IF, P, and C. Barrie helped me with this!"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#organize-the-data",
+    "href": "posts/post-with-code/index.html#organize-the-data",
+    "title": "BCB 520 Assignment 3 - Task Abstraction",
+    "section": "Organize the Data",
+    "text": "Organize the Data\nHere we add another column into Cytokine_summary via R\n\n\nCode\nCytokine_summary &lt;- Cytokine_summary %&gt;%\n  mutate(Diet = str_sub(Pig, 1, 1))"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#what-does-each-diet-look-like",
+    "href": "posts/post-with-code/index.html#what-does-each-diet-look-like",
+    "title": "BCB 520 Assignment 3 - Task Abstraction",
+    "section": "What does each diet look like?",
+    "text": "What does each diet look like?\n\n\nCode\nggplot(Cytokine_summary, aes(x = Diet, y = IL1B_Jej_pg_mL)) + \n  geom_boxplot() + \n  geom_jitter()\n\n\n\n\n\n\nLegend:\nC = Farm Control\nH = HM\nI = IF\nP = Lab Control\nNow I could create individual ones of these for each column… but we are going to try to work smarter, not harder, and create a new data frame to get all these types of plots into 1 figure."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#creating-9-plots-in-1-figure",
+    "href": "posts/post-with-code/index.html#creating-9-plots-in-1-figure",
+    "title": "BCB 520 Assignment 3 - Task Abstraction",
+    "section": "Creating 9 plots in 1 figure",
+    "text": "Creating 9 plots in 1 figure\nFirst we break up the columns 2-10 to their cytokine and their region.\n\n\nCode\nCytokine_long &lt;- Cytokine_summary %&gt;%\n  pivot_longer(cols = 2:10, names_to =\"Reg_Cyt\",\n values_to = \"Expression\") %&gt;%\n  separate(Reg_Cyt, into = c(\"Cytokine\", \"Region\"), sep = \"_\", remove = FALSE)\n\n\nWarning: Expected 2 pieces. Additional pieces discarded in 144 rows [1, 2, 3, 4, 5, 6,\n7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\n\nAlthough error is not ideal, Cytokine_long looks good!\nNow to put that into a boxplot with jitter overlay. We facet_wrapped in order to make subplots from 1 plot (slice it up for the viewers).\n\n\nCode\nggplot(Cytokine_long, aes(x = Diet, y = Expression)) + \n  geom_boxplot() + \n  geom_jitter() + \n  facet_wrap(Region ~ Cytokine, scales = \"free_y\")\n\n\n\n\n\nGreat! Now we can move forward looking into normality assumptions and deeper comparisons between particular feeding groups. Perhaps we can use the different regions of the GI tract as blocking factors… More to come!\nThoughts to address: Get rid of error output? Add colors? Pick up with Result project! Also, get it so HM and IF?"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  }
+]
