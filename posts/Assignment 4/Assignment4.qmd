@@ -1,12 +1,13 @@
 ---
-title: "BCB 520 Assignment 3 - Task Abstraction"
+title: "BCB 520 Assignment 4"
 author: "Heidi Sellmann"
-format:
-  html:
-    embed-resources: true
+date: "2024-02-08"
+categories: [Assignments]
+format: html
 editor: visual
 code-fold: true
 ---
+![](cytoswine.jpg)
 
 ## Import Data
 
