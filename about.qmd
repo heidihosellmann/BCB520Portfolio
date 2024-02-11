@@ -1,5 +1,5 @@
 ---
-title: "About Heid Sellmann"
+title: "About Heidi"
 image: mypic2023.jpg
 about:
   template: jolla
