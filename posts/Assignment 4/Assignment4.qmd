@@ -1,13 +1,22 @@
 ---
 title: "BCB 520 Assignment 4"
+subtitle: "Marks and Channels"
 author: "Heidi Sellmann"
 date: "2024-02-08"
-categories: [Assignments]
+categories: [Assignments, Data Viz]
+image: "cytoswine.jpg"
+code-fold: true
+code-tools: true
+description: "My Cytoswine and micro-pig-ome data"
 format: html
 editor: visual
-code-fold: true
+output:
+  quarto::quarto_html:
+    error: FALSE
+    warning: FALSE
 ---
-![](cytoswine.jpg)
+
+# Recalling Assignment 3- Task Abstraction
 
 ## Import Data
 
@@ -18,18 +27,38 @@ View(Cytokine_summary)
 knitr::kable(Cytokine_summary)
 ```
 
+I am adding in my **DATA DICTIONARY** from Assignment 2:
+
+## Data Dictionary:
+
+### Flat Table
+
+Just one excel sheet with **items** and **attributes**.
+
+### Items (rows) = R studio calls these observations.
+
+In Cytokine_summary, there are 16 pigs. P1 and P2 were pilot pigs fed piglet milk replacer formula. C1 and C2 were farm control pigs (siblings) raised at a farm (the same one as the other pigs), feeding from their own mom, and then we received them for necropsy on day of life (DOL) 28. HM1-6 were fed human milk for 28 days in our lab. IF1-6 were fed infant formula for 28 days in our lab. Pairs of HM and IF (such as HM1 and IF1) were siblings and both raised at the same time, but in different cages.
+
+### Attributes (columns) = R studio calls these variables.
+
+In Cytokine_summary, there are 10 variables. One of these columns = "Pigs" and specifies the observations described above. All other variables are cytokine values from ELISAs on various intestinal tissues harvested fromt the pigs at necropsy on DOL 28 (except HM/IF5- they had to stay with us a little longer). Detected ELISAs tested included IL1B, TNFA, and IL8. Each of these cytokines were tested on the jejunum (Jej), ileum (Ile), and Colon (Col) of each pig. Concentration units of for each measurement were in pg/mL.
+
 ## Load Libraries
 
-```{r Load libraries}
+```{r Load libraries, error=FALSE,warning=FALSE}
 library(tidyverse)
 library(ggplot2)
+library(ggpubr)
+library(rstatix)
+library(dplyr)
 ```
 
-Now that I have the necessary data and packages, I want to make a box blot distribution of my various cytokines per pig feeding group - HM, IF, P, and C. Barrie helped me with this! 
+Now that I have the necessary data and packages, I want to make a box blot distribution of my various cytokines per pig feeding group - HM, IF, P, and C. Barrie helped me with this!
 
 ## Organize the Data
 
 Here we add another column into Cytokine_summary via R
+
 ```{r Add in diet column}
 Cytokine_summary <- Cytokine_summary %>%
   mutate(Diet = str_sub(Pig, 1, 1))
@@ -42,12 +71,16 @@ ggplot(Cytokine_summary, aes(x = Diet, y = IL1B_Jej_pg_mL)) +
   geom_boxplot() + 
   geom_jitter()
 ```
-### Legend: 
+
+**Figure 1.** Box and whisker plots displaying piglet diet group differences in expression levels (pg/mL) of the pro-inflammatory cytokine IL1B in the jejunum. Jitter overlay is representative of each individual pig.
+
+### Legend:
+
 C = Farm Control
 
 H = HM
 
-I = IF 
+I = IF
 
 P = Lab Control
 
@@ -55,16 +88,19 @@ Now I could create individual ones of these for each column... but we are going 
 
 ## Creating 9 plots in 1 figure
 
-First we break up the columns 2-10 to their cytokine and their region. 
-```{r Making new data frame Cytokine_long}
+First we break up the columns 2-10 to their cytokine and their region.
+
+```{r Making new data frame Cytokine_long, warning=FALSE}
 Cytokine_long <- Cytokine_summary %>%
   pivot_longer(cols = 2:10, names_to ="Reg_Cyt",
  values_to = "Expression") %>%
   separate(Reg_Cyt, into = c("Cytokine", "Region"), sep = "_", remove = FALSE)
 ```
-Although error is not ideal, Cytokine_long looks good! 
+
+Cytokine_long looks good!
 
 Now to put that into a boxplot with jitter overlay. We facet_wrapped in order to make subplots from 1 plot (slice it up for the viewers).
+
 ```{r Cytokine_long into boxplot/jitter plot}
 ggplot(Cytokine_long, aes(x = Diet, y = Expression)) + 
   geom_boxplot() + 
@@ -72,7 +108,130 @@ ggplot(Cytokine_long, aes(x = Diet, y = Expression)) +
   facet_wrap(Region ~ Cytokine, scales = "free_y")
 ```
 
-Great! Now we can move forward looking into normality assumptions and deeper comparisons between particular feeding groups. Perhaps we can use the different regions of the GI tract as blocking factors... More to come! 
+**Figure 2.** Box and whisker plots displaying piglet diet group differences in expression levels (pg/mL) of the pro-inflammatory cytokines IL1B, IL8, and TNFA in the jejunum, ileum, and colon. Jitter overlay is representative of each individual pig.
 
-Thoughts to address: Get rid of error output? Add colors? Pick up with Result project! Also, get it so HM and IF?
+Great!
 
+# Onto Assignment 4- Manipulating Marks and Channels
+
+Moving forward from Figure 2., we wanted to see if there were any individual pigs driving differences.
+
+## Plot looking at individual pigs and cytokine z scores
+
+Make new data frame for Cytokine z-scores
+
+```{r Data frame for Cytokine z-scores}
+Cytokine_zscore <- Cytokine_summary %>%   mutate(across(.cols = 2:10, .fns = ~scale(.) %>% as.vector)) #scaling columns 2-10}
+```
+
+Make a boxplot now:
+
+```{r Boxplot with pig by zscore, warning=FALSE}
+Cytokine_zscore_long <- Cytokine_zscore %>%   pivot_longer(cols = 2:10, names_to ="Reg_Cyt",  values_to = "Expression_Z_Scores") %>%   separate(Reg_Cyt, into = c("Cytokine", "Region"), sep = "_", remove = FALSE)   # We just made the data long! First we break up the columns 2-10 to their cytokine and their region. # Don't worry about warning- says I have lots of _}
+```
+
+```{r Boxplot of zscores with long data}
+ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores)) +    geom_boxplot() +    geom_jitter(aes(color= Cytokine))
+```
+
+**Figure 3.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines.
+
+Super cool! Each pig has 9 dots = 9 cytokines readings (3 cytokines and 3 regions). Doesn't appear to be any real outlier pigs as a whole (i.e. none are extremely inflamed or non-inflamed for any measure). This shows us there doesn't appear to be hidden structure in my data.
+
+**ACTION** = SEARCH
+
+**TARGET** = ALL DATA
+
+## Now for manipulating...
+
+What if I add the **CHANNEL** of another dimension of **FILL/COLOR** to Figure 3?
+
+```{r Boxplot filled}
+ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region)) +    
+  geom_boxplot() +    
+  geom_jitter(aes(color= Cytokine))
+```
+
+**Figure 4.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines and respective regions.
+
+Actually, this might be quite helpful! Hmm... different colors?
+
+```{r Boxplot filled better colors}
+region_colors <- c("orange", "purple", "yellow")
+
+ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region)) +    
+  geom_boxplot() +    
+  geom_jitter(aes(color = Cytokine)) +
+  scale_fill_manual(values = region_colors)
+```
+
+**Figure 5.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines and respective regions.
+
+Helpful or a hindrance, I don't know!
+
+How about changing the **MARK** of **SHAPE**?
+
+```{r Boxplot with triangle jitter}
+region_colors <- c("orange", "purple", "yellow")
+
+ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region)) +    
+  geom_boxplot() +    
+  geom_jitter(aes(color = Cytokine), shape = 17) +  # Change shape to the desired value
+  scale_fill_manual(values = region_colors)
+```
+
+**Figure 6.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines and respective regions.
+
+Alright... I am having too much fun here. Lastly, for my micro-pig-ome data, Barrie and I worked on relative abundance stacked barcharts. I won't go into it too much, but the data I am importing below are microbiome samples (from piglet fecal samples) representative of various timepoints. I want to manipulate the **CHANNEL** of **COLOR** to be a little more discriminating.
+
+The following was copied from my pre_decontam project:
+
+```{r Playing around with microbiome, warning=FALSE}
+
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+
+# Reading in csv I sent to Barrie
+test <- read.csv("test.csv")
+
+ggplot(data = test, aes(x = Sample_ID, y = Abundance, fill = Genus))+
+  geom_col(position = "stack")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4))
+
+# get barchart, default colors, but would love to have x axis ordered. Barrie also modified x axis to be more readable.
+
+test <- test %>%
+  mutate(Sample_ID = factor(Sample_ID, levels = unique(Sample_ID[order(typeSample)]))) #order x axis by typeSample
+
+ggplot(data = test, aes(x = Sample_ID, y = Abundance, fill = Genus)) +
+  geom_col(position = "stack")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0, size = 4))+
+ geom_text(aes(x = Sample_ID, y = Inf, label = typeSample, color = typeSample), 
+            vjust = 0, angle = 90, hjust = 1, size = 1) #add this line for adding text on top/color/legend, I think
+```
+
+**Figure 7.** Piglet microbiome relative abundances with poor color
+
+I am going to manipulate color now!
+
+```{r Barrie Microbiome + Janet Colors}
+
+library(RColorBrewer)
+custom_col15 <- c( "#FF0000", "#00B0F0", "#FFFF00", "#96D050", "#CC3399",
+ "#375623", "#FFC000", "#0070C0", "#990033","#00B050",
+ "#FF00FF", "#66FF99", "#F96E05", "#FFFF99", "#000000")#,
+# "#0000FF", "#FF7C80", "#CC66FF", "#00FF00", "#002060")
+
+ggplot(data = test, aes(x = Sample_ID, y = Abundance, fill = Genus)) +
+  geom_col(position = "stack")+
+  scale_fill_manual(values = custom_col15)+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0, size = 4))+
+ geom_text(aes(x = Sample_ID, y = Inf, label = typeSample, color = typeSample), 
+            vjust = 0, angle = 90, hjust = 1, size = 1) #add this line for adding text on top/color/legend, I think
+
+```
+
+**Figure 7.** Piglet microbiome relative abundances with better color!
+
+Thanks! TTFN!
