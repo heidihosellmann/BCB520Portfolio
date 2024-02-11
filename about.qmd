@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About Heid Sellmann"
 image: mypic2023.jpg
 about:
   template: jolla
@@ -13,4 +13,13 @@ about:
 ---
 
 About this blog: 
-My name is Heidi Sellmann and this is my BCB 520 Portfolio! 
+My name is Heidi Sellmann and this is my BCB 520 Portfolio!
+
+## Education
+
+University of Idaho | Moscow, ID
+MS in Nutritional Sciences | 2022-2024
+
+Lewis-Clark State Colleg | Lewiston, ID
+BS in Biology | 2019 - 2022
+
