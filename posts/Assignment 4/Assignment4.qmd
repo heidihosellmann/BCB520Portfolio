@@ -10,13 +10,14 @@ code-tools: true
 description: "My Cytoswine and micro-pig-ome data"
 format: html
 editor: visual
-output:
-  quarto::quarto_html:
-    error: FALSE
-    warning: FALSE
 ---
 
 # Recalling Assignment 3- Task Abstraction
+
+```{r}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)
+
+```
 
 ## Import Data
 
@@ -45,7 +46,7 @@ In Cytokine_summary, there are 10 variables. One of these columns = "Pigs" and s
 
 ## Load Libraries
 
-```{r Load libraries, error=FALSE,warning=FALSE}
+```{r Load libraries, message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(ggpubr)
@@ -90,7 +91,7 @@ Now I could create individual ones of these for each column... but we are going 
 
 First we break up the columns 2-10 to their cytokine and their region.
 
-```{r Making new data frame Cytokine_long, warning=FALSE}
+```{r Making new data frame Cytokine_long, include=FALSE}
 Cytokine_long <- Cytokine_summary %>%
   pivot_longer(cols = 2:10, names_to ="Reg_Cyt",
  values_to = "Expression") %>%
@@ -157,7 +158,7 @@ ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region
 Actually, this might be quite helpful! Hmm... different colors?
 
 ```{r Boxplot filled better colors}
-region_colors <- c("orange", "purple", "yellow")
+region_colors <- c("black", "gray", "white")
 
 ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region)) +    
   geom_boxplot() +    
@@ -186,7 +187,7 @@ Alright... I am having too much fun here. Lastly, for my micro-pig-ome data, Bar
 
 The following was copied from my pre_decontam project:
 
-```{r Playing around with microbiome, warning=FALSE}
+```{r Playing around with microbiome, message=FALSE}
 
 library(ggplot2)
 library(magrittr)
@@ -233,5 +234,27 @@ ggplot(data = test, aes(x = Sample_ID, y = Abundance, fill = Genus)) +
 ```
 
 **Figure 7.** Piglet microbiome relative abundances with better color!
+
+# In summary
+
+## Expressiveness and Effectiveness
+
+Show by Figures 3, 4, 5, and 6.
+
+Figure 3 and 5 = best, 4 and 6 = meh!
+
+## Discriminability
+
+Figure 4 fine-tuned Figure 3 by GI region.
+
+However, Figure 5 tried to add in more colors, and ultimately, this just added to the cognitive load. Not sure how to use Region helpfully without overstimulating/confusing.
+
+## Separability
+
+Head to Figure 7. Gut microbiome stacked barcharts are a little easier to distinguish with the updated color scheme.
+
+## Popout
+
+We were searching for popout in Figure 3. I do notice C2 is a bit of a bigger box compared to the rest.
 
 Thanks! TTFN!
