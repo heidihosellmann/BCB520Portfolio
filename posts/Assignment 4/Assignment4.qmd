@@ -109,6 +109,10 @@ ggplot(Cytokine_long, aes(x = Diet, y = Expression)) +
   facet_wrap(Region ~ Cytokine, scales = "free_y")
 ```
 
+```{r Save 9 in 1}
+ggsave("CytokineSummaryBoxplotJitter.pdf")
+```
+
 **Figure 2.** Box and whisker plots displaying piglet diet group differences in expression levels (pg/mL) of the pro-inflammatory cytokines IL1B, IL8, and TNFA in the jejunum, ileum, and colon. Jitter overlay is representative of each individual pig.
 
 Great!
@@ -133,6 +137,10 @@ Cytokine_zscore_long <- Cytokine_zscore %>%   pivot_longer(cols = 2:10, names_to
 
 ```{r Boxplot of zscores with long data}
 ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores)) +    geom_boxplot() +    geom_jitter(aes(color= Cytokine))
+```
+
+```{r Save Zscore cyotkines simple}
+ggsave("ZscoreCytokinesSimple.pdf")
 ```
 
 **Figure 3.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines.
@@ -164,6 +172,10 @@ ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region
   geom_boxplot() +    
   geom_jitter(aes(color = Cytokine)) +
   scale_fill_manual(values = region_colors)
+```
+
+```{r Save Zscore cyotkines complex}
+ggsave("ZscoreCytokinesComplex.pdf")
 ```
 
 **Figure 5.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines and respective regions.
