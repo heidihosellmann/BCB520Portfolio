@@ -7,27 +7,6 @@
     "text": "This is my first post in a Quarto blog. Welcome!\n\nThis photo was a default addition, but I love coffee a latte so I am leaving it."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "BCB520Portfolio",
-    "section": "",
-    "text": "BCB 520 Assignment 4\n\n\n\nAssignments\n\n\nData Viz\n\n\n\nMy Cytoswine and micro-pig-ome data\n\n\n\nHeidi Sellmann\n\n\nFeb 8, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nWelcome\n\n\n\n\n\n\n\nHeidi Sellmann\n\n\nFeb 3, 2024\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Heidi",
-    "section": "",
-    "text": "About this blog: My name is Heidi Sellmann and this is my BCB 520 Portfolio!"
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About Heidi",
-    "section": "Education",
-    "text": "Education\nUniversity of Idaho | Moscow, ID MS in Nutritional Sciences | 2022-2024\nLewis-Clark State Colleg | Lewiston, ID BS in Biology | 2019 - 2022"
-  },
-  {
     "objectID": "posts/Assignment 4/Assignment4.html",
     "href": "posts/Assignment 4/Assignment4.html",
     "title": "BCB 520 Assignment 4",
@@ -117,5 +96,75 @@
     "title": "BCB 520 Assignment 4",
     "section": "Popout",
     "text": "Popout\nWe were searching for popout in Figure 3. I do notice C2 is a bit of a bigger box compared to the rest.\nThanks! TTFN!"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Heidi",
+    "section": "",
+    "text": "About this blog: My name is Heidi Sellmann and this is my BCB 520 Portfolio!"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About Heidi",
+    "section": "Education",
+    "text": "Education\nUniversity of Idaho | Moscow, ID MS in Nutritional Sciences | 2022-2024\nLewis-Clark State Colleg | Lewiston, ID BS in Biology | 2019 - 2022"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BCB520Portfolio",
+    "section": "",
+    "text": "BCB 520 Assignment 5\n\n\n\nAssignments\n\n\nData Viz\n\n\nTables\n\n\nScatterplot\n\n\nBarplot\n\n\nPiechart\n\n\n\nShould I trade these draft picks for this bag of magic beans…?\n\n\n\nHeidi Sellmann\n\n\nFeb 24, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBCB 520 Assignment 4\n\n\n\nAssignments\n\n\nData Viz\n\n\n\nMy Cytoswine and micro-pig-ome data\n\n\n\nHeidi Sellmann\n\n\nFeb 8, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nWelcome\n\n\n\n\n\n\n\nHeidi Sellmann\n\n\nFeb 3, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html",
+    "title": "BCB 520 Assignment 5",
+    "section": "",
+    "text": "In this assignment, we are going to practice creating visualizations for tabular data where everyone will engage in the same logic process and have the same design objectives in mind."
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#overview",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#overview",
+    "title": "BCB 520 Assignment 5",
+    "section": "",
+    "text": "In this assignment, we are going to practice creating visualizations for tabular data where everyone will engage in the same logic process and have the same design objectives in mind."
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#learning-objectives",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#learning-objectives",
+    "title": "BCB 520 Assignment 5",
+    "section": "LEARNING OBJECTIVES",
+    "text": "LEARNING OBJECTIVES\n\nDemonstrate that you can manipulate tabular data to facilitate different visualization tasks. The minimum skills are FILTERING, SELECTING, and SUMMARIZING, all while GROUPING these operations as dictated by your data.\nDemonstrate that you can use tabular data to explore, analyze, and choose the most appropriate visualization idioms given a specific motivating question.\nDemonstrate that you can Find, Access, and Integrate additional data in order to fully address the motivating question.\n\nThe scenario below will allow you to complete the assignment. It deals with data that are of the appropriate complexity and extent (number of observations and variables) to challenge you."
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#scenario",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#scenario",
+    "title": "BCB 520 Assignment 5",
+    "section": "SCENARIO",
+    "text": "SCENARIO\nHockey and drafting. Was the trade worth it? Did Vancouver or Calgary “win” the trade (outlined in Assignment 5)?\nCan we make some visualizations that help us answer this question?"
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#simple-scatterplot",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#simple-scatterplot",
+    "title": "BCB 520 Assignment 5",
+    "section": "SIMPLE SCATTERPLOT",
+    "text": "SIMPLE SCATTERPLOT\nJust like many pro sports, it is pretty rare for a player to play in the NHL right after being drafted. Players get drafted when they are 18 years old, and they usually play in the juniors, minor leagues, or the NCAA to further develop.\nLet’s use a scatterplot to visualize this phenomenon with the most recent draft classes.\n\nCodedraft2022&lt;-NHLDraft%&gt;%\n  filter(draftyear==2022 & postdraft==0)\n\nggplot(draft2022, aes(x=round, y=NHLgames))+\n  geom_point()\n\n\n\n\nAha! Many players drafted in June of 2022 didn’t play much last season. There are few things wrong with this visualization, however:"
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#expanded-scatterplot",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#expanded-scatterplot",
+    "title": "BCB 520 Assignment 5",
+    "section": "EXPANDED SCATTERPLOT",
+    "text": "EXPANDED SCATTERPLOT\nThe data from the most recent drafts aren’t really helpful for our question. Let’s go back in time and use a draft year that has had some time to develop and reach their potential. How about 2018?\n\nCodedraft2018&lt;-NHLDraft%&gt;%\n  filter(draftyear==2018 & postdraft&lt;6) \n\n# wondering why I've filtered postdraft to be less than 6?  Try removing that filter to see what happens.\n\nggplot(draft2018, aes(x=round, y=NHLgames))+\n  geom_point()\n\n\n\n\nHmmm… in addition to the problem of overplotting, we’ve got an additional issue here. We actually have two keys and one attribute. The attribute is NHLgames, and the keys are round and postdraft, but we are only using round.\nPostdraft indicates the number of seasons after being drafted. We have several choices here. We can make a visualization that uses both keys, or we can somehow summarize the data for one of the keys.\nFor example, let’s say we just wanted to know the TOTAL number of NHL games played since being drafted.\n\nCodedrafttot2018&lt;- draft2018%&gt;%\n  group_by(playerId, round, overall, position, name)%&gt;%\n  summarise(totgames=sum(NHLgames))\n\n`summarise()` has grouped output by 'playerId', 'round', 'overall', 'position'.\nYou can override using the `.groups` argument.\n\nCodeggplot(drafttot2018, aes(x=round, y=totgames))+\n  geom_point()\n\n\n\n\nLook closely at the two graphs above. How are they different?"
+  },
+  {
+    "objectID": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#stop-and-reflect",
+    "href": "posts/Assignment 5 NHL Draft Analysis/Assignment 5 NHL Draft Analysis.html#stop-and-reflect",
+    "title": "BCB 520 Assignment 5",
+    "section": "STOP AND REFLECT",
+    "text": "STOP AND REFLECT"
   }
 ]

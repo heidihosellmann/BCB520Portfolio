@@ -1,0 +1,107 @@
+---
+title: "BCB 520 Assignment 5"
+subtitle: "Tabular Data NHL Draft Analysis"
+author: "Heidi Sellmann"
+date: "2024-02-24"
+categories: [Assignments, Data Viz, Tables, Scatterplot, Barplot, Piechart]
+image: "canuck.png"
+code-fold: true
+code-tools: true
+code-link: true
+description: "Should I trade these draft picks for this bag of magic beans...?"
+format: html
+editor: visual
+---
+
+## OVERVIEW
+
+In this assignment, we are going to practice creating visualizations for tabular data where everyone will engage in the same logic process and have the same design objectives in mind.
+
+## LEARNING OBJECTIVES
+
+1. Demonstrate that you can manipulate tabular data to facilitate different visualization tasks. The minimum skills are FILTERING, SELECTING, and SUMMARIZING, all while GROUPING these operations as dictated by your data.
+2. Demonstrate that you can use tabular data to explore, analyze, and choose the most appropriate visualization idioms given a specific motivating question.
+3. Demonstrate that you can Find, Access, and Integrate additional data in order to fully address the motivating question.
+
+The scenario below will allow you to complete the assignment.  It deals with data that are of the appropriate complexity and extent (number of observations and variables) to challenge you.
+
+## SCENARIO 
+
+Hockey and drafting. Was the trade worth it? Did Vancouver or Calgary "win" the trade (outlined in Assignment 5)?
+
+Can we make some visualizations that help us answer this question?
+
+# Load libraries/Read in data
+
+```{r Load libraries, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+
+```
+
+```{r Read in data}
+NHLDraft<-read.csv("NHLDraft.csv")
+NHLDictionary<-read_excel("NHLDictionary.xlsx")
+
+knitr::kable(NHLDictionary)
+```
+As Barries states, we have a dataframe with all the drafted players from 2000-2018, their position, their draft year and position, and then rows for each season since being drafted (`postdraft`). The key variable here is `NHLgames`, which tells us how many games they played in the NHL each season since being drafted.  Whether drafted players even make the NHL, and how many games they play, might be a good proxy to understand the value of a draft pick we just traded away.
+
+## SIMPLE SCATTERPLOT
+
+Just like many pro sports, it is pretty rare for a player to play in the NHL right after being drafted. Players get drafted when they are 18 years old, and they usually play in the juniors, minor leagues, or the NCAA to further develop. 
+
+Let's use a scatterplot to visualize this phenomenon with the most recent draft classes.
+
+```{r Scatterplot}
+draft2022<-NHLDraft%>%
+  filter(draftyear==2022 & postdraft==0)
+
+ggplot(draft2022, aes(x=round, y=NHLgames))+
+  geom_point()
+
+```
+Aha! Many players drafted in June of 2022 didn't play much last season. There are few things wrong with this visualization, however:
+
+# START HERE!!!!
+
+1.  **Overplotting.** All those points on the y=0 line represent about 32 players each. Can you think of a way that adding extra channels might help? Hmm... jitter? Boxplots? 
+2.  **Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used. 
+3.  **Key-Value pairs:** Looks like we are using "round" as a continuous variable. Can we change this to an ordered factor?
+
+## EXPANDED SCATTERPLOT
+
+The data from the most recent drafts aren't really helpful for our question. Let's go back in time and use a draft year that has had some time to develop and reach their potential. How about 2018?
+
+```{r}
+draft2018<-NHLDraft%>%
+  filter(draftyear==2018 & postdraft<6) 
+
+# wondering why I've filtered postdraft to be less than 6?  Try removing that filter to see what happens.
+
+ggplot(draft2018, aes(x=round, y=NHLgames))+
+  geom_point()
+
+```
+
+Hmmm... in addition to the problem of overplotting, we've got an additional issue here. We actually have two keys and one attribute. The attribute is `NHLgames`, and the keys are `round` and `postdraft`, but we are only using round.
+
+Postdraft indicates the number of seasons after being drafted. We have several choices here. We can make a visualization that uses both keys, or we can somehow summarize the data for one of the keys.
+
+For example, let's say we just wanted to know the TOTAL number of NHL games played since being drafted.
+
+```{r}
+drafttot2018<- draft2018%>%
+  group_by(playerId, round, overall, position, name)%>%
+  summarise(totgames=sum(NHLgames))
+
+ggplot(drafttot2018, aes(x=round, y=totgames))+
+  geom_point()
+
+```
+
+Look closely at the two graphs above.  How are they different?
+
+## STOP AND REFLECT
