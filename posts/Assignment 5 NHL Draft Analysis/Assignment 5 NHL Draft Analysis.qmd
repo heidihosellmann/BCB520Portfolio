@@ -1,5 +1,9 @@
 ---
 title: "BCB 520 Assignment 5"
+output:
+  quarto::quarto_html: default
+  html_document: default
+    toc:true
 subtitle: "Tabular Data NHL Draft Analysis"
 author: "Heidi Sellmann"
 date: "2024-02-24"
@@ -13,25 +17,33 @@ format: html
 editor: visual
 ---
 
+```{r}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)
+```
+
 ## OVERVIEW
 
 In this assignment, we are going to practice creating visualizations for tabular data where everyone will engage in the same logic process and have the same design objectives in mind.
 
 ## LEARNING OBJECTIVES
 
-1. Demonstrate that you can manipulate tabular data to facilitate different visualization tasks. The minimum skills are FILTERING, SELECTING, and SUMMARIZING, all while GROUPING these operations as dictated by your data.
-2. Demonstrate that you can use tabular data to explore, analyze, and choose the most appropriate visualization idioms given a specific motivating question.
-3. Demonstrate that you can Find, Access, and Integrate additional data in order to fully address the motivating question.
+1.  Demonstrate that you can manipulate tabular data to facilitate different visualization tasks. The minimum skills are FILTERING, SELECTING, and SUMMARIZING, all while GROUPING these operations as dictated by your data.
+2.  Demonstrate that you can use tabular data to explore, analyze, and choose the most appropriate visualization idioms given a specific motivating question.
+3.  Demonstrate that you can Find, Access, and Integrate additional data in order to fully address the motivating question.
 
-The scenario below will allow you to complete the assignment.  It deals with data that are of the appropriate complexity and extent (number of observations and variables) to challenge you.
+The scenario below will allow you to complete the assignment. It deals with data that are of the appropriate complexity and extent (number of observations and variables) to challenge you.
 
-## SCENARIO 
+## SCENARIO
 
 Hockey and drafting. Was the trade worth it? Did Vancouver or Calgary "win" the trade (outlined in Assignment 5)?
 
 Can we make some visualizations that help us answer this question?
 
-# Load libraries/Read in data
+If you are solely interested in my Conclusive Figure and conclusion drawn from it, see Figure \@ref(Conclusive_Figure) for details.
+
+(I left fluff from the original assignment because it was helpful for me to work through.)
+
+## Load libraries/Read in data
 
 ```{r Load libraries, include=FALSE}
 library(tidyverse)
@@ -47,11 +59,12 @@ NHLDictionary<-read_excel("NHLDictionary.xlsx")
 
 knitr::kable(NHLDictionary)
 ```
-As Barries states, we have a dataframe with all the drafted players from 2000-2018, their position, their draft year and position, and then rows for each season since being drafted (`postdraft`). The key variable here is `NHLgames`, which tells us how many games they played in the NHL each season since being drafted.  Whether drafted players even make the NHL, and how many games they play, might be a good proxy to understand the value of a draft pick we just traded away.
+
+As Barrie states, we have a data frame with all the drafted players from 2000-2018, their position, their draft year and position, and then rows for each season since being drafted (`postdraft`). The key variable here is `NHLgames`, which tells us how many games they played in the NHL each season since being drafted. Whether drafted players even make the NHL, and how many games they play, might be a good proxy to understand the value of a draft pick we just traded away.
 
 ## SIMPLE SCATTERPLOT
 
-Just like many pro sports, it is pretty rare for a player to play in the NHL right after being drafted. Players get drafted when they are 18 years old, and they usually play in the juniors, minor leagues, or the NCAA to further develop. 
+Just like many pro sports, it is pretty rare for a player to play in the NHL right after being drafted. Players get drafted when they are 18 years old, and they usually play in the juniors, minor leagues, or the NCAA to further develop.
 
 Let's use a scatterplot to visualize this phenomenon with the most recent draft classes.
 
@@ -63,18 +76,22 @@ ggplot(draft2022, aes(x=round, y=NHLgames))+
   geom_point()
 
 ```
-**Figure 1.** Scatterplot depicting number of NHL games played after being drafted from various rounds from the year of 2022. 
+
+**Figure 1.** Scatterplot depicting number of NHL games played after being drafted from various rounds during the year of 2022.
+
 **MARKS** = Points
+
 **CHANNELS** = Position
-**KEY-VALUE PAIRS** = Only values of round pick number and games played in the NHL. 
+
+**KEY-VALUE PAIRS** = Only values of round pick number and games played in the NHL.
 
 Ok so this scatterplot shows that 1st round picks play the most NHL games, at least those drafted in June 2022. As round picks increase, those players often play less NHL games.
 
 There are few things wrong with this visualization, however:
 
-1.  **Overplotting.** All those points on the y=0 line represent about 32 players each. Can you think of a way that adding extra channels might help? 
+1.  **Overplotting.** All those points on the y=0 line represent about 32 players each. Can you think of a way that adding extra channels might help?
 
-Hmm... jitter? 
+Hmm... jitter?
 
 ```{r Scatterplot with jitter}
 draft2022<-NHLDraft%>%
@@ -88,9 +105,10 @@ ggplot(draft2022, aes(x = round, y = NHLgames)) +
   
     
 ```
-I added an additional channel/key of jitter reflecting picks in round and color showing the spectrum of picks in round... Not sure how helpful this is, but I tried! 
 
-2.  **Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualization is intended to facilitate, as well as the marks, channels, and key-value pairs used.
+I added an additional channel/key of jitter reflecting picks in round and color showing the spectrum of picks in round... Not sure how helpful this is, but I tried!
+
+2.  **Labeling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualization is intended to facilitate, as well as the marks, channels, and key-value pairs used.
 
 (I added these above)
 
@@ -115,15 +133,15 @@ ggplot(draft2018, aes(x=round, y=NHLgames))+
 
 Hmmm... in addition to the problem of overplotting, we've got an additional issue here. We actually have two keys and one attribute. The attribute is `NHLgames`, and the keys are `round` and `postdraft`, but we are only using round.
 
-... explicitly, right?
+... explicitly, right? Of note, we filtered by only using the draft year of 2018 and included NHL games played up to 6 years from that draft (so 2024 if I did my math right). This makes sense- we are in the year 2024!
 
-Postdraft indicates the number of seasons after being drafted. We have several choices here. We can make a visualization that uses both keys, or we can somehow summarize the data for one of the keys.
+As I just touched on above, postdraft indicates the number of seasons after being drafted. We have several choices here. We can make a visualization that uses both keys, or we can somehow summarize the data for one of the keys.
 
-Alrighty, sounds good to me. 
+Alrighty, sounds good to me.
 
-For example, let's say we just wanted to know the TOTAL number of NHL games played since being drafted.
+For example, let's say we just wanted to know the TOTAL number of NHL games played since being drafted. We will make it a new variable!
 
-```{r}
+```{r message=FALSE}
 drafttot2018<- draft2018%>%
   group_by(playerId, round, overall, position, name)%>%
   summarise(totgames=sum(NHLgames))
@@ -133,15 +151,15 @@ ggplot(drafttot2018, aes(x=round, y=totgames))+
 
 ```
 
-Look closely at the two graphs above.  How are they different?
+Look closely at the two graphs above. How are they different?
 
-Hmm... it looks like this graph has accounted for/ordered other attributes. I am not sure exactly how though. I just notice in the code that we have grouped by different variables- perhaps this is what makes the second graph seem a bit more ordered?
+Hmm... it looks like this graph has accounted for/ordered other attributes. I am not sure exactly how though. I just notice in the code that we have grouped by playerId, round, overall, position, and name... Perhaps this is what makes the second graph seem a bit more ordered?
 
-I also noticed that we came up with "totgames" as a sum of "NHLgames". So if I am following, totgames = sum of NHL games played as ordered by those previous variables (playerId, round, overall, position, name)?
+Further, we also came up with "totgames" as a sum of "NHLgames". So if I am following, totgames = sum of NHL games played as ordered by those previous variables (playerId, round, overall, position, name)?
 
 ## STOP AND REFLECT
 
-We need to think about how Barrie has been manipulating the data... This is where I get a little lost! 
+We need to think about how Barrie has been manipulating the data...
 
 He says: I'm using the [Tidyverse](https://www.tidyverse.org) to do these manipulations. I set up the original data frame to conform to the tidy data principles (every column is a variable, every row is an observation), which is pretty much the base form of how we've discussed [Tabular Data](../L6-TabularData1) in class.
 
@@ -157,52 +175,35 @@ These functions come from the [dplyr package](https://dplyr.tidyverse.org) that 
 
 All of these work with group_by() so you can perform whichever operation on the groups that might be present in your data set.
 
-Ok- so earlier we group_by() and did summarise() within that.  
+Ok great... I am starting to get the lingo. Earlier we did group_by() and summarise().
 
 Let's get back to improving our understanding of the relative value of NHL draft picks. The figure above considers a single draft class (2018), and shows the total number of NHL games all the players have accumulated, separating each draft round on an ordinal x axis.
 
-Got it! 
+Got it!
 
-Fine, I guess, but we still have to deal with overplotting, and think about whether a scatterplot really helps us accomplish our task. For this figure do the following:
-
-1.  **Overplotting.** All those points on the y=0 line represent about 32 players each. Can you you think of a way that adding extra channels might help?
-2.  **Labelling.** Can we create a solid figure caption and better axis labels for this figure? In your caption, please specify the task(s) the visualizaiton is intended to facilitate, as well as the marks, channels, and key-value pairs used.
-3.  **Key-Value pairs:** Looks like we are using "round" as a continuous variable. Can we change this to an ordered factor?
-
-(I think I already did 1-3 earlier, so I am going to skip for now. I want to get to the more philosophical point of this assignment.)
+Fine, I guess, but we still have to deal with overplotting, and think about whether a scatterplot really helps us accomplish our task.
 
 ## SCATTERPLOT WITH OVERALL DRAFT POSITION
 
 This approach might yield a better match with the scatterplot idiom. What if we ignore draft round, and use the player's overall draft position instead? It also might help us focus on our motivating question! What is the potential value of pick 31, and how does Elias Lindholm compare to that value?
 
-Yes! We want to apply these manipulations to get a better feel for this 31st pick. Overall = overall draft pick (1-224). And looking at this as a function of NHL games played. 
+Yes! We want to apply these manipulations to get a better feel for this 31st pick. And looking at this as a function of NHL games played.
 
-```{r}
+```{r warning=FALSE}
 
 ggplot(drafttot2018, aes(x=overall, y=totgames))+
-  geom_point()
+  geom_point()+
+  xlim(1, 50)
 
 ```
 
-For this figure, address the following:
-
-1.  We are trying to address the notion of trading pick 31. How might you facilitate the task of evaluating picks in that range?
-
-Perhaps making the x axis only go 0-50 would be helpful to zoom in here. 
-
-2.  Create a caption and better axis labels for this figure.
-
-DO!
-
-3.  What if we wanted to use more than just the 2018 draft class?
-
-Have to start from the top?
+I took the liberty of zooming in the x axis to 0-50. After all, Elias was a 31st round pick! This allows us to see how many games other typical 31-ish picks play (at least from the 2018 draft year).
 
 ## SCATTERPLOT SUMMARY
 
 We seem to be running into an issue in terms of overplotting. Scatterplots are great, but they work best for two quantitative attributes, and we have a situation with one or two keys and one quantitative attribute. The thing is, scatterplots can be very useful when part of our workflow involves modeling the data in some way. We'll cover this kind of thing in future assignments, but just a bit of foreshadowing here:
 
-```{r}
+```{r message=FALSE}
 
 ggplot(drafttot2018, aes(x=round, y=totgames))+
   geom_point()+
@@ -216,7 +217,7 @@ Why not include all the data? A scatter plot with that many players (4775) isn't
 
 Sounds good to me!
 
-```{r}
+```{r message=FALSE}
 
 drafttot<- NHLDraft%>%
   filter(postdraft<8)%>%
@@ -232,170 +233,65 @@ ggplot(drafttot, aes(x=overall, y=totgames))+
 
 Or we could visualize the average number of games played as a function of time since being drafted.
 
-```{r}
+```{r message=FALSE}
 
 ggplot(NHLDraft, aes(x=postdraft, y=NHLgames))+
   geom_smooth(aes(color=as.factor(round)))
 ```
 
+I personally really like this figure. And in class we manipulated it to better answer the question of if the trade was a good trade.
 
+I am going to try to recreate a version of sorts of this figure above for my **CONCLUSIVE FIGURE**. In doing so, I will try to get back to the point of this assignment in the first place.
 
-## DIVERGENCE
+I want to compare Elias himself (who's draft data from 2013 is in the dataset) to other good players (measured by their round picked, but position specific). On the y axis, I don't want to just look at games played, but the performance within those games. The variable "points" will be used to do this as it summarizes goals and assists- valuable player performance stats indeed, at least I would guess so for a forward!
 
-Enough esoteric wandering. The original version of this assignment focused on the relative value of draft picks in the NHL. This version has a more specific question. What might picks in the range of pick 31 conceivably yield? 
+(As Barrie's original hint eluded to, I am going to use the `NHLdraftstats.csv`data to gather these performance measures.)
 
-(To me, this is what the previous plots have been exploring.) 
+```{r Getting Elias data, echo=FALSE}
+getwd()
+library(readr)
+NHLdraftstats <- read_csv("NHLdraftstats.csv")
+View(NHLdraftstats)
 
-How often do picks in that range yield players of Elias Lindholm's value?
-
-Hmm... this, I do not know.
-
-I guess we'd better figure out what Elias Lindholm brings to the table.
-
-Yes! Personal stats somehow? 1 v 1? 
-
-Can you find him in our existing data? Can you think of a way to highlight him in the context of number of games played? What other kinds of data might we need to fairly evaluate Lindholm and pick 31?
-
-Hmm. Good questions! I am going to include these in brainstorming on paper. 
-
-::: callout-note
-## HINT
-
-In the GitHub repository there is a file called `NHLdraftstats.csv`. What's in there? Can we use that information?
-
-:::
-
-Yes!!! Again, brainstormed with this on paper!
-
-You will be surprised how these seemingly simple questions force you to explore the nuances of working with and visualizing tabular data.
-
-# APPENDIX
-
-The following examples and code were used in last year's assignment. They might be useful for the current version or for future assignments.
-
-## SIMPLE BAR CHART
-
-One of the best ways to deal with overplotting is to use our keys to SEPARATE and ORDER our data. Let's do that now. I'll stick with the summarized data for the 2018 draft year for now.
-
-```{r}
-
-ggplot(drafttot2018, aes(x = name, y=totgames))+
-  geom_col()
-
+elias_lindholm_data <- filter(NHLdraftstats, name == "Elias Lindholm")
+knitr::kable(elias_lindholm_data)
 ```
 
-Epic. We now have a bar (column, really) chart with the key being player `name`, and the attribute being the total number of games played. We've SEPARATED the data using the spatial x-axis position channel, and aligned to that axis as well. But this visualization clearly sucks. You need to make it better by:
+Now I want to look at a graph that looks at points scored over the seasons following being drafted. I like that the lines then represent various rounds from which the players were drafted.
 
-1.  Adding a visual channel indicating draft round.
-2.  Fixing the order of the x axis.
-3.  Making a caption and better axis labels.
-4.  Fixing the values of the x axis labels so they aren't such a mess.
+```{r Looking at points scored vs postdraft year, message=FALSE}
 
-## STACKED BAR?
-
-Stacked bar charts use two keys and one value. Can we leverage this idiom? Perhaps if we used both `round` and `postdraft` as our keys and NHLgames as our value...
-
-The idea here is that we might be able to get a sense of the temporal pattern of NHL games after a player is drafted. Do first round picks join the NHL earlier? Do they stay in the NHL longer? That kind of thing.
-
-```{r}
-ggplot(draft2018, aes(x = postdraft, y=NHLgames, fill=as.factor(-round)))+
-  geom_col(position = "stack")
-
-NHLDraft <-NHLDraft %>%
-  mutate(descround = desc(as.factor(round)))
-
-rounds<-c("darkred","red","pink", "violet", "lightblue","blue", "darkblue")
-
-ggplot(NHLDraft, aes(x = postdraft, y=NHLgames, fill=as.factor(-round), 
-                     alpha = as.factor(-round)))+
-  geom_col(position = "stack")+
-  theme(legend.position = "none")
-
+ggplot(NHLdraftstats, aes(x = postdraft, y = points)) +
+  geom_smooth(aes(color = as.factor(round)))
 ```
 
-This seems like it has some potential, but it definitely needs some work (by you):
+I then filtered this so that it only includes comparable players to Elias- those who are forwards and weigh between 175-220 lbs.
 
-1.  You know the drill by now. Caption! Labels!
-2.  Improve the color palette.
-3.  Do we really only want data from the 2018 draft class?
-4.  Consider the order of rounds within the stack (glyph). Which round is most important? Change the order within the glyphs to reflect this.
+```{r Filtered data, message=FALSE}
+filtered_data <- NHLdraftstats %>%
+  filter(position == "Forward", weight >= 175, weight <= 220)
 
-## PIE CHARTS / NORMALIZED BAR CHARTS
-
-We all know that Pie Charts are rarely a good choice, but let's look at how to make one here. I'll eliminate all the players drafted in 2018 who never played an NHL game, leaving us 80 players drafted in that year who made "THE SHOW". Let's look at how those 80 players were drafted:
-
-```{r}
-
-playedNHL2018 <- drafttot2018%>%
-  filter(totgames>0)
-
-ggplot(playedNHL2018, aes(x = "", fill = factor(round))) +
-  geom_bar(width = 1) +
-  coord_polar(theta = "y")
-
-
+ggplot(filtered_data, aes(x = postdraft, y = points)) +
+  geom_smooth(aes(color = as.factor(round)))
 ```
 
-Obviously this isn't great, but can you state why? Write a little critique of this visualizaiton that:
+I then added Elias' data on top of that to see how he compares. Especially since we traded him for a future 1st round pick, this visualization helps us see how Elias and the possible/future/typical 1st round guy compare. I also changed the x axis to only include the first 10 years postdraft, especially since Elias was drafted in 2013, 10 years puts us to the current year.
 
-1.  Considers a player who played hundreds of games over their first five years vs a player who played one game in five years.
-2.  Evaluates the relative value of a second round pick and a third round pick.
+```{r Conclusive_Figure, fig.cap="Conclusive Figure", message=FALSE, warning=FALSE}
 
-Now let's change this to account for the various years post draft:
+filtered_data <- NHLdraftstats %>%
+  filter(position == "Forward", weight >= 175, weight <= 220)
 
-```{r}
-seasonplayedNHL2018 <- draft2018%>%
-  filter(NHLgames>0)
-
-
-ggplot(seasonplayedNHL2018, aes(x = "", fill = factor(round))) +
-  geom_bar(width = 1) +
-  coord_polar(theta = "y")+
-  facet_wrap(~postdraft)
-
+ggplot(filtered_data, aes(x = postdraft, y = points)) +
+  geom_smooth(aes(color = as.factor(round)))+
+  geom_point(data = elias_lindholm_data, aes(x = postdraft, y = points), color = "purple")+
+  xlim(1, 10)
 ```
 
-Seems like there is something to work with here, but let's compare this to a normalized bar chart:
+**Conclusive Figure** shows average points (summarized from goals and assists) scored by players drafted from previous draft seasons who are forwards and weigh between 175-220 pounds. Colored lines indicate the average stats of those drafted from different rounds. Purple scatter points are reflective of Elias Lindholm's performance every season since being drafted in 2013 as a 31st round draft pick.
 
-```{r}
-ggplot(draft2018, aes(x = postdraft, y=NHLgames, fill=as.factor(round)))+
-  geom_col(position = "fill")
+# CONCLUSION
 
-ggplot(draft2018, aes(x = postdraft, y=NHLgames, fill=overall))+
-  geom_col(position = "fill")
+As the figure above goes to show, Elias is a standout- even compared to average 1st round picks who were also forwards around his weight.
 
-```
-
-Can you work with this to make it a useful visualization for your friend, Cassandra Canuck?
-
-## HEATMAP?
-
-Could this be useful?
-
-```{r}
-
-round1<-NHLDraft%>%
-  filter(round==1)
-
-ggplot(NHLDraft, aes(y = reorder(name, overall), x = postdraft, fill = NHLgames)) +
-  geom_tile(width = .5, height = 5) +
-  theme(plot.margin = unit(c(0,0,0,0), "cm"),
-        axis.line = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())+
-  scale_fill_gradient(low = "blue", high = "red")
-
-ggplot(NHLDraft, aes(y = overall, x = postdraft, z=NHLgames)) + 
-  geom_tile(aes(fill=NHLgames)) 
-```
-
-## OTHER STUFF TO CONSIDER
-
-1.  Do these visualizations change as a function of player position?
-2.  Is the number of NHL games played really the best metric to use?
-
-## CONCLUSION
-
-Based on your visualizations, what would you advise regarding this trade proposal? Why?
+All in all, I say the Canucks made a great decision given their success this seasson. As for Calgary, I think they let go of a well-performing player, but who is to say the up and coming 1st draft pick they get in the future may not also be a stand out? To be determined...
