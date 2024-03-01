@@ -62,7 +62,13 @@ Here we add another column into Cytokine_summary via R
 
 ```{r Add in diet column}
 Cytokine_summary <- Cytokine_summary %>%
-  mutate(Diet = str_sub(Pig, 1, 1))
+  mutate(Diet = case_when(
+    grepl("^P", Pig) ~ "P",
+    grepl("^C", Pig) ~ "C",
+    grepl("^HM", Pig) ~ "HM",
+    grepl("^IF", Pig) ~ "IF",
+    TRUE ~ NA_character_  # Add this line to handle other cases or set default value
+  ))
 ```
 
 ## What does each diet look like?
@@ -79,9 +85,9 @@ ggplot(Cytokine_summary, aes(x = Diet, y = IL1B_Jej_pg_mL)) +
 
 C = Farm Control
 
-H = HM
+HM = HM
 
-I = IF
+IF = IF
 
 P = Lab Control
 
