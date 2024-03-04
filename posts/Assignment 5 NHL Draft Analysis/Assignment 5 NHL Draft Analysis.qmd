@@ -39,7 +39,7 @@ Hockey and drafting. Was the trade worth it? Did Vancouver or Calgary "win" the 
 
 Can we make some visualizations that help us answer this question?
 
-If you are solely interested in my Conclusive Figure and conclusion drawn from it, see Figure \@ref(Conclusive_Figure) for details.
+If you are solely interested in my Conclusive Figure and conclusion drawn from it, see Conclusive Figure @fig-Conclusive_Figure for details.
 
 (I left fluff from the original assignment because it was helpful for me to work through.)
 
@@ -277,7 +277,9 @@ ggplot(filtered_data, aes(x = postdraft, y = points)) +
 
 I then added Elias' data on top of that to see how he compares. Especially since we traded him for a future 1st round pick, this visualization helps us see how Elias and the possible/future/typical 1st round guy compare. I also changed the x axis to only include the first 10 years postdraft, especially since Elias was drafted in 2013, 10 years puts us to the current year.
 
-```{r Conclusive_Figure, fig.cap="Conclusive Figure", message=FALSE, warning=FALSE}
+```{r}
+#| label: fig-Conclusive_Figure
+#| fig-cap: "Conclusive Figure"
 
 filtered_data <- NHLdraftstats %>%
   filter(position == "Forward", weight >= 175, weight <= 220)
