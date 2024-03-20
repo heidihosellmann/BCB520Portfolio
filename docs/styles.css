@@ -1,1 +1,10 @@
 /* css styles */
+body {
+    background-color: #f0f0f0; /* Set background color */
+    color: #333; /* Set text color */
+}
+
+.button {
+    background-color: #ADD8E6; /* Set button background color */
+    color: #fff; /* Set button text color */
+}

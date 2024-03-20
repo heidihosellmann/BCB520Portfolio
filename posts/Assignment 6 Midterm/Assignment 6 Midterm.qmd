@@ -1,0 +1,514 @@
+---
+title: "BCB 520 - Midterm Portfolio Post"
+subtitle: "Evaluating Awards and Grants: UI vs. Others"
+author: "Heidi Sellmann"
+date: "2024-03-11"
+categories: [Assignment, DataViz, Tables, Project]
+image: "grants.jpg"
+code-fold: true
+code-tools: true
+code-link: true
+description: "Grants and awards and bears, oh my!"
+format: 
+  html:
+    css: styles.css
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)
+```
+
+# PREABLE
+
+You may be wondering what this midterm assignment addresses... Well, in
+this workup, I will evaluate how the University of Idaho compares to
+neighboring institutions in terms of grants awarded and productivity
+from those awards.
+
+I will be evaluating award/grant data from four federal sponsors:
+
+The National Science Foundation, The National Institutes of Health, The
+Department of Energy, and The US Department of Agriculture.
+
+Why is the question or purpose important? We shall find out!
+
+# DATA
+
+```{r Load libraries, warning = FALSE}
+library(httr)
+library(jsonlite)
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(ggplot2)
+```
+
+**1. Department of Agriculture (NIFA)** A snippet of the awards from
+USDA pertaining to UI are included below. See the data dictionary here
+@fig-USDAtoUIDataDict. This includes agricultural related grants all the
+way from the early 2000s.
+
+```{r USDAtoUI}
+USDAtoUI<-read.csv("USDAtoUI.csv")
+knitr::kable(head(USDAtoUI))
+```
+
+**2. Department of Energy (DOE)** A snippet of these awards (all awards,
+not just U of I's) are included below. ![DOE](DOE.png)
+
+The data dictionary for this extensive data set can be accessed here
+@fig-DOEDataDict. This data is not restricted to a particular award
+recipient.
+
+```{r DOE awards, message = FALSE}
+DOEawards<-read_excel("DOEawards.xlsx")
+#knitr::kable(head(DOEawards))
+```
+
+**3. National Institutes of Health (NIH)** This data can be obtained
+from an Application Programming Interface (API).
+
+*Before this assingmnet, I had never heard of APIs. Apparently, they are
+fancy tools that allow different software components to communicate with
+each other.*
+
+Barrie graciously provided code to help us access this information.
+Again, a snippet is included. ![NIH](NIH.png)
+
+You can access this data's dictionary here @fig-project_dfDataDict. This
+is quite a large data set with information on awards (related to health
+sciences) recieved by BSU and U of I between 2013-2024. Of note, this is
+an example of heirarchal data- some cells appear to have no values in
+them becuase there are actually multiple variables within those cells.
+It gets complex!
+
+```{r NIH API}
+# Set the base URL for the API
+base_url <- "https://api.reporter.nih.gov/v2/projects/search"
+
+# This omits the `include_fields` option and downloads all the data for the University of Idaho and Boise State University from Fiscal Year 2013 to Fiscal Year 2024.
+
+# Build query parameters
+query_params <- list(
+  criteria = list(
+    fiscal_years = 2013:2024, # Specify range of fiscal years
+    org_names = list("UNIVERSITY OF IDAHO", "BOISE STATE UNIVERSITY")),
+  offset = 0, # Starting point for fetching results.  Unlikely you'd ever want to change this.
+  limit = 500, # Maximum number of results to fetch. Sometimes the API sets a maximum.  NIH does not.
+  sort_field = "ProjectStartDate", # Field to sort by.  Largely irrelevant as our visualizations should control this.
+  sort_order = "desc" # Sort order
+)
+
+# Convert query parameters to JSON format. This part is tricky.  This line converts the list above to a format (json) that the API will recognize.  This is a place where Python is way better than R.
+query_json <- toJSON(query_params, auto_unbox = TRUE, null = "null", pretty = TRUE)
+
+# Set header information for the request.  Some instructions to the API about our query.
+headers <- c("Content-Type" = "application/json")
+
+# Send a POST request and retrieve response data.  POST is just a type of API interaction.  response is a json object.  Click on it in your environment to see the hierarchical structure.
+
+response <- POST(base_url, body = query_json, encode = "json", httr::add_headers(.headers = headers))
+
+# Check if the request was successful.  Sometimes the error is from our code.  But sometimes it is from the API call.  Status codes help us figure out where any problems might be.
+if (status_code(response) == 200) {
+  # Extract and parse JSON data
+  json_data_NIH <- content(response, as = "text", encoding = "UTF-8")
+  parsed_data_NIH <- fromJSON(json_data_NIH, flatten = TRUE)
+  
+  # Select columns based on the actual JSON data structure. The data frame (technically the tibble) we want is in the results component.  click on parsed_data and you'll see what I mean.
+  projects_df <- parsed_data_NIH$results
+  
+  
+  # Print the data frame.  This is nice for debugging but you'll eventually want to stop doing this.
+  # print(projects_df)
+  # knitr::kable(head(projects_df))
+} else {
+  # Print an error message if data fetching failed
+  print(paste("Failed to fetch data: Status code", status_code(response)))
+  # Print the full response for debugging purposes
+  print(content(response, as = "text"))
+}
+
+```
+
+**4. National Science Foundation (NSF)** The NSF also has an API, and
+the following code pulled down awards to the University of Idaho into a
+data frame called NSFtoUI. A snapshot of it is shown here.
+![NSF](NSF.png)
+
+See the data dictionary here @fig-NSFtoUIDataDict. Briefly, this data
+set gives information on NSF grants awarded to the University of Idaho
+from 1975 to current day.
+
+```{r NSFtoUI load, eval = FALSE, message=FALSE}
+# Base URL for the API
+base_url <- "https://www.research.gov/awardapi-service/v1/awards.json?awardeeName=%22regents+of+the+university+of+idaho%22"
+
+printFields <- "rpp,offset,id,agency,awardeeCity,awardeeCountryCode,awardeeDistrictCode,awardeeName,awardeeStateCode,awardeeZipCode,cfdaNumber,coPDPI,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,ueiNumber,fundProgramName,parentUeiNumber,pdPIName,perfCity,perfCountryCode,perfDistrictCode,perfLocation,perfStateCode,perfZipCode,poName,primaryProgram,transType,title,awardee,poPhone,poEmail,awardeeAddress,perfAddress,publicationResearch,publicationConference,fundAgencyCode,awardAgencyCode,projectOutComesReport,abstractText,piFirstName,piMiddeInitial,piLastName,piEmail"
+
+# Initialize an empty data frame to store results
+NSFtoUI <- tibble()
+
+# Number of results per page (as per API settings)
+results_per_page <- 25
+
+# Variable to keep track of the current page number
+current_page <- 1
+
+# Variable to control the loop
+keep_going <- TRUE
+
+while(keep_going) {
+    # Calculate the offset for the current page
+    offset <- (current_page - 1) * results_per_page + 1
+
+    # Construct the full URL with offset
+    url <- paste0(base_url, "&offset=", offset, "&printFields=", printFields)
+
+    # Make the API call
+    response <- GET(url)
+
+    # Check if the call was successful
+    if (status_code(response) == 200) {
+        # Extract and parse the JSON data
+        json_data_NSF <- content(response, type = "text", encoding = "UTF-8")
+        parsed_data_NSF <- fromJSON(json_data_NSF, flatten = TRUE)
+
+        # Extract the 'award' data and add to the all_awards data frame
+        awards_data <- parsed_data_NSF$response$award
+        NSFtoUI <- bind_rows(NSFtoUI, as_tibble(awards_data))
+
+        # Debug: Print the current page number and number of awards fetched
+        print(paste("Page:", current_page, "- Awards fetched:", length(awards_data$id)))
+
+        # Check if the current page has less than results_per_page awards, then it's the last page
+        if (length(awards_data$id) < results_per_page) {
+            keep_going <- FALSE
+        } else {
+            current_page <- current_page + 1
+        }
+    } else {
+        print(paste("Failed to fetch data: Status code", status_code(response)))
+        keep_going <- FALSE
+    }
+}
+```
+
+```{r Excel and NSFtoUI, warning=FALSE}
+library(writexl)
+
+# Write data frame to Excel file
+
+# write_xlsx(projects_df, "project_df")
+
+# write_xlsx(NSFtoUI, "NSFtoUI.xlsx")
+
+NSFtoUI <- read_excel("NSFtoUI.xlsx")
+#knitr::kable(head(NSFtoUI))
+```
+
+# VISUALIZATIONS
+
+Create your visualizations in response to the questions and prompts.
+Answer the questions and prompts directly. Draw a conclusion or
+inference related to each. Identify limitations and the types of data
+you would need to mitigate those limitations. Also include text that
+explains any steps or design choices you considered while exploring the
+vizualization options \[this normally wouldn’t appear in the report to
+the vice president, but I’d like a window into your process\]. Be sure
+to include clearly labeled axes and a concise but complete figure
+caption for each visualization. Make deliberate choices for color
+palettes, point marks, line types, etc. Demonstrate that you understand
+the concepts we have covered!
+
+# SUMMARY
+
+Summarize your results. What new questions have emerged as a result of
+your visualizations? What interesting next steps have emerged?
+
+# QUESTION 1
+
+Provide a visualization that shows our active awards from each sponsor.
+I need to see their start date and end date, the amount of the award,
+and the name of the Principal Investigator. I’m really interested in
+seeing how far into the future our current portfolio will exist. Are
+there a bunch of awards about to expire? Are there a bunch that just got
+funded and will be active for a while? Does this vary across sponsors?
+
+## Practice with just "DOEawards"
+
+```{r}
+# Assuming your data is stored in a dataframe called DOEawards
+
+# Convert 'Start Date' to date format
+DOEawards$"Start Date" <- as.Date(DOEawards$"Start Date", format = "%m/%d/%Y")
+
+# Filter data for grants awarded to "Regents of the University of Idaho"
+DOEawards_df <- DOEawards %>%
+  filter(Institution == "Regents of the University of Idaho")
+
+# Filter data for grants with an "Action Type" of "New"
+DOEawards_df_new_grants <- DOEawards_df %>%
+  filter(`Action Type` == "New")
+
+# Filter data for grants with a "Start Date" on or after 01/01/2014
+DOEawards_df_new_grants <- DOEawards_df_new_grants %>%
+  filter(`Start Date` >= as.Date("2014-01-01")) 
+```
+
+# QUESTION 2
+
+What is the proportional representation of new awards to the UI from
+these various sources over the past 5 to 10 years? Are there any trends
+that are encouraging or discouraging?
+
+## Practice with new grant counts for just "DOEawards"
+
+I started working on this just using "DOEawards" and ChapGPT
+
+```{r DOE New Grant Counts}
+# Assuming your data is stored in a dataframe called DOEawards
+
+# Convert 'Start Date' to date format
+DOEawards$"Start Date" <- as.Date(DOEawards$"Start Date", format = "%m/%d/%Y")
+
+# Filter data for grants awarded to "Regents of the University of Idaho"
+DOEawards_df <- DOEawards %>%
+  filter(Institution == "Regents of the University of Idaho")
+
+# Filter data for grants with an "Action Type" of "New"
+DOEawards_df_new_grants <- DOEawards_df %>%
+  filter(`Action Type` == "New")
+
+# Filter data for grants with a "Start Date" on or after 01/01/2014
+DOEawards_df_new_grants <- DOEawards_df_new_grants %>%
+  filter(`Start Date` >= as.Date("2014-01-01")) 
+
+# Count the number of new grants for each year
+new_grants_count <- DOEawards_df_new_grants %>%
+  group_by(Year = lubridate::year(`Start Date`)) %>%
+  summarise(Count = n())
+
+# Plotting
+ggplot(new_grants_count, aes(x = Year, y = Count)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Number of New Grants to Regents of the University of Idaho (2014-Now)",
+       x = "Year",
+       y = "Number of New Grants") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_continuous(breaks = seq(min(new_grants_count$Year, na.rm = TRUE), max(new_grants_count$Year, na.rm = TRUE), by = 1)) +
+  geom_text(aes(label = Count), vjust = -0.3) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = "bold"),
+        plot.title = element_text(size = 16, face = "bold"))
+
+```
+
+Figure . captures the number of new grants the DOE awarded to the
+University of Idaho during the past 10 years.
+
+As we can see, not much from the past 10 years!
+
+## Now to expand to the other datasets.
+
+I am first going to filter and make seperate dataframes for all sponsors
+and then combine and graph.
+
+Let's start by finishing DOE new grants count
+
+```{r Finishing DOE new grants count}
+# Create a new column named "Sponsor" with the desired values
+DOE_new_grants_count <- mutate(new_grants_count, Sponsor = "DOE")
+
+# View the modified dataset
+print(DOE_new_grants_count)
+```
+
+```{r NSF New Grant Counts}
+# Assuming your data is stored in a dataframe called NSFtoUI
+
+# Convert 'Date' to date format
+NSFtoUI$"date" <- as.Date(NSFtoUI$"date", format = "%m/%d/%Y")
+
+# Filter data for grants awarded to "Regents of the University of Idaho"
+# Already are!
+# NSFtoUI_df <- NSFtoUI %>%
+  # filter(Institution == "Regents of the University of Idaho")
+
+# Filter data for grants with an "transType" of "Standard Grant"
+NSFtoUI_df_new_grants <- NSFtoUI %>%
+  filter(`transType` == "Standard Grant")
+
+# Filter data for grants with a "date" on or after 01/01/2014
+NSFtoUI_df_new_grants <- NSFtoUI_df_new_grants %>%
+  filter(`date` >= as.Date("2014-01-01")) 
+
+# Count the number of new grants for each year
+NSF_new_grants_count <- NSFtoUI_df_new_grants %>%
+  group_by(Year = lubridate::year(`date`)) %>%
+  summarise(Count = n())
+
+# Finishing NSF new grants count with NSF column
+# Create a new column named "Sponsor" with the desired values
+NSF_new_grants_count <- mutate(NSF_new_grants_count, Sponsor = "NSF")
+
+# View the modified dataset
+print(NSF_new_grants_count)
+```
+
+```{r NIH New Grant Counts}
+# Assuming your data is stored in a dataframe called projects_df
+
+# Assuming your dataset is named projects_df
+projects_df$project_start_date <- as.Date(projects_df$project_start_date, format = "%Y-%m-%dT%H:%M:%SZ")
+
+# Filter data for grants awarded to "UNIVERSITY OF IDAHO"
+projects_df_df <- projects_df %>%
+  filter(`organization.org_name` == "UNIVERSITY OF IDAHO")
+
+# Filter data for grants with an "transType" of "Standard Grant"
+projects_df_new_grants <- projects_df_df %>%
+  filter(`is_new` == "TRUE")
+
+# Filter data for grants with a "project_start_date" on or after 01/01/2014
+projects_df_new_grants <- projects_df_new_grants %>%
+  filter(`project_start_date` >= as.Date("2014-01-01")) 
+
+# Count the number of new grants for each year
+projects_df_new_grants_count <- projects_df_new_grants %>%
+  group_by(Year = lubridate::year(`project_start_date`)) %>%
+  summarise(Count = n())
+
+# Finishing NSF new grants count with NSF column
+# Create a new column named "Sponsor" with the desired values
+NIH_new_grants_count <- mutate(projects_df_new_grants_count, Sponsor = "NIH")
+
+# View the modified dataset
+print(NIH_new_grants_count)
+```
+
+```{r USDA New Grant Counts}
+# Assuming your data is stored in a dataframe called USDAtoUI
+
+# Assuming your dataset is named USDAtoUI
+USDAtoUI$"Award.Date" <- as.Date(as.character(USDAtoUI$"Award.Date"), format = "%m/%d/%Y")
+
+# Filter data for grants with a "Award.Date" on or after 01/01/2014
+USDA_df_new_grants <- USDAtoUI %>%
+  filter(`Award.Date` >= as.Date("2014-01-01")) 
+
+# Count the number of new grants for each year
+USDA_df_new_grants_count <- USDA_df_new_grants %>%
+  group_by(Year = lubridate::year(`Award.Date`)) %>%
+  summarise(Count = n())
+
+# Finishing NSF new grants count with NSF column
+# Create a new column named "Sponsor" with the desired values
+USDA_new_grants_count <- mutate(USDA_df_new_grants_count, Sponsor = "USDA")
+
+# View the modified dataset
+print(USDA_new_grants_count)
+```
+
+Now let's combine the individual, mutated dataframe for each sponsor and
+put them altogether for a visualization.
+
+## Putting all the sponsors together
+
+```{r Visualizing all sponsors}
+
+# Combine datasets (assuming DOE_new_grants_count, NSF_new_grants_count, NIH_new_grants_count, and USDA_new_grants_count are your datasets)
+combined_grant_counts_df <- bind_rows(
+  mutate(DOE_new_grants_count, dataset = "DOE"),
+  mutate(NSF_new_grants_count, dataset = "NSF"),
+  mutate(NIH_new_grants_count, dataset = "NIH"),
+  mutate(USDA_new_grants_count, dataset = "USDA")
+)
+
+# Plotting
+ggplot(combined_grant_counts_df, aes(x = Year, y = Count, color = dataset)) +
+  geom_line() +
+  geom_point(data = filter(combined_grant_counts_df, dataset == "NIH"), color = "green", size = 3) +  # Add points for Dataset 3
+  labs(title = "Trends Across Multiple Datasets",
+       x = "Year",
+       y = "Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_continuous(breaks = seq(min(combined_grant_counts_df$Year, na.rm = TRUE), max(combined_grant_counts_df$Year, na.rm = TRUE), by = 1)) +
+  scale_color_manual(values = c("DOE" = "blue", "NSF" = "red", "NIH" = "green", "USDA" = "orange")) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = "bold"),
+        plot.title = element_text(size = 16, face = "bold"))
+
+```
+
+Figure shows the approximate trends of new grants recieved by the
+University of Idaho from various sponsors in the last 10 years.
+
+Limitations = the USDA dataset did not have specifications denoting
+whether the awards were new or continuing, therefore, I was only able to
+go off the award date for being in the last 10 years and had to make the
+assumption all were new. This is most likely not the case, so the orange
+line should be interpreted with caution. In general, the USDA acutually
+seems to be on the decline, which would be concerning. As for the DOE,
+it seems we are on the rise during the past couple years. NSF seems to
+be steady at the moment. Meanwhile, the NIH does not have much history
+of giving new grants to the UI in the past 10 years, but hopefully being
+on the board will start the ball rolling.
+
+# QUESTION 3
+
+How is UI performing with these sponsors when compared to the following
+peer institutions?
+
+Boise State University Idaho State University Montana State University
+University of Montana Washington State University
+
+Note that “performing” can mean a variety of different things. You must
+choose your metrics of performance and justify them.
+
+# APPENDIX
+
+## Data Dictionary
+
+```{r Load data dictionary, warning=FALSE}
+# Read a specific sheet from the Excel file
+library(readxl)
+AwardsDictionary <- read_excel("AwardsDictionary.xlsx")
+```
+
+```{r, warning = FALSE}
+#| label: fig-USDAtoUIDataDict
+#| fig-cap: "USDAtoUI Data Dictionary"
+
+AwardsDictionaryUSDAtoUI <- read_excel("AwardsDictionary.xlsx", sheet = "USDAtoUI")
+knitr::kable(AwardsDictionaryUSDAtoUI)
+```
+
+```{r, warning = FALSE}
+#| label: fig-DOEDataDict
+#| fig-cap: "DOE Data Dictionary"
+
+AwardsDictionaryDOE <- read_excel("AwardsDictionary.xlsx", sheet = "DOE")
+knitr::kable(AwardsDictionaryDOE)
+```
+
+```{r}
+#| label: fig-project_dfDataDict
+#| fig-cap: "project_df Data Dictionary"
+
+AwardsDictionaryproject_df <- read_excel("AwardsDictionary.xlsx", sheet = "project_df")
+knitr::kable(AwardsDictionaryproject_df)
+```
+
+```{r}
+#| label: fig-NSFtoUIDataDict
+#| fig-cap: "NSF to UI Data Dictionary"
+
+AwardsDictionaryNSFtoUI <- read_excel("AwardsDictionary.xlsx", sheet = "NSFtoUI")
+knitr::kable(AwardsDictionaryNSFtoUI)
+```
