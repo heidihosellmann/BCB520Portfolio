@@ -28,10 +28,10 @@ this workup, I will evaluate how the University of Idaho compares to
 neighboring institutions in terms of grants awarded and productivity
 from those awards.
 
-I will be evaluating award/grant data from four federal sponsors:
-
-The National Science Foundation, The National Institutes of Health, The
-Department of Energy, and The US Department of Agriculture.
+I will be evaluating award/grant data from four federal sponsors: The
+National Science Foundation (NSF), The National Institutes of Health
+(NIH), The Department of Energy (DOE), and The US Department of
+Agriculture (USDA).
 
 Why is the question or purpose important? We shall find out!
 
@@ -210,67 +210,257 @@ NSFtoUI <- read_excel("NSFtoUI.xlsx")
 #knitr::kable(head(NSFtoUI))
 ```
 
-# VISUALIZATIONS
-
-Create your visualizations in response to the questions and prompts.
-Answer the questions and prompts directly. Draw a conclusion or
-inference related to each. Identify limitations and the types of data
-you would need to mitigate those limitations. Also include text that
-explains any steps or design choices you considered while exploring the
-vizualization options \[this normally wouldn’t appear in the report to
-the vice president, but I’d like a window into your process\]. Be sure
-to include clearly labeled axes and a concise but complete figure
-caption for each visualization. Make deliberate choices for color
-palettes, point marks, line types, etc. Demonstrate that you understand
-the concepts we have covered!
-
-# SUMMARY
-
-Summarize your results. What new questions have emerged as a result of
-your visualizations? What interesting next steps have emerged?
-
 # QUESTION 1
 
-Provide a visualization that shows our active awards from each sponsor.
+*Provide a visualization that shows our active awards from each sponsor.
 I need to see their start date and end date, the amount of the award,
 and the name of the Principal Investigator. I’m really interested in
 seeing how far into the future our current portfolio will exist. Are
 there a bunch of awards about to expire? Are there a bunch that just got
-funded and will be active for a while? Does this vary across sponsors?
+funded and will be active for a while? Does this vary across sponsors?*
+
+To address this question, I am first going to play around with
+manipulating one dataset and going from there.
 
 ## Practice with just "DOEawards"
 
-```{r}
-# Assuming your data is stored in a dataframe called DOEawards
+```{r Transforming DOE data}
+# Assuming your data is stored in a data frame called DOEawards
 
 # Convert 'Start Date' to date format
 DOEawards$"Start Date" <- as.Date(DOEawards$"Start Date", format = "%m/%d/%Y")
+DOEawards$"End Date" <- as.Date(DOEawards$"End Date", format = "%m/%d/%Y")
 
 # Filter data for grants awarded to "Regents of the University of Idaho"
 DOEawards_df <- DOEawards %>%
   filter(Institution == "Regents of the University of Idaho")
 
-# Filter data for grants with an "Action Type" of "New"
-DOEawards_df_new_grants <- DOEawards_df %>%
-  filter(`Action Type` == "New")
+# Filter data for grants with an "Status" of "Active"
+DOEawards_df_active_grants <- DOEawards_df %>%
+  filter(`Status` == "Active")
 
-# Filter data for grants with a "Start Date" on or after 01/01/2014
-DOEawards_df_new_grants <- DOEawards_df_new_grants %>%
-  filter(`Start Date` >= as.Date("2014-01-01")) 
+# Remove dollar signs and convert "Amount Awarded to Date" to numeric format
+DOEawards_df_active_grants$"Amount Awarded to Date" <- as.numeric(gsub("\\$", "", DOEawards_df_active_grants$"Amount Awarded to Date"))
+
+# Create a new data frame with filtered and selected variables from DOEawards_df_active_grants
+newDOEawards <- data.frame(
+  Start_Date = DOEawards_df_active_grants$"Start Date",
+  End_Date = DOEawards_df_active_grants$"End Date",
+  PI = DOEawards_df_active_grants$PI,
+  Amount_Awarded_to_Date = DOEawards_df_active_grants$"Amount Awarded to Date"
+)
+
+# Create a new column named "Sponsor" with the desired values
+newDOEawards <- mutate(newDOEawards, Sponsor = "DOE")
+
+# View the modified data set
+head(newDOEawards)
+
 ```
+
+**Table 1.** Cleaned DOE data
+
+Ok. So, I have a new data frame to plot that only includes active awards
+at the U of I with the necessary variables. Hopefully, I will make the
+other data frames similarly and then combine and graph.
+
+## Let's trial the graph first!
+
+```{r Trial graphing newDOEawards}
+# Example visualization using both Start Date and End Date on the x-axis
+ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Amount_Awarded_to_Date)) +
+  geom_segment(size = 3) +
+  labs(title = "DOE U of I Active Awards Amount Over Time by PI",
+       x = "Time",
+       y = "Principal Investigator",
+       color = "Amount Awarded to Date") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_date(date_labels = "%m-%Y", date_breaks = "6 months")
+
+```
+
+**Figure 1.** is an example of what I want to expand to all the data
+sets. Alternatively, I could color by sponsor when I will eventually be
+using multiple.
+
+```{r Coloring by sponsors}
+# Example visualization using both Start Date and End Date on the x-axis
+ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor)) +
+  geom_segment(size = 3) +
+  geom_text(aes(x = End_Date, label = scales::dollar(Amount_Awarded_to_Date)), hjust = -0.1, vjust = 0.5, size = 3) +  # Add labels for award amounts
+  labs(title = "DOE U of I Active Awards Amount Over Time by PI",
+       x = "Time",
+       y = "Principal Investigator",
+       color = "Sponsor") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_date(date_labels = "%m-%Y", date_breaks = "6 months") +
+  scale_color_discrete(name = "Sponsor")  # Customize legend title
+
+```
+
+**Figure 2.** is a similar premise to Figure 1, however, now I am
+coloring by sponsor.
+
+## Time to expand the idea to the other data sets
+
+First up, I am going to manipulate and make new data sets for all
+sponsors. Then I will combine them all and plot a summary figure.
+
+```{r Transforming NSF}
+
+# Assuming your data is stored in a data frame called NSFtoUI
+
+# Convert to date format
+NSFtoUI$"startDate" <- as.Date(NSFtoUI$"startDate", format = "%m/%d/%Y")
+NSFtoUI$"expDate" <- as.Date(NSFtoUI$"expDate", format = "%m/%d/%Y")
+
+# Filter data for active grants 
+# Filter data for grants with a "expDate" on or after 03/20/2024
+NSFtoUI_df_active_grants <- NSFtoUI %>%
+  filter(`expDate` >= as.Date("2024-03-20")) 
+
+# Create a new data frame with filtered and selected variables from NSFtoUI_df_active_grants
+newNSFtoUI <- data.frame(
+  Start_Date = NSFtoUI_df_active_grants$"startDate",
+  End_Date = NSFtoUI_df_active_grants$"expDate",
+  PI = NSFtoUI_df_active_grants$"piLastName",
+  Amount_Awarded_to_Date = NSFtoUI_df_active_grants$"estimatedTotalAmt"
+)
+
+# Create a new column named "Sponsor" with the desired values
+newNSFtoUI <- mutate(newNSFtoUI, Sponsor = "NSF")
+
+# View the modified data set
+head(newNSFtoUI)
+```
+
+**Table 2.** Cleaned NSF data
+
+```{r Transforming NIH data}
+# Assuming your data is stored in a data frame called projects_df
+
+# Assuming your data set is named projects_df
+projects_df$project_start_date <- as.Date(projects_df$project_start_date, format = "%Y-%m-%dT%H:%M:%SZ")
+projects_df$project_end_date <- as.Date(projects_df$project_end_date, format = "%Y-%m-%dT%H:%M:%SZ")
+
+# Filter data for grants awarded to "UNIVERSITY OF IDAHO"
+projects_df_df <- projects_df %>%
+  filter(`organization.org_name` == "UNIVERSITY OF IDAHO")
+
+# Filter data for grants with an "is_active" of "TRUE"
+projects_df_active_grants <- projects_df_df %>%
+  filter(`is_active` == "TRUE")
+
+# Create a new data frame with filtered and selected variables from projects_df_active_grants
+newNIH <- data.frame(
+  Start_Date = projects_df_active_grants$"project_start_date",
+  End_Date = projects_df_active_grants$"project_end_date",
+  PI = projects_df_active_grants$"contact_pi_name",
+  Amount_Awarded_to_Date = projects_df_active_grants$"direct_cost_amt"
+)
+
+# Create a new column named "Sponsor" with the desired values
+newNIH <- mutate(newNIH, Sponsor = "NIH")
+
+# View the modified data set
+head(newNIH)
+```
+
+**Table 3.** Cleaned NIH data
+
+```{r Transforming USDA data}
+# Assuming your data is stored in a data frame called USDAtoUI
+
+# Assuming your data set is named USDAtoUI
+USDAtoUI$"Award.Date" <- as.Date(as.character(USDAtoUI$"Award.Date"), format = "%m/%d/%Y")
+
+# Filter data for active grants 
+# Filter data for grants with a "Award.Date" on or after 01/01/2019
+USDA_df_active_grants <- USDAtoUI %>%
+  filter(`Award.Date` >= as.Date("2019-01-01")) 
+
+# Create a new data frame with filtered and selected variables from USDA_df_active_grants
+newUSDAtoUI <- data.frame(
+  Start_Date = USDA_df_active_grants$"Award.Date",
+  End_Date = USDA_df_active_grants$"Award.Date",
+  Amount_Awarded_to_Date = USDA_df_active_grants$"Award.Dollars"
+)
+
+# Create a new column named "Sponsor" with the desired values
+newUSDAtoUI <- mutate(newUSDAtoUI, Sponsor = "USDA")
+newUSDAtoUI <- mutate(newUSDAtoUI, PI = "NA")
+
+# View the modified data set
+head(newUSDAtoUI)
+```
+
+**Table 4.** Cleaned USDA data
+
+Alrighty, now time to bind all the new data sets together.
+
+## Putting all the active awards from various sponsors together
+
+```{r Visualizing new data frames from all sponsors}
+# Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character
+newNSFtoUI <- newNSFtoUI %>%
+  mutate(Amount_Awarded_to_Date = as.numeric(Amount_Awarded_to_Date))
+
+combined_active_grants_df <- bind_rows(
+  mutate(newDOEawards, dataset = "DOE"),
+  mutate(newNSFtoUI, dataset = "NSF"),
+  mutate(newNIH, dataset = "NIH"),
+  mutate(newUSDAtoUI, dataset = "USDA")
+) 
+
+# Define custom colors for each sponsor
+sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red", "USDA" = "orange")
+
+# Plotting coloring by sponsor with color reflecting award amount
+ggplot(data = combined_active_grants_df, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor, alpha = Amount_Awarded_to_Date)) +
+  geom_segment(size = 3) +  # Add segments for each grant
+  labs(title = "U of I Active Awards Amount Over Time by PI",
+       x = "Time",
+       y = "PI",
+       color = "Sponsor") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6),  # Rotate x-axis text and increase font size
+        axis.text.y = element_text(size = 6),  # Increase font size of y-axis text
+        axis.title = element_text(size = 9),  # Increase font size of axis titles
+        legend.title = element_text(size = 10),  # Increase font size of legend title
+        legend.text = element_text(size = 9),  # Increase font size of legend text
+        plot.margin = margin(1, 1, 1, 1, "cm")) +  # Expand plot margins
+  scale_x_date(date_labels = "%m-%Y", date_breaks = "6 months") +
+  scale_color_manual(name = "Sponsor", values = sponsor_colors) +  # Assign custom colors to sponsors
+  scale_alpha_continuous(name = "Amount Awarded to Date")  # Use transparency to reflect award amount
+
+```
+
+**Figure 3.** shows the PIs of currently active awards (to the best of
+my knowledge) here at the University of Idaho and their estimated
+amounts. Now, to be transparent, the USDA data did not have an end date
+in their data set, so I manually inputted the end to be the same as the
+beginning. Also, the USDA did not have PI names mentioned. Lastly,
+because the USDA also did not give us the current status of the grant, I
+only included those that began within in the past 5 years.
+
+Further limitations include that this figure does not address very well
+how the same PIs with various grants are displayed.
+
+Regardless, hopefully this figure is informative and helpful, at least
+for the NIH, NSF, and DOE!
 
 # QUESTION 2
 
-What is the proportional representation of new awards to the UI from
+*What is the proportional representation of new awards to the UI from
 these various sources over the past 5 to 10 years? Are there any trends
-that are encouraging or discouraging?
+that are encouraging or discouraging?*
+
+Again, to be begin to address this question, I am going to start with
+using just one data set for practice.
 
 ## Practice with new grant counts for just "DOEawards"
 
-I started working on this just using "DOEawards" and ChapGPT
-
 ```{r DOE New Grant Counts}
-# Assuming your data is stored in a dataframe called DOEawards
+# Assuming your data is stored in a data frame called DOEawards
 
 # Convert 'Start Date' to date format
 DOEawards$"Start Date" <- as.Date(DOEawards$"Start Date", format = "%m/%d/%Y")
@@ -295,7 +485,7 @@ new_grants_count <- DOEawards_df_new_grants %>%
 # Plotting
 ggplot(new_grants_count, aes(x = Year, y = Count)) +
   geom_bar(stat = "identity", fill = "skyblue") +
-  labs(title = "Number of New Grants to Regents of the University of Idaho (2014-Now)",
+  labs(title = "Number of New DOE Grants to the University of Idaho (2014-Now)",
        x = "Year",
        y = "Number of New Grants") +
   theme_minimal() +
@@ -308,31 +498,32 @@ ggplot(new_grants_count, aes(x = Year, y = Count)) +
 
 ```
 
-Figure . captures the number of new grants the DOE awarded to the
+**Figure 4.** captures the number of new grants the DOE awarded to the
 University of Idaho during the past 10 years.
 
-As we can see, not much from the past 10 years!
+As we can see, there is not much from the past 10 years!
 
-## Now to expand to the other datasets.
+## Now to expand to the other data sets
 
-I am first going to filter and make seperate dataframes for all sponsors
-and then combine and graph.
-
-Let's start by finishing DOE new grants count
+I am first going to filter and make separate data frames for all
+sponsors and then combine and graph. (I am using a similar approach to
+answering Question 1.)
 
 ```{r Finishing DOE new grants count}
 # Create a new column named "Sponsor" with the desired values
 DOE_new_grants_count <- mutate(new_grants_count, Sponsor = "DOE")
 
-# View the modified dataset
-print(DOE_new_grants_count)
+# View the modified data set
+head(DOE_new_grants_count)
 ```
 
+**Table 5.** DOE new grants count
+
 ```{r NSF New Grant Counts}
-# Assuming your data is stored in a dataframe called NSFtoUI
+# Assuming your data is stored in a data frame called NSFtoUI
 
 # Convert 'Date' to date format
-NSFtoUI$"date" <- as.Date(NSFtoUI$"date", format = "%m/%d/%Y")
+NSFtoUI$"startDate" <- as.Date(NSFtoUI$"startDate", format = "%m/%d/%Y")
 
 # Filter data for grants awarded to "Regents of the University of Idaho"
 # Already are!
@@ -345,25 +536,27 @@ NSFtoUI_df_new_grants <- NSFtoUI %>%
 
 # Filter data for grants with a "date" on or after 01/01/2014
 NSFtoUI_df_new_grants <- NSFtoUI_df_new_grants %>%
-  filter(`date` >= as.Date("2014-01-01")) 
+  filter(`startDate` >= as.Date("2014-01-01")) 
 
 # Count the number of new grants for each year
 NSF_new_grants_count <- NSFtoUI_df_new_grants %>%
-  group_by(Year = lubridate::year(`date`)) %>%
+  group_by(Year = lubridate::year(`startDate`)) %>%
   summarise(Count = n())
 
 # Finishing NSF new grants count with NSF column
 # Create a new column named "Sponsor" with the desired values
 NSF_new_grants_count <- mutate(NSF_new_grants_count, Sponsor = "NSF")
 
-# View the modified dataset
-print(NSF_new_grants_count)
+# View the modified data set
+head(NSF_new_grants_count)
 ```
 
-```{r NIH New Grant Counts}
-# Assuming your data is stored in a dataframe called projects_df
+**Table 6.** NSF new grants count
 
-# Assuming your dataset is named projects_df
+```{r NIH New Grant Counts}
+# Assuming your data is stored in a data frame called projects_df
+
+# Assuming your data set is named projects_df
 projects_df$project_start_date <- as.Date(projects_df$project_start_date, format = "%Y-%m-%dT%H:%M:%SZ")
 
 # Filter data for grants awarded to "UNIVERSITY OF IDAHO"
@@ -387,46 +580,52 @@ projects_df_new_grants_count <- projects_df_new_grants %>%
 # Create a new column named "Sponsor" with the desired values
 NIH_new_grants_count <- mutate(projects_df_new_grants_count, Sponsor = "NIH")
 
-# View the modified dataset
-print(NIH_new_grants_count)
+# View the modified data set
+head(NIH_new_grants_count)
 ```
 
-```{r USDA New Grant Counts}
-# Assuming your data is stored in a dataframe called USDAtoUI
+**Table 7.** NIH new grants count
 
-# Assuming your dataset is named USDAtoUI
-USDAtoUI$"Award.Date" <- as.Date(as.character(USDAtoUI$"Award.Date"), format = "%m/%d/%Y")
+```{r USDA New Grant Counts}
+# Assuming your data is stored in a data frame called USDAtoUI
+
+USDAtoUI2<-read.csv("USDAtoUI.csv")
+
+# Assuming your data set is named USDAtoUI
+USDAtoUI2$"Award.Date" <- as.Date(as.character(USDAtoUI2$"Award.Date"), format = "%m/%d/%Y")
 
 # Filter data for grants with a "Award.Date" on or after 01/01/2014
-USDA_df_new_grants <- USDAtoUI %>%
+USDA2_df_new_grants <- USDAtoUI2 %>%
   filter(`Award.Date` >= as.Date("2014-01-01")) 
 
 # Count the number of new grants for each year
-USDA_df_new_grants_count <- USDA_df_new_grants %>%
+USDA2_df_new_grants_count <- USDA2_df_new_grants %>%
   group_by(Year = lubridate::year(`Award.Date`)) %>%
   summarise(Count = n())
 
 # Finishing NSF new grants count with NSF column
 # Create a new column named "Sponsor" with the desired values
-USDA_new_grants_count <- mutate(USDA_df_new_grants_count, Sponsor = "USDA")
+USDA2_new_grants_count <- mutate(USDA2_df_new_grants_count, Sponsor = "USDA")
 
 # View the modified dataset
-print(USDA_new_grants_count)
+head(USDA2_new_grants_count)
 ```
 
-Now let's combine the individual, mutated dataframe for each sponsor and
-put them altogether for a visualization.
+**Table 8.** USDA new grants count
+
+Now let's combine the individual, mutated data frame for each sponsor
+and put them altogether for a visualization.
 
 ## Putting all the sponsors together
 
 ```{r Visualizing all sponsors}
 
-# Combine datasets (assuming DOE_new_grants_count, NSF_new_grants_count, NIH_new_grants_count, and USDA_new_grants_count are your datasets)
+# Combine data sets (assuming DOE_new_grants_count, NSF_new_grants_count, NIH_new_grants_count, and USDA_new_grants_count are your datasets)
 combined_grant_counts_df <- bind_rows(
   mutate(DOE_new_grants_count, dataset = "DOE"),
   mutate(NSF_new_grants_count, dataset = "NSF"),
   mutate(NIH_new_grants_count, dataset = "NIH"),
-  mutate(USDA_new_grants_count, dataset = "USDA")
+  mutate(USDA2_new_grants_count, dataset = "USDA")
 )
 
 # Plotting
@@ -446,30 +645,278 @@ ggplot(combined_grant_counts_df, aes(x = Year, y = Count, color = dataset)) +
 
 ```
 
-Figure shows the approximate trends of new grants recieved by the
+**Figure 5.** shows the approximate trends of new grants received by the
 University of Idaho from various sponsors in the last 10 years.
 
-Limitations = the USDA dataset did not have specifications denoting
-whether the awards were new or continuing, therefore, I was only able to
-go off the award date for being in the last 10 years and had to make the
-assumption all were new. This is most likely not the case, so the orange
-line should be interpreted with caution. In general, the USDA acutually
-seems to be on the decline, which would be concerning. As for the DOE,
-it seems we are on the rise during the past couple years. NSF seems to
+Limitations include that the USDA data set did not have specifications
+denoting whether the awards were new or continuing, therefore, I was
+only able to go off the award date for being in the last 10 years and
+had to make the assumption all were new. This is most likely not the
+case, so the orange line should be interpreted with caution. In general,
+the USDA actually seems to be on the decline, which would be concerning
+given the type of school the University of Idaho is. As for the DOE, it
+seems we are on the rise during the past couple years. The NSF seems to
 be steady at the moment. Meanwhile, the NIH does not have much history
 of giving new grants to the UI in the past 10 years, but hopefully being
-on the board will start the ball rolling.
+on the board will start the ball rolling again.
 
 # QUESTION 3
 
-How is UI performing with these sponsors when compared to the following
-peer institutions?
+*How is UI performing with these sponsors when compared to the following
+peer institutions: Boise State University,* *Idaho State University,*
+*Montana State University,* *University of Montana, and* *Washington
+State University?*
 
-Boise State University Idaho State University Montana State University
-University of Montana Washington State University
+*Note that “performing” can mean a variety of different things. You must
+choose your metrics of performance and justify them.*
 
-Note that “performing” can mean a variety of different things. You must
-choose your metrics of performance and justify them.
+Let's start by fetching the data. I am going to use the API sources for
+this question (NIH and NSF).
+
+```{r NIH5 API}
+# Set the base URL for the API
+base_url <- "https://api.reporter.nih.gov/v2/projects/search"
+
+# This omits the `include_fields` option and downloads all the data for the University of Idaho and Boise State University from Fiscal Year 2013 to Fiscal Year 2024.
+
+# Build query parameters
+query_params <- list(
+  criteria = list(
+    fiscal_years = 2013:2024, # Specify range of fiscal years
+    org_names = list("UNIVERSITY OF IDAHO", "BOISE STATE UNIVERSITY", "IDAHO STATE UNIVERSITY", "MONTANA STATE UNIVERSITY", "UNIVERSITY OF MONTANA", "WASHINGTON STATE UNIVERSITY")),
+  offset = 0, # Starting point for fetching results.  Unlikely you'd ever want to change this.
+  limit = 500, # Maximum number of results to fetch. Sometimes the API sets a maximum.  NIH does not.
+  sort_field = "ProjectStartDate", # Field to sort by.  Largely irrelevant as our visualizations should control this.
+  sort_order = "desc" # Sort order
+)
+
+# Convert query parameters to JSON format. This part is tricky.  This line converts the list above to a format (json) that the API will recognize.  This is a place where Python is way better than R.
+query_json <- toJSON(query_params, auto_unbox = TRUE, null = "null", pretty = TRUE)
+
+# Set header information for the request.  Some instructions to the API about our query.
+headers <- c("Content-Type" = "application/json")
+
+# Send a POST request and retrieve response data.  POST is just a type of API interaction.  response is a json object.  Click on it in your environment to see the hierarchical structure.
+
+response <- POST(base_url, body = query_json, encode = "json", httr::add_headers(.headers = headers))
+
+# Check if the request was successful.  Sometimes the error is from our code.  But sometimes it is from the API call.  Status codes help us figure out where any problems might be.
+if (status_code(response) == 200) {
+  # Extract and parse JSON data
+  json_data_NIH5 <- content(response, as = "text", encoding = "UTF-8")
+  parsed_data_NIH5 <- fromJSON(json_data_NIH5, flatten = TRUE)
+  
+  # Select columns based on the actual JSON data structure. The data frame (technically the tibble) we want is in the results component.  click on parsed_data and you'll see what I mean.
+  projects_df5 <- parsed_data_NIH5$results
+  
+  
+  # Print the data frame.  This is nice for debugging but you'll eventually want to stop doing this.
+  #print(projects_df5)
+  # knitr::kable(head(projects_df5))
+} else {
+  # Print an error message if data fetching failed
+  print(paste("Failed to fetch data: Status code", status_code(response)))
+  # Print the full response for debugging purposes
+  print(content(response, as = "text"))
+}
+
+```
+
+```{r NSF5, eval = FALSE, message=FALSE}
+# Base URL for the API with multiple awardees
+base_url <- "https://www.research.gov/awardapi-service/v1/awards.json?awardeeName=%22regents+of+the+university+of+idaho%22%20OR%20%22boise+state+university%22%20OR%20%22idaho+state+university%22%20OR%20%22montana+state+university%22%20OR%20%22university+of+montana%22%20OR%20%22washington+state+university%22"
+
+
+printFields <- "rpp,offset,id,agency,awardeeCity,awardeeCountryCode,awardeeDistrictCode,awardeeName,awardeeStateCode,awardeeZipCode,cfdaNumber,coPDPI,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,ueiNumber,fundProgramName,parentUeiNumber,pdPIName,perfCity,perfCountryCode,perfDistrictCode,perfLocation,perfStateCode,perfZipCode,poName,primaryProgram,transType,title,awardee,poPhone,poEmail,awardeeAddress,perfAddress,publicationResearch,publicationConference,fundAgencyCode,awardAgencyCode,projectOutComesReport,abstractText,piFirstName,piMiddeInitial,piLastName,piEmail"
+
+# Initialize an empty data frame to store results
+NSF5 <- tibble()
+
+# Number of results per page (as per API settings)
+results_per_page <- 25
+
+# Variable to keep track of the current page number
+current_page <- 1
+
+# Variable to control the loop
+keep_going <- TRUE
+
+while(keep_going) {
+    # Calculate the offset for the current page
+    offset <- (current_page - 1) * results_per_page + 1
+
+    # Construct the full URL with offset
+    url <- paste0(base_url, "&offset=", offset, "&printFields=", printFields)
+
+    # Make the API call
+    response <- GET(url)
+
+    # Check if the call was successful
+    if (status_code(response) == 200) {
+        # Extract and parse the JSON data
+        json_data_NSF5 <- content(response, type = "text", encoding = "UTF-8")
+        parsed_data_NSF5 <- fromJSON(json_data_NSF5, flatten = TRUE)
+
+        # Extract the 'award' data and add to the all_awards data frame
+        awards_data <- parsed_data_NSF5$response$award
+        NSF5 <- bind_rows(NSF5, as_tibble(awards_data))
+
+        # Debug: Print the current page number and number of awards fetched
+        print(paste("Page:", current_page, "- Awards fetched:", length(awards_data$id)))
+
+        # Check if the current page has less than results_per_page awards, then it's the last page
+        if (length(awards_data$id) < results_per_page) {
+            keep_going <- FALSE
+        } else {
+            current_page <- current_page + 1
+        }
+    } else {
+        print(paste("Failed to fetch data: Status code", status_code(response)))
+        keep_going <- FALSE
+    }
+}
+```
+
+```{r Excel for NSF5 and NIH5, warning=FALSE}
+library(writexl)
+
+# Write data frame to Excel file
+
+#write_xlsx(projects_df5, "project_df5")
+
+#write_xlsx(NSF5, "NSF5.xlsx")
+
+NSF5 <- read_excel("NSF5.xlsx")
+#knitr::kable(head(NSFtoUI))
+```
+
+After manipulating the API addresses, I now have data sets of NIH and
+NSF updated to include all 6 schools.
+
+Now I am going to start manipulating the data.
+
+```{r Transforming NSF5}
+
+# Assuming your data is stored in a data frame called NSF5
+
+# Convert to date format
+NSF5$"expDate" <- as.Date(NSF5$"expDate", format = "%m/%d/%Y")
+
+# Filter data for active grants 
+# Filter data for grants with a "expDate" on or after 03/20/2024
+NSF5_df_active_grants <- NSF5 %>%
+  filter(`expDate` >= as.Date("2024-03-20")) 
+
+# Create a new data frame with filtered and selected variables from NSF5_df_active_grants
+newNSF5 <- data.frame(
+  Organization = NSF5_df_active_grants$"awardeeName",
+  Amount_Awarded = NSF5_df_active_grants$"estimatedTotalAmt"
+)
+
+# Create a new column named "Sponsor" with the desired values
+newNSF5 <- mutate(newNSF5, Sponsor = "NSF")
+
+# View the modified data set
+head(newNSF5)
+```
+
+**Table 9.** New NSF data from all schools.
+
+I am going to rinse and repeat for NIH.
+
+```{r Transforming NIH5 data}
+# Assuming your data is stored in a dataframe called projects_df5
+
+# Filter data for grants with an "is_active" of "TRUE"
+projects_df5_active_grants <- projects_df5 %>%
+  filter(`is_active` == "TRUE")
+
+# Add a new column called estimated_cost_amt containing the sum of direct_cost_amt and indirect_cost_amt
+projects_df5_active_grants$estimated_cost_amt <- rowSums(projects_df5_active_grants[, c("direct_cost_amt", "indirect_cost_amt")])
+
+# Create a new data frame with filtered and selected variables from projects_df5_active_grants
+newNIH5 <- data.frame(
+  Organization = projects_df5_active_grants$"organization.org_name",
+  Amount_Awarded = projects_df5_active_grants$"estimated_cost_amt"
+)
+
+# Create a new column named "Sponsor" with the desired values
+newNIH5 <- mutate(newNIH5, Sponsor = "NIH")
+
+# View the modified data set
+head(newNIH5)
+```
+
+**Table 10.** New NIH data from all schools.
+
+Great! I have 2 data frames ready to put into my next visualization to
+address Question 3.
+
+## Combining NIH and NSF for neighboring schools
+
+```{r Visualizing all the schools from NIH and NSF, warning=FALSE}
+# Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character
+newNSF5 <- newNSF5 %>%
+  mutate(Amount_Awarded = as.numeric(Amount_Awarded))
+
+combined_all_schools_active_grants_df <- bind_rows(
+  mutate(newNSF5, dataset = "NSF"),
+  mutate(newNIH5, dataset = "NIH")
+) 
+
+# Create a ggplot object
+ggplot(combined_all_schools_active_grants_df, aes(x = Organization, y = Amount_Awarded, fill = Sponsor)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Stacked Bar Chart of Award Amounts by Sponsor and Organization",
+       x = "Organization",
+       y = "Amount Awarded",
+       fill = "Sponsor") +
+  theme_minimal() +
+  theme(legend.position = "top",
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+**Figure 6.** shows the award amounts of the active grants of each
+institution (and their various locations) sponsored by the NIH (coral)
+and NSF (blue).
+
+I used the measures of active awards and their relative amounts from
+these sponsors to address how the U of I compares to neighboring
+institutions. Although not complex, these performance attributes capture
+important metrics nonetheless.
+
+The limitations of this figure are first and foremost that it only
+addresses grants from the NIH and NSF, not the USDA and DOE. I chose to
+do this out of sake for convenience. Also, for the NIH, this time I
+added the indirect and direct costs to compute the award amount (in
+Figure 1., I only used direct cost). Further, because of the discrepant
+data sources, some of the institutions have multiple locations also
+shown in this figure. Although I could agglomerate the data so each
+institution has one reference point, I actually think this may be
+insightful to see how the smaller institutions compare to the larger
+ones.
+
+All in all, from this figure, we can see the U of I compares well in the
+realm of NSF grants. This is not so much the case for the NIH grants.
+
+# SUMMARY
+
+In conclusion, this stuff is messy indeed! Throughout my three main
+visualizations, I found out what active grants the U of I has and how
+those compare across sponsors. I then expanded that information to
+compare specific sponsors to various other schools nearby. In general,
+we need more DOE and NIH work to be done. USDA and NSF are doing well,
+but we want to get back on the rise again (at least with the USDA).
+
+I realized through this work that, as Barrie has alluded to, it indeed
+does take a lot of time going through these different data and finding
+what is similar/comparable and cleaning those aspects of the data in
+order to put visualizations together.
+
+I think it would be interesting to continue to explore and see how the U
+of I compares to other institutions with the other sponsors, and I
+wonder how data scientists wrap their heads around all these details!
 
 # APPENDIX
 
