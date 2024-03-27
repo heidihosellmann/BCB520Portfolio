@@ -279,7 +279,7 @@ ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = 
 
 ```
 
-**Figure 1.** is an example of what I want to expand to all the data
+**Figure 1.** This figure is an example of what I want to expand to all the data
 sets. Alternatively, I could color by sponsor when I will eventually be
 using multiple.
 
@@ -298,7 +298,7 @@ ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = 
 
 ```
 
-**Figure 2.** is a similar premise to Figure 1, however, now I am
+**Figure 2.** This figure is a similar premise to Figure 1, however, now I am
 coloring by sponsor.
 
 ## Time to expand the idea to the other data sets
@@ -396,11 +396,11 @@ head(newUSDAtoUI)
 
 **Table 4.** Cleaned USDA data
 
-Alrighty, now time to bind all the new data sets together.
+Alrighty, now time to bind all the new data sets together and plot.
 
 ## Putting all the active awards from various sponsors together
 
-```{r Visualizing new data frames from all sponsors}
+```{r Visualizing new data frames from all sponsors, eval = FALSE}
 # Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character
 newNSFtoUI <- newNSFtoUI %>%
   mutate(Amount_Awarded_to_Date = as.numeric(Amount_Awarded_to_Date))
@@ -417,7 +417,7 @@ sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red", "USDA" = "or
 
 # Plotting coloring by sponsor with color reflecting award amount
 ggplot(data = combined_active_grants_df, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor, alpha = Amount_Awarded_to_Date)) +
-  geom_segment(size = 3) +  # Add segments for each grant
+  geom_segment(linewidth = 3) +  # Add segments for each grant
   labs(title = "U of I Active Awards Amount Over Time by PI",
        x = "Time",
        y = "PI",
@@ -433,8 +433,46 @@ ggplot(data = combined_active_grants_df, aes(x = Start_Date, xend = End_Date, y 
   scale_alpha_continuous(name = "Amount Awarded to Date")  # Use transparency to reflect award amount
 
 ```
+```{r Saving Q1 plot}
+# Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character
+newNSFtoUI <- newNSFtoUI %>%
+  mutate(Amount_Awarded_to_Date = as.numeric(Amount_Awarded_to_Date))
 
-**Figure 3.** shows the PIs of currently active awards (to the best of
+combined_active_grants_df <- bind_rows(
+  mutate(newDOEawards, dataset = "DOE"),
+  mutate(newNSFtoUI, dataset = "NSF"),
+  mutate(newNIH, dataset = "NIH"),
+  mutate(newUSDAtoUI, dataset = "USDA")
+) 
+
+# Define custom colors for each sponsor
+sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red", "USDA" = "orange")
+
+
+question1plot <- # Plotting coloring by sponsor with color reflecting award amount
+ggplot(data = combined_active_grants_df, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor, alpha = Amount_Awarded_to_Date)) +
+  geom_segment(linewidth = 3) +  # Add segments for each grant
+  labs(title = "U of I Active Awards Amount Over Time by PI",
+       x = "Time",
+       y = "PI",
+       color = "Sponsor") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6),  # Rotate x-axis text and increase font size
+        axis.text.y = element_text(size = 6),  # Increase font size of y-axis text
+        axis.title = element_text(size = 9),  # Increase font size of axis titles
+        legend.title = element_text(size = 10),  # Increase font size of legend title
+        legend.text = element_text(size = 9),  # Increase font size of legend text
+        plot.margin = margin(1, 1, 1, 1, "cm")) +  # Expand plot margins
+  scale_x_date(date_labels = "%m-%Y", date_breaks = "6 months") +
+  scale_color_manual(name = "Sponsor", values = sponsor_colors) +  # Assign custom colors to sponsors
+  scale_alpha_continuous(name = "Amount Awarded to Date")  # Use transparency to reflect award amount
+
+ggsave("question1plot.pdf", plot = question1plot, width = 12, height = 10)
+
+```
+
+![Question1Visualization](question1pic.png)
+
+**Figure 3.** This figure shows the PIs of currently active awards (to the best of
 my knowledge) here at the University of Idaho and their estimated
 amounts. Now, to be transparent, the USDA data did not have an end date
 in their data set, so I manually inputted the end to be the same as the
@@ -498,7 +536,7 @@ ggplot(new_grants_count, aes(x = Year, y = Count)) +
 
 ```
 
-**Figure 4.** captures the number of new grants the DOE awarded to the
+**Figure 4.** This figure captures the number of new grants the DOE awarded to the
 University of Idaho during the past 10 years.
 
 As we can see, there is not much from the past 10 years!
@@ -563,12 +601,13 @@ projects_df$project_start_date <- as.Date(projects_df$project_start_date, format
 projects_df_df <- projects_df %>%
   filter(`organization.org_name` == "UNIVERSITY OF IDAHO")
 
-# Filter data for grants with an "transType" of "Standard Grant"
-projects_df_new_grants <- projects_df_df %>%
-  filter(`is_new` == "TRUE")
+# Filter data for grants with an new grants
+# projects_df_new_grants <- projects_df_df %>%
+  # filter(`is_new` == "TRUE")
+# I took this out becuase upon updating, the grants from 2024 considered "new" before were no longer considered "new".
 
 # Filter data for grants with a "project_start_date" on or after 01/01/2014
-projects_df_new_grants <- projects_df_new_grants %>%
+projects_df_new_grants <- projects_df_df %>%
   filter(`project_start_date` >= as.Date("2014-01-01")) 
 
 # Count the number of new grants for each year
@@ -631,7 +670,7 @@ combined_grant_counts_df <- bind_rows(
 # Plotting
 ggplot(combined_grant_counts_df, aes(x = Year, y = Count, color = dataset)) +
   geom_line() +
-  geom_point(data = filter(combined_grant_counts_df, dataset == "NIH"), color = "green", size = 3) +  # Add points for Dataset 3
+  # geom_point(data = filter(combined_grant_counts_df, Sponsor == "NIH"), color = "green", size = 3) +  # Add points for Dataset 3- no longer need upon updating
   labs(title = "Trends Across Multiple Datasets",
        x = "Year",
        y = "Count") +
@@ -645,7 +684,7 @@ ggplot(combined_grant_counts_df, aes(x = Year, y = Count, color = dataset)) +
 
 ```
 
-**Figure 5.** shows the approximate trends of new grants received by the
+**Figure 5.** This figure shows the approximate trends of new grants received by the
 University of Idaho from various sponsors in the last 10 years.
 
 Limitations include that the USDA data set did not have specifications
@@ -656,9 +695,7 @@ case, so the orange line should be interpreted with caution. In general,
 the USDA actually seems to be on the decline, which would be concerning
 given the type of school the University of Idaho is. As for the DOE, it
 seems we are on the rise during the past couple years. The NSF seems to
-be steady at the moment. Meanwhile, the NIH does not have much history
-of giving new grants to the UI in the past 10 years, but hopefully being
-on the board will start the ball rolling again.
+be steady at the moment. Meanwhile, the NIH data was interesting. Upon updating this document, grants considered "new" a week previously were not considered "new" anymore. Therefore, I just included all grants from the past 10 years. All in all, this is an interesting figure to address general trends within the last decade. 
 
 # QUESTION 3
 
@@ -877,7 +914,7 @@ ggplot(combined_all_schools_active_grants_df, aes(x = Organization, y = Amount_A
 
 ```
 
-**Figure 6.** shows the award amounts of the active grants of each
+**Figure 6.** This figure shows the award amounts of the active grants of each
 institution (and their various locations) sponsored by the NIH (coral)
 and NSF (blue).
 

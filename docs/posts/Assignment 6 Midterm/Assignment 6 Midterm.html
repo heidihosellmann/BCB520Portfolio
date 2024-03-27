@@ -301,13 +301,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Assignment-6-Midterm_files/figure-html/Trial graphing newDOEawards-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Figure 1.</strong> is an example of what I want to expand to all the data sets. Alternatively, I could color by sponsor when I will eventually be using multiple.</p>
+<p><strong>Figure 1.</strong> This figure is an example of what I want to expand to all the data sets. Alternatively, I could color by sponsor when I will eventually be using multiple.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Assignment-6-Midterm_files/figure-html/Coloring by sponsors-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Figure 2.</strong> is a similar premise to Figure 1, however, now I am coloring by sponsor.</p>
+<p><strong>Figure 2.</strong> This figure is a similar premise to Figure 1, however, now I am coloring by sponsor.</p>
 </section><section id="time-to-expand-the-idea-to-the-other-data-sets" class="level2"><h2 class="anchored" data-anchor-id="time-to-expand-the-idea-to-the-other-data-sets">Time to expand the idea to the other data sets</h2>
 <p>First up, I am going to manipulate and make new data sets for all sponsors. Then I will combine them all and plot a summary figure.</p>
 <div class="cell">
@@ -346,14 +346,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Table 4.</strong> Cleaned USDA data</p>
-<p>Alrighty, now time to bind all the new data sets together.</p>
+<p>Alrighty, now time to bind all the new data sets together and plot.</p>
 </section><section id="putting-all-the-active-awards-from-various-sponsors-together" class="level2"><h2 class="anchored" data-anchor-id="putting-all-the-active-awards-from-various-sponsors-together">Putting all the active awards from various sponsors together</h2>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="Assignment-6-Midterm_files/figure-html/Visualizing new data frames from all sponsors-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="question1pic.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Question1Visualization</figcaption></figure>
 </div>
-</div>
-<p><strong>Figure 3.</strong> shows the PIs of currently active awards (to the best of my knowledge) here at the University of Idaho and their estimated amounts. Now, to be transparent, the USDA data did not have an end date in their data set, so I manually inputted the end to be the same as the beginning. Also, the USDA did not have PI names mentioned. Lastly, because the USDA also did not give us the current status of the grant, I only included those that began within in the past 5 years.</p>
+<p><strong>Figure 3.</strong> This figure shows the PIs of currently active awards (to the best of my knowledge) here at the University of Idaho and their estimated amounts. Now, to be transparent, the USDA data did not have an end date in their data set, so I manually inputted the end to be the same as the beginning. Also, the USDA did not have PI names mentioned. Lastly, because the USDA also did not give us the current status of the grant, I only included those that began within in the past 5 years.</p>
 <p>Further limitations include that this figure does not address very well how the same PIs with various grants are displayed.</p>
 <p>Regardless, hopefully this figure is informative and helpful, at least for the NIH, NSF, and DOE!</p>
 </section></section><section id="question-2" class="level1"><h1>QUESTION 2</h1>
@@ -365,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Assignment-6-Midterm_files/figure-html/DOE New Grant Counts-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Figure 4.</strong> captures the number of new grants the DOE awarded to the University of Idaho during the past 10 years.</p>
+<p><strong>Figure 4.</strong> This figure captures the number of new grants the DOE awarded to the University of Idaho during the past 10 years.</p>
 <p>As we can see, there is not much from the past 10 years!</p>
 </section><section id="now-to-expand-to-the-other-data-sets" class="level2"><h2 class="anchored" data-anchor-id="now-to-expand-to-the-other-data-sets">Now to expand to the other data sets</h2>
 <p>I am first going to filter and make separate data frames for all sponsors and then combine and graph. (I am using a similar approach to answering Question 1.)</p>
@@ -395,10 +394,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Table 6.</strong> NSF new grants count</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
+<pre><code># A tibble: 6 × 3
    Year Count Sponsor
   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;  
-1  2024     7 NIH    </code></pre>
+1  2014     5 NIH    
+2  2015    35 NIH    
+3  2016    10 NIH    
+4  2017     4 NIH    
+5  2018    18 NIH    
+6  2019     8 NIH    </code></pre>
 </div>
 </div>
 <p><strong>Table 7.</strong> NIH new grants count</p>
@@ -423,8 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Assignment-6-Midterm_files/figure-html/Visualizing all sponsors-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Figure 5.</strong> shows the approximate trends of new grants received by the University of Idaho from various sponsors in the last 10 years.</p>
-<p>Limitations include that the USDA data set did not have specifications denoting whether the awards were new or continuing, therefore, I was only able to go off the award date for being in the last 10 years and had to make the assumption all were new. This is most likely not the case, so the orange line should be interpreted with caution. In general, the USDA actually seems to be on the decline, which would be concerning given the type of school the University of Idaho is. As for the DOE, it seems we are on the rise during the past couple years. The NSF seems to be steady at the moment. Meanwhile, the NIH does not have much history of giving new grants to the UI in the past 10 years, but hopefully being on the board will start the ball rolling again.</p>
+<p><strong>Figure 5.</strong> This figure shows the approximate trends of new grants received by the University of Idaho from various sponsors in the last 10 years.</p>
+<p>Limitations include that the USDA data set did not have specifications denoting whether the awards were new or continuing, therefore, I was only able to go off the award date for being in the last 10 years and had to make the assumption all were new. This is most likely not the case, so the orange line should be interpreted with caution. In general, the USDA actually seems to be on the decline, which would be concerning given the type of school the University of Idaho is. As for the DOE, it seems we are on the rise during the past couple years. The NSF seems to be steady at the moment. Meanwhile, the NIH data was interesting. Upon updating this document, grants considered “new” a week previously were not considered “new” anymore. Therefore, I just included all grants from the past 10 years. All in all, this is an interesting figure to address general trends within the last decade.</p>
 </section></section><section id="question-3" class="level1"><h1>QUESTION 3</h1>
 <p><em>How is UI performing with these sponsors when compared to the following peer institutions: Boise State University,</em> <em>Idaho State University,</em> <em>Montana State University,</em> <em>University of Montana, and</em> <em>Washington State University?</em></p>
 <p><em>Note that “performing” can mean a variety of different things. You must choose your metrics of performance and justify them.</em></p>
@@ -463,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Assignment-6-Midterm_files/figure-html/Visualizing all the schools from NIH and NSF-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Figure 6.</strong> shows the award amounts of the active grants of each institution (and their various locations) sponsored by the NIH (coral) and NSF (blue).</p>
+<p><strong>Figure 6.</strong> This figure shows the award amounts of the active grants of each institution (and their various locations) sponsored by the NIH (coral) and NSF (blue).</p>
 <p>I used the measures of active awards and their relative amounts from these sponsors to address how the U of I compares to neighboring institutions. Although not complex, these performance attributes capture important metrics nonetheless.</p>
 <p>The limitations of this figure are first and foremost that it only addresses grants from the NIH and NSF, not the USDA and DOE. I chose to do this out of sake for convenience. Also, for the NIH, this time I added the indirect and direct costs to compute the award amount (in Figure 1., I only used direct cost). Further, because of the discrepant data sources, some of the institutions have multiple locations also shown in this figure. Although I could agglomerate the data so each institution has one reference point, I actually think this may be insightful to see how the smaller institutions compare to the larger ones.</p>
 <p>All in all, from this figure, we can see the U of I compares well in the realm of NSF grants. This is not so much the case for the NIH grants.</p>
@@ -1995,7 +1999,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-281"><a href="#cb12-281" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-282"><a href="#cb12-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-283"><a href="#cb12-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a>**Figure 1.** is an example of what I want to expand to all the data</span>
+<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a>**Figure 1.** This figure is an example of what I want to expand to all the data</span>
 <span id="cb12-285"><a href="#cb12-285" aria-hidden="true" tabindex="-1"></a>sets. Alternatively, I could color by sponsor when I will eventually be</span>
 <span id="cb12-286"><a href="#cb12-286" aria-hidden="true" tabindex="-1"></a>using multiple.</span>
 <span id="cb12-287"><a href="#cb12-287" aria-hidden="true" tabindex="-1"></a></span>
@@ -2014,7 +2018,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-300"><a href="#cb12-300" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-301"><a href="#cb12-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-302"><a href="#cb12-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-303"><a href="#cb12-303" aria-hidden="true" tabindex="-1"></a>**Figure 2.** is a similar premise to Figure 1, however, now I am</span>
+<span id="cb12-303"><a href="#cb12-303" aria-hidden="true" tabindex="-1"></a>**Figure 2.** This figure is a similar premise to Figure 1, however, now I am</span>
 <span id="cb12-304"><a href="#cb12-304" aria-hidden="true" tabindex="-1"></a>coloring by sponsor.</span>
 <span id="cb12-305"><a href="#cb12-305" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-306"><a href="#cb12-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## Time to expand the idea to the other data sets</span></span>
@@ -2112,11 +2116,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-398"><a href="#cb12-398" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-399"><a href="#cb12-399" aria-hidden="true" tabindex="-1"></a>**Table 4.** Cleaned USDA data</span>
 <span id="cb12-400"><a href="#cb12-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-401"><a href="#cb12-401" aria-hidden="true" tabindex="-1"></a>Alrighty, now time to bind all the new data sets together.</span>
+<span id="cb12-401"><a href="#cb12-401" aria-hidden="true" tabindex="-1"></a>Alrighty, now time to bind all the new data sets together and plot.</span>
 <span id="cb12-402"><a href="#cb12-402" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-403"><a href="#cb12-403" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting all the active awards from various sponsors together</span></span>
 <span id="cb12-404"><a href="#cb12-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-405"><a href="#cb12-405" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Visualizing new data frames from all sponsors}</span></span>
+<span id="cb12-405"><a href="#cb12-405" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Visualizing new data frames from all sponsors, eval = FALSE}</span></span>
 <span id="cb12-406"><a href="#cb12-406" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character</span></span>
 <span id="cb12-407"><a href="#cb12-407" aria-hidden="true" tabindex="-1"></a>newNSFtoUI <span class="ot">&lt;-</span> newNSFtoUI <span class="sc">%&gt;%</span></span>
 <span id="cb12-408"><a href="#cb12-408" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Amount_Awarded_to_Date =</span> <span class="fu">as.numeric</span>(Amount_Awarded_to_Date))</span>
@@ -2133,7 +2137,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-419"><a href="#cb12-419" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-420"><a href="#cb12-420" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting coloring by sponsor with color reflecting award amount</span></span>
 <span id="cb12-421"><a href="#cb12-421" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> combined_active_grants_df, <span class="fu">aes</span>(<span class="at">x =</span> Start_Date, <span class="at">xend =</span> End_Date, <span class="at">y =</span> PI, <span class="at">yend =</span> PI, <span class="at">color =</span> Sponsor, <span class="at">alpha =</span> Amount_Awarded_to_Date)) <span class="sc">+</span></span>
-<span id="cb12-422"><a href="#cb12-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># Add segments for each grant</span></span>
+<span id="cb12-422"><a href="#cb12-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">linewidth =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># Add segments for each grant</span></span>
 <span id="cb12-423"><a href="#cb12-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"U of I Active Awards Amount Over Time by PI"</span>,</span>
 <span id="cb12-424"><a href="#cb12-424" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time"</span>,</span>
 <span id="cb12-425"><a href="#cb12-425" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"PI"</span>,</span>
@@ -2149,532 +2153,569 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-435"><a href="#cb12-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">name =</span> <span class="st">"Amount Awarded to Date"</span>)  <span class="co"># Use transparency to reflect award amount</span></span>
 <span id="cb12-436"><a href="#cb12-436" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-437"><a href="#cb12-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-438"><a href="#cb12-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-439"><a href="#cb12-439" aria-hidden="true" tabindex="-1"></a>**Figure 3.** shows the PIs of currently active awards (to the best of</span>
-<span id="cb12-440"><a href="#cb12-440" aria-hidden="true" tabindex="-1"></a>my knowledge) here at the University of Idaho and their estimated</span>
-<span id="cb12-441"><a href="#cb12-441" aria-hidden="true" tabindex="-1"></a>amounts. Now, to be transparent, the USDA data did not have an end date</span>
-<span id="cb12-442"><a href="#cb12-442" aria-hidden="true" tabindex="-1"></a>in their data set, so I manually inputted the end to be the same as the</span>
-<span id="cb12-443"><a href="#cb12-443" aria-hidden="true" tabindex="-1"></a>beginning. Also, the USDA did not have PI names mentioned. Lastly,</span>
-<span id="cb12-444"><a href="#cb12-444" aria-hidden="true" tabindex="-1"></a>because the USDA also did not give us the current status of the grant, I</span>
-<span id="cb12-445"><a href="#cb12-445" aria-hidden="true" tabindex="-1"></a>only included those that began within in the past 5 years.</span>
-<span id="cb12-446"><a href="#cb12-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-447"><a href="#cb12-447" aria-hidden="true" tabindex="-1"></a>Further limitations include that this figure does not address very well</span>
-<span id="cb12-448"><a href="#cb12-448" aria-hidden="true" tabindex="-1"></a>how the same PIs with various grants are displayed.</span>
+<span id="cb12-438"><a href="#cb12-438" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Saving Q1 plot}</span></span>
+<span id="cb12-439"><a href="#cb12-439" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character</span></span>
+<span id="cb12-440"><a href="#cb12-440" aria-hidden="true" tabindex="-1"></a>newNSFtoUI <span class="ot">&lt;-</span> newNSFtoUI <span class="sc">%&gt;%</span></span>
+<span id="cb12-441"><a href="#cb12-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Amount_Awarded_to_Date =</span> <span class="fu">as.numeric</span>(Amount_Awarded_to_Date))</span>
+<span id="cb12-442"><a href="#cb12-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-443"><a href="#cb12-443" aria-hidden="true" tabindex="-1"></a>combined_active_grants_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb12-444"><a href="#cb12-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newDOEawards, <span class="at">dataset =</span> <span class="st">"DOE"</span>),</span>
+<span id="cb12-445"><a href="#cb12-445" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newNSFtoUI, <span class="at">dataset =</span> <span class="st">"NSF"</span>),</span>
+<span id="cb12-446"><a href="#cb12-446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newNIH, <span class="at">dataset =</span> <span class="st">"NIH"</span>),</span>
+<span id="cb12-447"><a href="#cb12-447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newUSDAtoUI, <span class="at">dataset =</span> <span class="st">"USDA"</span>)</span>
+<span id="cb12-448"><a href="#cb12-448" aria-hidden="true" tabindex="-1"></a>) </span>
 <span id="cb12-449"><a href="#cb12-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-450"><a href="#cb12-450" aria-hidden="true" tabindex="-1"></a>Regardless, hopefully this figure is informative and helpful, at least</span>
-<span id="cb12-451"><a href="#cb12-451" aria-hidden="true" tabindex="-1"></a>for the NIH, NSF, and DOE!</span>
+<span id="cb12-450"><a href="#cb12-450" aria-hidden="true" tabindex="-1"></a><span class="co"># Define custom colors for each sponsor</span></span>
+<span id="cb12-451"><a href="#cb12-451" aria-hidden="true" tabindex="-1"></a>sponsor_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DOE"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"NIH"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"NSF"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"USDA"</span> <span class="ot">=</span> <span class="st">"orange"</span>)</span>
 <span id="cb12-452"><a href="#cb12-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-453"><a href="#cb12-453" aria-hidden="true" tabindex="-1"></a><span class="fu"># QUESTION 2</span></span>
-<span id="cb12-454"><a href="#cb12-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-455"><a href="#cb12-455" aria-hidden="true" tabindex="-1"></a>*What is the proportional representation of new awards to the UI from</span>
-<span id="cb12-456"><a href="#cb12-456" aria-hidden="true" tabindex="-1"></a>these various sources over the past 5 to 10 years? Are there any trends</span>
-<span id="cb12-457"><a href="#cb12-457" aria-hidden="true" tabindex="-1"></a>that are encouraging or discouraging?*</span>
-<span id="cb12-458"><a href="#cb12-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-459"><a href="#cb12-459" aria-hidden="true" tabindex="-1"></a>Again, to be begin to address this question, I am going to start with</span>
-<span id="cb12-460"><a href="#cb12-460" aria-hidden="true" tabindex="-1"></a>using just one data set for practice.</span>
-<span id="cb12-461"><a href="#cb12-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-462"><a href="#cb12-462" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practice with new grant counts for just "DOEawards"</span></span>
-<span id="cb12-463"><a href="#cb12-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-464"><a href="#cb12-464" aria-hidden="true" tabindex="-1"></a><span class="in">```{r DOE New Grant Counts}</span></span>
-<span id="cb12-465"><a href="#cb12-465" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called DOEawards</span></span>
-<span id="cb12-466"><a href="#cb12-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-467"><a href="#cb12-467" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Start Date' to date format</span></span>
-<span id="cb12-468"><a href="#cb12-468" aria-hidden="true" tabindex="-1"></a>DOEawards<span class="sc">$</span><span class="st">"Start Date"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(DOEawards<span class="sc">$</span><span class="st">"Start Date"</span>, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb12-469"><a href="#cb12-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-470"><a href="#cb12-470" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants awarded to "Regents of the University of Idaho"</span></span>
-<span id="cb12-471"><a href="#cb12-471" aria-hidden="true" tabindex="-1"></a>DOEawards_df <span class="ot">&lt;-</span> DOEawards <span class="sc">%&gt;%</span></span>
-<span id="cb12-472"><a href="#cb12-472" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Institution <span class="sc">==</span> <span class="st">"Regents of the University of Idaho"</span>)</span>
-<span id="cb12-473"><a href="#cb12-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-474"><a href="#cb12-474" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "Action Type" of "New"</span></span>
-<span id="cb12-475"><a href="#cb12-475" aria-hidden="true" tabindex="-1"></a>DOEawards_df_new_grants <span class="ot">&lt;-</span> DOEawards_df <span class="sc">%&gt;%</span></span>
-<span id="cb12-476"><a href="#cb12-476" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Action Type</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"New"</span>)</span>
-<span id="cb12-477"><a href="#cb12-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-478"><a href="#cb12-478" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "Start Date" on or after 01/01/2014</span></span>
-<span id="cb12-479"><a href="#cb12-479" aria-hidden="true" tabindex="-1"></a>DOEawards_df_new_grants <span class="ot">&lt;-</span> DOEawards_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-480"><a href="#cb12-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Start Date</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
-<span id="cb12-481"><a href="#cb12-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-482"><a href="#cb12-482" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
-<span id="cb12-483"><a href="#cb12-483" aria-hidden="true" tabindex="-1"></a>new_grants_count <span class="ot">&lt;-</span> DOEawards_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-484"><a href="#cb12-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">Start Date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-485"><a href="#cb12-485" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
-<span id="cb12-486"><a href="#cb12-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-487"><a href="#cb12-487" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb12-488"><a href="#cb12-488" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(new_grants_count, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Count)) <span class="sc">+</span></span>
-<span id="cb12-489"><a href="#cb12-489" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="cb12-490"><a href="#cb12-490" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of New DOE Grants to the University of Idaho (2014-Now)"</span>,</span>
-<span id="cb12-491"><a href="#cb12-491" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb12-492"><a href="#cb12-492" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of New Grants"</span>) <span class="sc">+</span></span>
-<span id="cb12-493"><a href="#cb12-493" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-494"><a href="#cb12-494" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb12-495"><a href="#cb12-495" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(new_grants_count<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(new_grants_count<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb12-496"><a href="#cb12-496" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Count), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb12-497"><a href="#cb12-497" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb12-498"><a href="#cb12-498" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb12-499"><a href="#cb12-499" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
-<span id="cb12-500"><a href="#cb12-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-501"><a href="#cb12-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-502"><a href="#cb12-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-503"><a href="#cb12-503" aria-hidden="true" tabindex="-1"></a>**Figure 4.** captures the number of new grants the DOE awarded to the</span>
-<span id="cb12-504"><a href="#cb12-504" aria-hidden="true" tabindex="-1"></a>University of Idaho during the past 10 years.</span>
-<span id="cb12-505"><a href="#cb12-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-506"><a href="#cb12-506" aria-hidden="true" tabindex="-1"></a>As we can see, there is not much from the past 10 years!</span>
+<span id="cb12-453"><a href="#cb12-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-454"><a href="#cb12-454" aria-hidden="true" tabindex="-1"></a>question1plot <span class="ot">&lt;-</span> <span class="co"># Plotting coloring by sponsor with color reflecting award amount</span></span>
+<span id="cb12-455"><a href="#cb12-455" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> combined_active_grants_df, <span class="fu">aes</span>(<span class="at">x =</span> Start_Date, <span class="at">xend =</span> End_Date, <span class="at">y =</span> PI, <span class="at">yend =</span> PI, <span class="at">color =</span> Sponsor, <span class="at">alpha =</span> Amount_Awarded_to_Date)) <span class="sc">+</span></span>
+<span id="cb12-456"><a href="#cb12-456" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">linewidth =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># Add segments for each grant</span></span>
+<span id="cb12-457"><a href="#cb12-457" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"U of I Active Awards Amount Over Time by PI"</span>,</span>
+<span id="cb12-458"><a href="#cb12-458" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time"</span>,</span>
+<span id="cb12-459"><a href="#cb12-459" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"PI"</span>,</span>
+<span id="cb12-460"><a href="#cb12-460" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Sponsor"</span>) <span class="sc">+</span></span>
+<span id="cb12-461"><a href="#cb12-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">6</span>),  <span class="co"># Rotate x-axis text and increase font size</span></span>
+<span id="cb12-462"><a href="#cb12-462" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>),  <span class="co"># Increase font size of y-axis text</span></span>
+<span id="cb12-463"><a href="#cb12-463" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),  <span class="co"># Increase font size of axis titles</span></span>
+<span id="cb12-464"><a href="#cb12-464" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),  <span class="co"># Increase font size of legend title</span></span>
+<span id="cb12-465"><a href="#cb12-465" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),  <span class="co"># Increase font size of legend text</span></span>
+<span id="cb12-466"><a href="#cb12-466" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span>  <span class="co"># Expand plot margins</span></span>
+<span id="cb12-467"><a href="#cb12-467" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%m-%Y"</span>, <span class="at">date_breaks =</span> <span class="st">"6 months"</span>) <span class="sc">+</span></span>
+<span id="cb12-468"><a href="#cb12-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Sponsor"</span>, <span class="at">values =</span> sponsor_colors) <span class="sc">+</span>  <span class="co"># Assign custom colors to sponsors</span></span>
+<span id="cb12-469"><a href="#cb12-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">name =</span> <span class="st">"Amount Awarded to Date"</span>)  <span class="co"># Use transparency to reflect award amount</span></span>
+<span id="cb12-470"><a href="#cb12-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-471"><a href="#cb12-471" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"question1plot.pdf"</span>, <span class="at">plot =</span> question1plot, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">10</span>)</span>
+<span id="cb12-472"><a href="#cb12-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-473"><a href="#cb12-473" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-474"><a href="#cb12-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-475"><a href="#cb12-475" aria-hidden="true" tabindex="-1"></a><span class="al">![Question1Visualization](question1pic.png)</span></span>
+<span id="cb12-476"><a href="#cb12-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-477"><a href="#cb12-477" aria-hidden="true" tabindex="-1"></a>**Figure 3.** This figure shows the PIs of currently active awards (to the best of</span>
+<span id="cb12-478"><a href="#cb12-478" aria-hidden="true" tabindex="-1"></a>my knowledge) here at the University of Idaho and their estimated</span>
+<span id="cb12-479"><a href="#cb12-479" aria-hidden="true" tabindex="-1"></a>amounts. Now, to be transparent, the USDA data did not have an end date</span>
+<span id="cb12-480"><a href="#cb12-480" aria-hidden="true" tabindex="-1"></a>in their data set, so I manually inputted the end to be the same as the</span>
+<span id="cb12-481"><a href="#cb12-481" aria-hidden="true" tabindex="-1"></a>beginning. Also, the USDA did not have PI names mentioned. Lastly,</span>
+<span id="cb12-482"><a href="#cb12-482" aria-hidden="true" tabindex="-1"></a>because the USDA also did not give us the current status of the grant, I</span>
+<span id="cb12-483"><a href="#cb12-483" aria-hidden="true" tabindex="-1"></a>only included those that began within in the past 5 years.</span>
+<span id="cb12-484"><a href="#cb12-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-485"><a href="#cb12-485" aria-hidden="true" tabindex="-1"></a>Further limitations include that this figure does not address very well</span>
+<span id="cb12-486"><a href="#cb12-486" aria-hidden="true" tabindex="-1"></a>how the same PIs with various grants are displayed.</span>
+<span id="cb12-487"><a href="#cb12-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-488"><a href="#cb12-488" aria-hidden="true" tabindex="-1"></a>Regardless, hopefully this figure is informative and helpful, at least</span>
+<span id="cb12-489"><a href="#cb12-489" aria-hidden="true" tabindex="-1"></a>for the NIH, NSF, and DOE!</span>
+<span id="cb12-490"><a href="#cb12-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-491"><a href="#cb12-491" aria-hidden="true" tabindex="-1"></a><span class="fu"># QUESTION 2</span></span>
+<span id="cb12-492"><a href="#cb12-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-493"><a href="#cb12-493" aria-hidden="true" tabindex="-1"></a>*What is the proportional representation of new awards to the UI from</span>
+<span id="cb12-494"><a href="#cb12-494" aria-hidden="true" tabindex="-1"></a>these various sources over the past 5 to 10 years? Are there any trends</span>
+<span id="cb12-495"><a href="#cb12-495" aria-hidden="true" tabindex="-1"></a>that are encouraging or discouraging?*</span>
+<span id="cb12-496"><a href="#cb12-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-497"><a href="#cb12-497" aria-hidden="true" tabindex="-1"></a>Again, to be begin to address this question, I am going to start with</span>
+<span id="cb12-498"><a href="#cb12-498" aria-hidden="true" tabindex="-1"></a>using just one data set for practice.</span>
+<span id="cb12-499"><a href="#cb12-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-500"><a href="#cb12-500" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practice with new grant counts for just "DOEawards"</span></span>
+<span id="cb12-501"><a href="#cb12-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-502"><a href="#cb12-502" aria-hidden="true" tabindex="-1"></a><span class="in">```{r DOE New Grant Counts}</span></span>
+<span id="cb12-503"><a href="#cb12-503" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called DOEawards</span></span>
+<span id="cb12-504"><a href="#cb12-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-505"><a href="#cb12-505" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Start Date' to date format</span></span>
+<span id="cb12-506"><a href="#cb12-506" aria-hidden="true" tabindex="-1"></a>DOEawards<span class="sc">$</span><span class="st">"Start Date"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(DOEawards<span class="sc">$</span><span class="st">"Start Date"</span>, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
 <span id="cb12-507"><a href="#cb12-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-508"><a href="#cb12-508" aria-hidden="true" tabindex="-1"></a><span class="fu">## Now to expand to the other data sets</span></span>
-<span id="cb12-509"><a href="#cb12-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-510"><a href="#cb12-510" aria-hidden="true" tabindex="-1"></a>I am first going to filter and make separate data frames for all</span>
-<span id="cb12-511"><a href="#cb12-511" aria-hidden="true" tabindex="-1"></a>sponsors and then combine and graph. (I am using a similar approach to</span>
-<span id="cb12-512"><a href="#cb12-512" aria-hidden="true" tabindex="-1"></a>answering Question 1.)</span>
-<span id="cb12-513"><a href="#cb12-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-514"><a href="#cb12-514" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Finishing DOE new grants count}</span></span>
-<span id="cb12-515"><a href="#cb12-515" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
-<span id="cb12-516"><a href="#cb12-516" aria-hidden="true" tabindex="-1"></a>DOE_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(new_grants_count, <span class="at">Sponsor =</span> <span class="st">"DOE"</span>)</span>
-<span id="cb12-517"><a href="#cb12-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-518"><a href="#cb12-518" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
-<span id="cb12-519"><a href="#cb12-519" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DOE_new_grants_count)</span>
-<span id="cb12-520"><a href="#cb12-520" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-521"><a href="#cb12-521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-522"><a href="#cb12-522" aria-hidden="true" tabindex="-1"></a>**Table 5.** DOE new grants count</span>
-<span id="cb12-523"><a href="#cb12-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-524"><a href="#cb12-524" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NSF New Grant Counts}</span></span>
-<span id="cb12-525"><a href="#cb12-525" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called NSFtoUI</span></span>
-<span id="cb12-526"><a href="#cb12-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-527"><a href="#cb12-527" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Date' to date format</span></span>
-<span id="cb12-528"><a href="#cb12-528" aria-hidden="true" tabindex="-1"></a>NSFtoUI<span class="sc">$</span><span class="st">"startDate"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSFtoUI<span class="sc">$</span><span class="st">"startDate"</span>, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb12-529"><a href="#cb12-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-530"><a href="#cb12-530" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants awarded to "Regents of the University of Idaho"</span></span>
-<span id="cb12-531"><a href="#cb12-531" aria-hidden="true" tabindex="-1"></a><span class="co"># Already are!</span></span>
-<span id="cb12-532"><a href="#cb12-532" aria-hidden="true" tabindex="-1"></a><span class="co"># NSFtoUI_df &lt;- NSFtoUI %&gt;%</span></span>
-<span id="cb12-533"><a href="#cb12-533" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(Institution == "Regents of the University of Idaho")</span></span>
-<span id="cb12-534"><a href="#cb12-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-535"><a href="#cb12-535" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "transType" of "Standard Grant"</span></span>
-<span id="cb12-536"><a href="#cb12-536" aria-hidden="true" tabindex="-1"></a>NSFtoUI_df_new_grants <span class="ot">&lt;-</span> NSFtoUI <span class="sc">%&gt;%</span></span>
-<span id="cb12-537"><a href="#cb12-537" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">transType</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Standard Grant"</span>)</span>
+<span id="cb12-508"><a href="#cb12-508" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants awarded to "Regents of the University of Idaho"</span></span>
+<span id="cb12-509"><a href="#cb12-509" aria-hidden="true" tabindex="-1"></a>DOEawards_df <span class="ot">&lt;-</span> DOEawards <span class="sc">%&gt;%</span></span>
+<span id="cb12-510"><a href="#cb12-510" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Institution <span class="sc">==</span> <span class="st">"Regents of the University of Idaho"</span>)</span>
+<span id="cb12-511"><a href="#cb12-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-512"><a href="#cb12-512" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "Action Type" of "New"</span></span>
+<span id="cb12-513"><a href="#cb12-513" aria-hidden="true" tabindex="-1"></a>DOEawards_df_new_grants <span class="ot">&lt;-</span> DOEawards_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-514"><a href="#cb12-514" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Action Type</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"New"</span>)</span>
+<span id="cb12-515"><a href="#cb12-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-516"><a href="#cb12-516" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "Start Date" on or after 01/01/2014</span></span>
+<span id="cb12-517"><a href="#cb12-517" aria-hidden="true" tabindex="-1"></a>DOEawards_df_new_grants <span class="ot">&lt;-</span> DOEawards_df_new_grants <span class="sc">%&gt;%</span></span>
+<span id="cb12-518"><a href="#cb12-518" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Start Date</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
+<span id="cb12-519"><a href="#cb12-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-520"><a href="#cb12-520" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
+<span id="cb12-521"><a href="#cb12-521" aria-hidden="true" tabindex="-1"></a>new_grants_count <span class="ot">&lt;-</span> DOEawards_df_new_grants <span class="sc">%&gt;%</span></span>
+<span id="cb12-522"><a href="#cb12-522" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">Start Date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-523"><a href="#cb12-523" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb12-524"><a href="#cb12-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-525"><a href="#cb12-525" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb12-526"><a href="#cb12-526" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(new_grants_count, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Count)) <span class="sc">+</span></span>
+<span id="cb12-527"><a href="#cb12-527" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb12-528"><a href="#cb12-528" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of New DOE Grants to the University of Idaho (2014-Now)"</span>,</span>
+<span id="cb12-529"><a href="#cb12-529" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb12-530"><a href="#cb12-530" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of New Grants"</span>) <span class="sc">+</span></span>
+<span id="cb12-531"><a href="#cb12-531" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-532"><a href="#cb12-532" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-533"><a href="#cb12-533" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(new_grants_count<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(new_grants_count<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-534"><a href="#cb12-534" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Count), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb12-535"><a href="#cb12-535" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb12-536"><a href="#cb12-536" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb12-537"><a href="#cb12-537" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
 <span id="cb12-538"><a href="#cb12-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-539"><a href="#cb12-539" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "date" on or after 01/01/2014</span></span>
-<span id="cb12-540"><a href="#cb12-540" aria-hidden="true" tabindex="-1"></a>NSFtoUI_df_new_grants <span class="ot">&lt;-</span> NSFtoUI_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-541"><a href="#cb12-541" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">startDate</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
-<span id="cb12-542"><a href="#cb12-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-543"><a href="#cb12-543" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
-<span id="cb12-544"><a href="#cb12-544" aria-hidden="true" tabindex="-1"></a>NSF_new_grants_count <span class="ot">&lt;-</span> NSFtoUI_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-545"><a href="#cb12-545" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">startDate</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-546"><a href="#cb12-546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb12-539"><a href="#cb12-539" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-540"><a href="#cb12-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-541"><a href="#cb12-541" aria-hidden="true" tabindex="-1"></a>**Figure 4.** This figure captures the number of new grants the DOE awarded to the</span>
+<span id="cb12-542"><a href="#cb12-542" aria-hidden="true" tabindex="-1"></a>University of Idaho during the past 10 years.</span>
+<span id="cb12-543"><a href="#cb12-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-544"><a href="#cb12-544" aria-hidden="true" tabindex="-1"></a>As we can see, there is not much from the past 10 years!</span>
+<span id="cb12-545"><a href="#cb12-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-546"><a href="#cb12-546" aria-hidden="true" tabindex="-1"></a><span class="fu">## Now to expand to the other data sets</span></span>
 <span id="cb12-547"><a href="#cb12-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-548"><a href="#cb12-548" aria-hidden="true" tabindex="-1"></a><span class="co"># Finishing NSF new grants count with NSF column</span></span>
-<span id="cb12-549"><a href="#cb12-549" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
-<span id="cb12-550"><a href="#cb12-550" aria-hidden="true" tabindex="-1"></a>NSF_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(NSF_new_grants_count, <span class="at">Sponsor =</span> <span class="st">"NSF"</span>)</span>
+<span id="cb12-548"><a href="#cb12-548" aria-hidden="true" tabindex="-1"></a>I am first going to filter and make separate data frames for all</span>
+<span id="cb12-549"><a href="#cb12-549" aria-hidden="true" tabindex="-1"></a>sponsors and then combine and graph. (I am using a similar approach to</span>
+<span id="cb12-550"><a href="#cb12-550" aria-hidden="true" tabindex="-1"></a>answering Question 1.)</span>
 <span id="cb12-551"><a href="#cb12-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-552"><a href="#cb12-552" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
-<span id="cb12-553"><a href="#cb12-553" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NSF_new_grants_count)</span>
-<span id="cb12-554"><a href="#cb12-554" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-552"><a href="#cb12-552" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Finishing DOE new grants count}</span></span>
+<span id="cb12-553"><a href="#cb12-553" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
+<span id="cb12-554"><a href="#cb12-554" aria-hidden="true" tabindex="-1"></a>DOE_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(new_grants_count, <span class="at">Sponsor =</span> <span class="st">"DOE"</span>)</span>
 <span id="cb12-555"><a href="#cb12-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-556"><a href="#cb12-556" aria-hidden="true" tabindex="-1"></a>**Table 6.** NSF new grants count</span>
-<span id="cb12-557"><a href="#cb12-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-558"><a href="#cb12-558" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NIH New Grant Counts}</span></span>
-<span id="cb12-559"><a href="#cb12-559" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called projects_df</span></span>
-<span id="cb12-560"><a href="#cb12-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-561"><a href="#cb12-561" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data set is named projects_df</span></span>
-<span id="cb12-562"><a href="#cb12-562" aria-hidden="true" tabindex="-1"></a>projects_df<span class="sc">$</span>project_start_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(projects_df<span class="sc">$</span>project_start_date, <span class="at">format =</span> <span class="st">"%Y-%m-%dT%H:%M:%SZ"</span>)</span>
-<span id="cb12-563"><a href="#cb12-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-564"><a href="#cb12-564" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants awarded to "UNIVERSITY OF IDAHO"</span></span>
-<span id="cb12-565"><a href="#cb12-565" aria-hidden="true" tabindex="-1"></a>projects_df_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span></span>
-<span id="cb12-566"><a href="#cb12-566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">organization.org_name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"UNIVERSITY OF IDAHO"</span>)</span>
+<span id="cb12-556"><a href="#cb12-556" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
+<span id="cb12-557"><a href="#cb12-557" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DOE_new_grants_count)</span>
+<span id="cb12-558"><a href="#cb12-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-559"><a href="#cb12-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-560"><a href="#cb12-560" aria-hidden="true" tabindex="-1"></a>**Table 5.** DOE new grants count</span>
+<span id="cb12-561"><a href="#cb12-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-562"><a href="#cb12-562" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NSF New Grant Counts}</span></span>
+<span id="cb12-563"><a href="#cb12-563" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called NSFtoUI</span></span>
+<span id="cb12-564"><a href="#cb12-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-565"><a href="#cb12-565" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Date' to date format</span></span>
+<span id="cb12-566"><a href="#cb12-566" aria-hidden="true" tabindex="-1"></a>NSFtoUI<span class="sc">$</span><span class="st">"startDate"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSFtoUI<span class="sc">$</span><span class="st">"startDate"</span>, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
 <span id="cb12-567"><a href="#cb12-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-568"><a href="#cb12-568" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "transType" of "Standard Grant"</span></span>
-<span id="cb12-569"><a href="#cb12-569" aria-hidden="true" tabindex="-1"></a>projects_df_new_grants <span class="ot">&lt;-</span> projects_df_df <span class="sc">%&gt;%</span></span>
-<span id="cb12-570"><a href="#cb12-570" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">is_new</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"TRUE"</span>)</span>
-<span id="cb12-571"><a href="#cb12-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-572"><a href="#cb12-572" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "project_start_date" on or after 01/01/2014</span></span>
-<span id="cb12-573"><a href="#cb12-573" aria-hidden="true" tabindex="-1"></a>projects_df_new_grants <span class="ot">&lt;-</span> projects_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-574"><a href="#cb12-574" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">project_start_date</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
-<span id="cb12-575"><a href="#cb12-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-576"><a href="#cb12-576" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
-<span id="cb12-577"><a href="#cb12-577" aria-hidden="true" tabindex="-1"></a>projects_df_new_grants_count <span class="ot">&lt;-</span> projects_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-578"><a href="#cb12-578" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">project_start_date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-579"><a href="#cb12-579" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb12-568"><a href="#cb12-568" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants awarded to "Regents of the University of Idaho"</span></span>
+<span id="cb12-569"><a href="#cb12-569" aria-hidden="true" tabindex="-1"></a><span class="co"># Already are!</span></span>
+<span id="cb12-570"><a href="#cb12-570" aria-hidden="true" tabindex="-1"></a><span class="co"># NSFtoUI_df &lt;- NSFtoUI %&gt;%</span></span>
+<span id="cb12-571"><a href="#cb12-571" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(Institution == "Regents of the University of Idaho")</span></span>
+<span id="cb12-572"><a href="#cb12-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-573"><a href="#cb12-573" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "transType" of "Standard Grant"</span></span>
+<span id="cb12-574"><a href="#cb12-574" aria-hidden="true" tabindex="-1"></a>NSFtoUI_df_new_grants <span class="ot">&lt;-</span> NSFtoUI <span class="sc">%&gt;%</span></span>
+<span id="cb12-575"><a href="#cb12-575" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">transType</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Standard Grant"</span>)</span>
+<span id="cb12-576"><a href="#cb12-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-577"><a href="#cb12-577" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "date" on or after 01/01/2014</span></span>
+<span id="cb12-578"><a href="#cb12-578" aria-hidden="true" tabindex="-1"></a>NSFtoUI_df_new_grants <span class="ot">&lt;-</span> NSFtoUI_df_new_grants <span class="sc">%&gt;%</span></span>
+<span id="cb12-579"><a href="#cb12-579" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">startDate</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
 <span id="cb12-580"><a href="#cb12-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-581"><a href="#cb12-581" aria-hidden="true" tabindex="-1"></a><span class="co"># Finishing NSF new grants count with NSF column</span></span>
-<span id="cb12-582"><a href="#cb12-582" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
-<span id="cb12-583"><a href="#cb12-583" aria-hidden="true" tabindex="-1"></a>NIH_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(projects_df_new_grants_count, <span class="at">Sponsor =</span> <span class="st">"NIH"</span>)</span>
-<span id="cb12-584"><a href="#cb12-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-585"><a href="#cb12-585" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
-<span id="cb12-586"><a href="#cb12-586" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NIH_new_grants_count)</span>
-<span id="cb12-587"><a href="#cb12-587" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-588"><a href="#cb12-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-589"><a href="#cb12-589" aria-hidden="true" tabindex="-1"></a>**Table 7.** NIH new grants count</span>
-<span id="cb12-590"><a href="#cb12-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-591"><a href="#cb12-591" aria-hidden="true" tabindex="-1"></a><span class="in">```{r USDA New Grant Counts}</span></span>
-<span id="cb12-592"><a href="#cb12-592" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called USDAtoUI</span></span>
+<span id="cb12-581"><a href="#cb12-581" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
+<span id="cb12-582"><a href="#cb12-582" aria-hidden="true" tabindex="-1"></a>NSF_new_grants_count <span class="ot">&lt;-</span> NSFtoUI_df_new_grants <span class="sc">%&gt;%</span></span>
+<span id="cb12-583"><a href="#cb12-583" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">startDate</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-584"><a href="#cb12-584" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb12-585"><a href="#cb12-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-586"><a href="#cb12-586" aria-hidden="true" tabindex="-1"></a><span class="co"># Finishing NSF new grants count with NSF column</span></span>
+<span id="cb12-587"><a href="#cb12-587" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
+<span id="cb12-588"><a href="#cb12-588" aria-hidden="true" tabindex="-1"></a>NSF_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(NSF_new_grants_count, <span class="at">Sponsor =</span> <span class="st">"NSF"</span>)</span>
+<span id="cb12-589"><a href="#cb12-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-590"><a href="#cb12-590" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
+<span id="cb12-591"><a href="#cb12-591" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NSF_new_grants_count)</span>
+<span id="cb12-592"><a href="#cb12-592" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-593"><a href="#cb12-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-594"><a href="#cb12-594" aria-hidden="true" tabindex="-1"></a>USDAtoUI2<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"USDAtoUI.csv"</span>)</span>
+<span id="cb12-594"><a href="#cb12-594" aria-hidden="true" tabindex="-1"></a>**Table 6.** NSF new grants count</span>
 <span id="cb12-595"><a href="#cb12-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-596"><a href="#cb12-596" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data set is named USDAtoUI</span></span>
-<span id="cb12-597"><a href="#cb12-597" aria-hidden="true" tabindex="-1"></a>USDAtoUI2<span class="sc">$</span><span class="st">"Award.Date"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">as.character</span>(USDAtoUI2<span class="sc">$</span><span class="st">"Award.Date"</span>), <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb12-596"><a href="#cb12-596" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NIH New Grant Counts}</span></span>
+<span id="cb12-597"><a href="#cb12-597" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called projects_df</span></span>
 <span id="cb12-598"><a href="#cb12-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-599"><a href="#cb12-599" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "Award.Date" on or after 01/01/2014</span></span>
-<span id="cb12-600"><a href="#cb12-600" aria-hidden="true" tabindex="-1"></a>USDA2_df_new_grants <span class="ot">&lt;-</span> USDAtoUI2 <span class="sc">%&gt;%</span></span>
-<span id="cb12-601"><a href="#cb12-601" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Award.Date</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
-<span id="cb12-602"><a href="#cb12-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-603"><a href="#cb12-603" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
-<span id="cb12-604"><a href="#cb12-604" aria-hidden="true" tabindex="-1"></a>USDA2_df_new_grants_count <span class="ot">&lt;-</span> USDA2_df_new_grants <span class="sc">%&gt;%</span></span>
-<span id="cb12-605"><a href="#cb12-605" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">Award.Date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-606"><a href="#cb12-606" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
-<span id="cb12-607"><a href="#cb12-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-608"><a href="#cb12-608" aria-hidden="true" tabindex="-1"></a><span class="co"># Finishing NSF new grants count with NSF column</span></span>
-<span id="cb12-609"><a href="#cb12-609" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
-<span id="cb12-610"><a href="#cb12-610" aria-hidden="true" tabindex="-1"></a>USDA2_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(USDA2_df_new_grants_count, <span class="at">Sponsor =</span> <span class="st">"USDA"</span>)</span>
-<span id="cb12-611"><a href="#cb12-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-612"><a href="#cb12-612" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified dataset</span></span>
-<span id="cb12-613"><a href="#cb12-613" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USDA2_new_grants_count)</span>
-<span id="cb12-614"><a href="#cb12-614" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-615"><a href="#cb12-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-616"><a href="#cb12-616" aria-hidden="true" tabindex="-1"></a>**Table 8.** USDA new grants count</span>
-<span id="cb12-617"><a href="#cb12-617" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-618"><a href="#cb12-618" aria-hidden="true" tabindex="-1"></a>Now let's combine the individual, mutated data frame for each sponsor</span>
-<span id="cb12-619"><a href="#cb12-619" aria-hidden="true" tabindex="-1"></a>and put them altogether for a visualization.</span>
-<span id="cb12-620"><a href="#cb12-620" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-621"><a href="#cb12-621" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting all the sponsors together</span></span>
-<span id="cb12-622"><a href="#cb12-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-623"><a href="#cb12-623" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Visualizing all sponsors}</span></span>
-<span id="cb12-624"><a href="#cb12-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-625"><a href="#cb12-625" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data sets (assuming DOE_new_grants_count, NSF_new_grants_count, NIH_new_grants_count, and USDA_new_grants_count are your datasets)</span></span>
-<span id="cb12-626"><a href="#cb12-626" aria-hidden="true" tabindex="-1"></a>combined_grant_counts_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb12-627"><a href="#cb12-627" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(DOE_new_grants_count, <span class="at">dataset =</span> <span class="st">"DOE"</span>),</span>
-<span id="cb12-628"><a href="#cb12-628" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(NSF_new_grants_count, <span class="at">dataset =</span> <span class="st">"NSF"</span>),</span>
-<span id="cb12-629"><a href="#cb12-629" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(NIH_new_grants_count, <span class="at">dataset =</span> <span class="st">"NIH"</span>),</span>
-<span id="cb12-630"><a href="#cb12-630" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(USDA2_new_grants_count, <span class="at">dataset =</span> <span class="st">"USDA"</span>)</span>
-<span id="cb12-631"><a href="#cb12-631" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-599"><a href="#cb12-599" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data set is named projects_df</span></span>
+<span id="cb12-600"><a href="#cb12-600" aria-hidden="true" tabindex="-1"></a>projects_df<span class="sc">$</span>project_start_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(projects_df<span class="sc">$</span>project_start_date, <span class="at">format =</span> <span class="st">"%Y-%m-%dT%H:%M:%SZ"</span>)</span>
+<span id="cb12-601"><a href="#cb12-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-602"><a href="#cb12-602" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants awarded to "UNIVERSITY OF IDAHO"</span></span>
+<span id="cb12-603"><a href="#cb12-603" aria-hidden="true" tabindex="-1"></a>projects_df_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-604"><a href="#cb12-604" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">organization.org_name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"UNIVERSITY OF IDAHO"</span>)</span>
+<span id="cb12-605"><a href="#cb12-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-606"><a href="#cb12-606" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an new grants</span></span>
+<span id="cb12-607"><a href="#cb12-607" aria-hidden="true" tabindex="-1"></a><span class="co"># projects_df_new_grants &lt;- projects_df_df %&gt;%</span></span>
+<span id="cb12-608"><a href="#cb12-608" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(`is_new` == "TRUE")</span></span>
+<span id="cb12-609"><a href="#cb12-609" aria-hidden="true" tabindex="-1"></a><span class="co"># I took this out becuase upon updating, the grants from 2024 considered "new" before were no longer considered "new".</span></span>
+<span id="cb12-610"><a href="#cb12-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-611"><a href="#cb12-611" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "project_start_date" on or after 01/01/2014</span></span>
+<span id="cb12-612"><a href="#cb12-612" aria-hidden="true" tabindex="-1"></a>projects_df_new_grants <span class="ot">&lt;-</span> projects_df_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-613"><a href="#cb12-613" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">project_start_date</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
+<span id="cb12-614"><a href="#cb12-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-615"><a href="#cb12-615" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
+<span id="cb12-616"><a href="#cb12-616" aria-hidden="true" tabindex="-1"></a>projects_df_new_grants_count <span class="ot">&lt;-</span> projects_df_new_grants <span class="sc">%&gt;%</span></span>
+<span id="cb12-617"><a href="#cb12-617" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">project_start_date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-618"><a href="#cb12-618" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb12-619"><a href="#cb12-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-620"><a href="#cb12-620" aria-hidden="true" tabindex="-1"></a><span class="co"># Finishing NSF new grants count with NSF column</span></span>
+<span id="cb12-621"><a href="#cb12-621" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
+<span id="cb12-622"><a href="#cb12-622" aria-hidden="true" tabindex="-1"></a>NIH_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(projects_df_new_grants_count, <span class="at">Sponsor =</span> <span class="st">"NIH"</span>)</span>
+<span id="cb12-623"><a href="#cb12-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-624"><a href="#cb12-624" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
+<span id="cb12-625"><a href="#cb12-625" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NIH_new_grants_count)</span>
+<span id="cb12-626"><a href="#cb12-626" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-627"><a href="#cb12-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-628"><a href="#cb12-628" aria-hidden="true" tabindex="-1"></a>**Table 7.** NIH new grants count</span>
+<span id="cb12-629"><a href="#cb12-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-630"><a href="#cb12-630" aria-hidden="true" tabindex="-1"></a><span class="in">```{r USDA New Grant Counts}</span></span>
+<span id="cb12-631"><a href="#cb12-631" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called USDAtoUI</span></span>
 <span id="cb12-632"><a href="#cb12-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-633"><a href="#cb12-633" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb12-634"><a href="#cb12-634" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_grant_counts_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Count, <span class="at">color =</span> dataset)) <span class="sc">+</span></span>
-<span id="cb12-635"><a href="#cb12-635" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb12-636"><a href="#cb12-636" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">filter</span>(combined_grant_counts_df, dataset <span class="sc">==</span> <span class="st">"NIH"</span>), <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># Add points for Dataset 3</span></span>
-<span id="cb12-637"><a href="#cb12-637" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Trends Across Multiple Datasets"</span>,</span>
-<span id="cb12-638"><a href="#cb12-638" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb12-639"><a href="#cb12-639" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb12-640"><a href="#cb12-640" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-641"><a href="#cb12-641" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb12-642"><a href="#cb12-642" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(combined_grant_counts_df<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(combined_grant_counts_df<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb12-643"><a href="#cb12-643" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"DOE"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"NSF"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"NIH"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"USDA"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span></span>
-<span id="cb12-644"><a href="#cb12-644" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb12-645"><a href="#cb12-645" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb12-646"><a href="#cb12-646" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
-<span id="cb12-647"><a href="#cb12-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-648"><a href="#cb12-648" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-649"><a href="#cb12-649" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-650"><a href="#cb12-650" aria-hidden="true" tabindex="-1"></a>**Figure 5.** shows the approximate trends of new grants received by the</span>
-<span id="cb12-651"><a href="#cb12-651" aria-hidden="true" tabindex="-1"></a>University of Idaho from various sponsors in the last 10 years.</span>
-<span id="cb12-652"><a href="#cb12-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-653"><a href="#cb12-653" aria-hidden="true" tabindex="-1"></a>Limitations include that the USDA data set did not have specifications</span>
-<span id="cb12-654"><a href="#cb12-654" aria-hidden="true" tabindex="-1"></a>denoting whether the awards were new or continuing, therefore, I was</span>
-<span id="cb12-655"><a href="#cb12-655" aria-hidden="true" tabindex="-1"></a>only able to go off the award date for being in the last 10 years and</span>
-<span id="cb12-656"><a href="#cb12-656" aria-hidden="true" tabindex="-1"></a>had to make the assumption all were new. This is most likely not the</span>
-<span id="cb12-657"><a href="#cb12-657" aria-hidden="true" tabindex="-1"></a>case, so the orange line should be interpreted with caution. In general,</span>
-<span id="cb12-658"><a href="#cb12-658" aria-hidden="true" tabindex="-1"></a>the USDA actually seems to be on the decline, which would be concerning</span>
-<span id="cb12-659"><a href="#cb12-659" aria-hidden="true" tabindex="-1"></a>given the type of school the University of Idaho is. As for the DOE, it</span>
-<span id="cb12-660"><a href="#cb12-660" aria-hidden="true" tabindex="-1"></a>seems we are on the rise during the past couple years. The NSF seems to</span>
-<span id="cb12-661"><a href="#cb12-661" aria-hidden="true" tabindex="-1"></a>be steady at the moment. Meanwhile, the NIH does not have much history</span>
-<span id="cb12-662"><a href="#cb12-662" aria-hidden="true" tabindex="-1"></a>of giving new grants to the UI in the past 10 years, but hopefully being</span>
-<span id="cb12-663"><a href="#cb12-663" aria-hidden="true" tabindex="-1"></a>on the board will start the ball rolling again.</span>
-<span id="cb12-664"><a href="#cb12-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-665"><a href="#cb12-665" aria-hidden="true" tabindex="-1"></a><span class="fu"># QUESTION 3</span></span>
-<span id="cb12-666"><a href="#cb12-666" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-667"><a href="#cb12-667" aria-hidden="true" tabindex="-1"></a>*How is UI performing with these sponsors when compared to the following</span>
-<span id="cb12-668"><a href="#cb12-668" aria-hidden="true" tabindex="-1"></a>peer institutions: Boise State University,* *Idaho State University,*</span>
-<span id="cb12-669"><a href="#cb12-669" aria-hidden="true" tabindex="-1"></a>*Montana State University,* *University of Montana, and* *Washington</span>
-<span id="cb12-670"><a href="#cb12-670" aria-hidden="true" tabindex="-1"></a>State University?*</span>
+<span id="cb12-633"><a href="#cb12-633" aria-hidden="true" tabindex="-1"></a>USDAtoUI2<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"USDAtoUI.csv"</span>)</span>
+<span id="cb12-634"><a href="#cb12-634" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-635"><a href="#cb12-635" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data set is named USDAtoUI</span></span>
+<span id="cb12-636"><a href="#cb12-636" aria-hidden="true" tabindex="-1"></a>USDAtoUI2<span class="sc">$</span><span class="st">"Award.Date"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">as.character</span>(USDAtoUI2<span class="sc">$</span><span class="st">"Award.Date"</span>), <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb12-637"><a href="#cb12-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-638"><a href="#cb12-638" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "Award.Date" on or after 01/01/2014</span></span>
+<span id="cb12-639"><a href="#cb12-639" aria-hidden="true" tabindex="-1"></a>USDA2_df_new_grants <span class="ot">&lt;-</span> USDAtoUI2 <span class="sc">%&gt;%</span></span>
+<span id="cb12-640"><a href="#cb12-640" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Award.Date</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2014-01-01"</span>)) </span>
+<span id="cb12-641"><a href="#cb12-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-642"><a href="#cb12-642" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of new grants for each year</span></span>
+<span id="cb12-643"><a href="#cb12-643" aria-hidden="true" tabindex="-1"></a>USDA2_df_new_grants_count <span class="ot">&lt;-</span> USDA2_df_new_grants <span class="sc">%&gt;%</span></span>
+<span id="cb12-644"><a href="#cb12-644" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(<span class="st">`</span><span class="at">Award.Date</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-645"><a href="#cb12-645" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb12-646"><a href="#cb12-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-647"><a href="#cb12-647" aria-hidden="true" tabindex="-1"></a><span class="co"># Finishing NSF new grants count with NSF column</span></span>
+<span id="cb12-648"><a href="#cb12-648" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
+<span id="cb12-649"><a href="#cb12-649" aria-hidden="true" tabindex="-1"></a>USDA2_new_grants_count <span class="ot">&lt;-</span> <span class="fu">mutate</span>(USDA2_df_new_grants_count, <span class="at">Sponsor =</span> <span class="st">"USDA"</span>)</span>
+<span id="cb12-650"><a href="#cb12-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-651"><a href="#cb12-651" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified dataset</span></span>
+<span id="cb12-652"><a href="#cb12-652" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USDA2_new_grants_count)</span>
+<span id="cb12-653"><a href="#cb12-653" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-654"><a href="#cb12-654" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-655"><a href="#cb12-655" aria-hidden="true" tabindex="-1"></a>**Table 8.** USDA new grants count</span>
+<span id="cb12-656"><a href="#cb12-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-657"><a href="#cb12-657" aria-hidden="true" tabindex="-1"></a>Now let's combine the individual, mutated data frame for each sponsor</span>
+<span id="cb12-658"><a href="#cb12-658" aria-hidden="true" tabindex="-1"></a>and put them altogether for a visualization.</span>
+<span id="cb12-659"><a href="#cb12-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-660"><a href="#cb12-660" aria-hidden="true" tabindex="-1"></a><span class="fu">## Putting all the sponsors together</span></span>
+<span id="cb12-661"><a href="#cb12-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-662"><a href="#cb12-662" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Visualizing all sponsors}</span></span>
+<span id="cb12-663"><a href="#cb12-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-664"><a href="#cb12-664" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data sets (assuming DOE_new_grants_count, NSF_new_grants_count, NIH_new_grants_count, and USDA_new_grants_count are your datasets)</span></span>
+<span id="cb12-665"><a href="#cb12-665" aria-hidden="true" tabindex="-1"></a>combined_grant_counts_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb12-666"><a href="#cb12-666" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(DOE_new_grants_count, <span class="at">dataset =</span> <span class="st">"DOE"</span>),</span>
+<span id="cb12-667"><a href="#cb12-667" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(NSF_new_grants_count, <span class="at">dataset =</span> <span class="st">"NSF"</span>),</span>
+<span id="cb12-668"><a href="#cb12-668" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(NIH_new_grants_count, <span class="at">dataset =</span> <span class="st">"NIH"</span>),</span>
+<span id="cb12-669"><a href="#cb12-669" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(USDA2_new_grants_count, <span class="at">dataset =</span> <span class="st">"USDA"</span>)</span>
+<span id="cb12-670"><a href="#cb12-670" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-671"><a href="#cb12-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-672"><a href="#cb12-672" aria-hidden="true" tabindex="-1"></a>*Note that “performing” can mean a variety of different things. You must</span>
-<span id="cb12-673"><a href="#cb12-673" aria-hidden="true" tabindex="-1"></a>choose your metrics of performance and justify them.*</span>
-<span id="cb12-674"><a href="#cb12-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-675"><a href="#cb12-675" aria-hidden="true" tabindex="-1"></a>Let's start by fetching the data. I am going to use the API sources for</span>
-<span id="cb12-676"><a href="#cb12-676" aria-hidden="true" tabindex="-1"></a>this question (NIH and NSF).</span>
-<span id="cb12-677"><a href="#cb12-677" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-678"><a href="#cb12-678" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NIH5 API}</span></span>
-<span id="cb12-679"><a href="#cb12-679" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the base URL for the API</span></span>
-<span id="cb12-680"><a href="#cb12-680" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://api.reporter.nih.gov/v2/projects/search"</span></span>
-<span id="cb12-681"><a href="#cb12-681" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-682"><a href="#cb12-682" aria-hidden="true" tabindex="-1"></a><span class="co"># This omits the `include_fields` option and downloads all the data for the University of Idaho and Boise State University from Fiscal Year 2013 to Fiscal Year 2024.</span></span>
-<span id="cb12-683"><a href="#cb12-683" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-684"><a href="#cb12-684" aria-hidden="true" tabindex="-1"></a><span class="co"># Build query parameters</span></span>
-<span id="cb12-685"><a href="#cb12-685" aria-hidden="true" tabindex="-1"></a>query_params <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb12-686"><a href="#cb12-686" aria-hidden="true" tabindex="-1"></a>  <span class="at">criteria =</span> <span class="fu">list</span>(</span>
-<span id="cb12-687"><a href="#cb12-687" aria-hidden="true" tabindex="-1"></a>    <span class="at">fiscal_years =</span> <span class="dv">2013</span><span class="sc">:</span><span class="dv">2024</span>, <span class="co"># Specify range of fiscal years</span></span>
-<span id="cb12-688"><a href="#cb12-688" aria-hidden="true" tabindex="-1"></a>    <span class="at">org_names =</span> <span class="fu">list</span>(<span class="st">"UNIVERSITY OF IDAHO"</span>, <span class="st">"BOISE STATE UNIVERSITY"</span>, <span class="st">"IDAHO STATE UNIVERSITY"</span>, <span class="st">"MONTANA STATE UNIVERSITY"</span>, <span class="st">"UNIVERSITY OF MONTANA"</span>, <span class="st">"WASHINGTON STATE UNIVERSITY"</span>)),</span>
-<span id="cb12-689"><a href="#cb12-689" aria-hidden="true" tabindex="-1"></a>  <span class="at">offset =</span> <span class="dv">0</span>, <span class="co"># Starting point for fetching results.  Unlikely you'd ever want to change this.</span></span>
-<span id="cb12-690"><a href="#cb12-690" aria-hidden="true" tabindex="-1"></a>  <span class="at">limit =</span> <span class="dv">500</span>, <span class="co"># Maximum number of results to fetch. Sometimes the API sets a maximum.  NIH does not.</span></span>
-<span id="cb12-691"><a href="#cb12-691" aria-hidden="true" tabindex="-1"></a>  <span class="at">sort_field =</span> <span class="st">"ProjectStartDate"</span>, <span class="co"># Field to sort by.  Largely irrelevant as our visualizations should control this.</span></span>
-<span id="cb12-692"><a href="#cb12-692" aria-hidden="true" tabindex="-1"></a>  <span class="at">sort_order =</span> <span class="st">"desc"</span> <span class="co"># Sort order</span></span>
-<span id="cb12-693"><a href="#cb12-693" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-694"><a href="#cb12-694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-695"><a href="#cb12-695" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert query parameters to JSON format. This part is tricky.  This line converts the list above to a format (json) that the API will recognize.  This is a place where Python is way better than R.</span></span>
-<span id="cb12-696"><a href="#cb12-696" aria-hidden="true" tabindex="-1"></a>query_json <span class="ot">&lt;-</span> <span class="fu">toJSON</span>(query_params, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>, <span class="at">null =</span> <span class="st">"null"</span>, <span class="at">pretty =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-697"><a href="#cb12-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-698"><a href="#cb12-698" aria-hidden="true" tabindex="-1"></a><span class="co"># Set header information for the request.  Some instructions to the API about our query.</span></span>
-<span id="cb12-699"><a href="#cb12-699" aria-hidden="true" tabindex="-1"></a>headers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Content-Type"</span> <span class="ot">=</span> <span class="st">"application/json"</span>)</span>
-<span id="cb12-700"><a href="#cb12-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-701"><a href="#cb12-701" aria-hidden="true" tabindex="-1"></a><span class="co"># Send a POST request and retrieve response data.  POST is just a type of API interaction.  response is a json object.  Click on it in your environment to see the hierarchical structure.</span></span>
-<span id="cb12-702"><a href="#cb12-702" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-703"><a href="#cb12-703" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">POST</span>(base_url, <span class="at">body =</span> query_json, <span class="at">encode =</span> <span class="st">"json"</span>, httr<span class="sc">::</span><span class="fu">add_headers</span>(<span class="at">.headers =</span> headers))</span>
-<span id="cb12-704"><a href="#cb12-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-705"><a href="#cb12-705" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the request was successful.  Sometimes the error is from our code.  But sometimes it is from the API call.  Status codes help us figure out where any problems might be.</span></span>
-<span id="cb12-706"><a href="#cb12-706" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">status_code</span>(response) <span class="sc">==</span> <span class="dv">200</span>) {</span>
-<span id="cb12-707"><a href="#cb12-707" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract and parse JSON data</span></span>
-<span id="cb12-708"><a href="#cb12-708" aria-hidden="true" tabindex="-1"></a>  json_data_NIH5 <span class="ot">&lt;-</span> <span class="fu">content</span>(response, <span class="at">as =</span> <span class="st">"text"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb12-709"><a href="#cb12-709" aria-hidden="true" tabindex="-1"></a>  parsed_data_NIH5 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(json_data_NIH5, <span class="at">flatten =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-710"><a href="#cb12-710" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-711"><a href="#cb12-711" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select columns based on the actual JSON data structure. The data frame (technically the tibble) we want is in the results component.  click on parsed_data and you'll see what I mean.</span></span>
-<span id="cb12-712"><a href="#cb12-712" aria-hidden="true" tabindex="-1"></a>  projects_df5 <span class="ot">&lt;-</span> parsed_data_NIH5<span class="sc">$</span>results</span>
-<span id="cb12-713"><a href="#cb12-713" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-714"><a href="#cb12-714" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-715"><a href="#cb12-715" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the data frame.  This is nice for debugging but you'll eventually want to stop doing this.</span></span>
-<span id="cb12-716"><a href="#cb12-716" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(projects_df5)</span></span>
-<span id="cb12-717"><a href="#cb12-717" aria-hidden="true" tabindex="-1"></a>  <span class="co"># knitr::kable(head(projects_df5))</span></span>
-<span id="cb12-718"><a href="#cb12-718" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-719"><a href="#cb12-719" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print an error message if data fetching failed</span></span>
-<span id="cb12-720"><a href="#cb12-720" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Failed to fetch data: Status code"</span>, <span class="fu">status_code</span>(response)))</span>
-<span id="cb12-721"><a href="#cb12-721" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the full response for debugging purposes</span></span>
-<span id="cb12-722"><a href="#cb12-722" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">content</span>(response, <span class="at">as =</span> <span class="st">"text"</span>))</span>
-<span id="cb12-723"><a href="#cb12-723" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-724"><a href="#cb12-724" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-725"><a href="#cb12-725" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-726"><a href="#cb12-726" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-727"><a href="#cb12-727" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NSF5, eval = FALSE, message=FALSE}</span></span>
-<span id="cb12-728"><a href="#cb12-728" aria-hidden="true" tabindex="-1"></a><span class="co"># Base URL for the API with multiple awardees</span></span>
-<span id="cb12-729"><a href="#cb12-729" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://www.research.gov/awardapi-service/v1/awards.json?awardeeName=%22regents+of+the+university+of+idaho%22%20OR%20%22boise+state+university%22%20OR%20%22idaho+state+university%22%20OR%20%22montana+state+university%22%20OR%20%22university+of+montana%22%20OR%20%22washington+state+university%22"</span></span>
-<span id="cb12-730"><a href="#cb12-730" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-672"><a href="#cb12-672" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb12-673"><a href="#cb12-673" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_grant_counts_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Count, <span class="at">color =</span> dataset)) <span class="sc">+</span></span>
+<span id="cb12-674"><a href="#cb12-674" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-675"><a href="#cb12-675" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(data = filter(combined_grant_counts_df, Sponsor == "NIH"), color = "green", size = 3) +  # Add points for Dataset 3- no longer need upon updating</span></span>
+<span id="cb12-676"><a href="#cb12-676" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Trends Across Multiple Datasets"</span>,</span>
+<span id="cb12-677"><a href="#cb12-677" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb12-678"><a href="#cb12-678" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb12-679"><a href="#cb12-679" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-680"><a href="#cb12-680" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-681"><a href="#cb12-681" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(combined_grant_counts_df<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(combined_grant_counts_df<span class="sc">$</span>Year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-682"><a href="#cb12-682" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"DOE"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"NSF"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"NIH"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"USDA"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span></span>
+<span id="cb12-683"><a href="#cb12-683" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb12-684"><a href="#cb12-684" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb12-685"><a href="#cb12-685" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb12-686"><a href="#cb12-686" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-687"><a href="#cb12-687" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-688"><a href="#cb12-688" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-689"><a href="#cb12-689" aria-hidden="true" tabindex="-1"></a>**Figure 5.** This figure shows the approximate trends of new grants received by the</span>
+<span id="cb12-690"><a href="#cb12-690" aria-hidden="true" tabindex="-1"></a>University of Idaho from various sponsors in the last 10 years.</span>
+<span id="cb12-691"><a href="#cb12-691" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-692"><a href="#cb12-692" aria-hidden="true" tabindex="-1"></a>Limitations include that the USDA data set did not have specifications</span>
+<span id="cb12-693"><a href="#cb12-693" aria-hidden="true" tabindex="-1"></a>denoting whether the awards were new or continuing, therefore, I was</span>
+<span id="cb12-694"><a href="#cb12-694" aria-hidden="true" tabindex="-1"></a>only able to go off the award date for being in the last 10 years and</span>
+<span id="cb12-695"><a href="#cb12-695" aria-hidden="true" tabindex="-1"></a>had to make the assumption all were new. This is most likely not the</span>
+<span id="cb12-696"><a href="#cb12-696" aria-hidden="true" tabindex="-1"></a>case, so the orange line should be interpreted with caution. In general,</span>
+<span id="cb12-697"><a href="#cb12-697" aria-hidden="true" tabindex="-1"></a>the USDA actually seems to be on the decline, which would be concerning</span>
+<span id="cb12-698"><a href="#cb12-698" aria-hidden="true" tabindex="-1"></a>given the type of school the University of Idaho is. As for the DOE, it</span>
+<span id="cb12-699"><a href="#cb12-699" aria-hidden="true" tabindex="-1"></a>seems we are on the rise during the past couple years. The NSF seems to</span>
+<span id="cb12-700"><a href="#cb12-700" aria-hidden="true" tabindex="-1"></a>be steady at the moment. Meanwhile, the NIH data was interesting. Upon updating this document, grants considered "new" a week previously were not considered "new" anymore. Therefore, I just included all grants from the past 10 years. All in all, this is an interesting figure to address general trends within the last decade. </span>
+<span id="cb12-701"><a href="#cb12-701" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-702"><a href="#cb12-702" aria-hidden="true" tabindex="-1"></a><span class="fu"># QUESTION 3</span></span>
+<span id="cb12-703"><a href="#cb12-703" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-704"><a href="#cb12-704" aria-hidden="true" tabindex="-1"></a>*How is UI performing with these sponsors when compared to the following</span>
+<span id="cb12-705"><a href="#cb12-705" aria-hidden="true" tabindex="-1"></a>peer institutions: Boise State University,* *Idaho State University,*</span>
+<span id="cb12-706"><a href="#cb12-706" aria-hidden="true" tabindex="-1"></a>*Montana State University,* *University of Montana, and* *Washington</span>
+<span id="cb12-707"><a href="#cb12-707" aria-hidden="true" tabindex="-1"></a>State University?*</span>
+<span id="cb12-708"><a href="#cb12-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-709"><a href="#cb12-709" aria-hidden="true" tabindex="-1"></a>*Note that “performing” can mean a variety of different things. You must</span>
+<span id="cb12-710"><a href="#cb12-710" aria-hidden="true" tabindex="-1"></a>choose your metrics of performance and justify them.*</span>
+<span id="cb12-711"><a href="#cb12-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-712"><a href="#cb12-712" aria-hidden="true" tabindex="-1"></a>Let's start by fetching the data. I am going to use the API sources for</span>
+<span id="cb12-713"><a href="#cb12-713" aria-hidden="true" tabindex="-1"></a>this question (NIH and NSF).</span>
+<span id="cb12-714"><a href="#cb12-714" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-715"><a href="#cb12-715" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NIH5 API}</span></span>
+<span id="cb12-716"><a href="#cb12-716" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the base URL for the API</span></span>
+<span id="cb12-717"><a href="#cb12-717" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://api.reporter.nih.gov/v2/projects/search"</span></span>
+<span id="cb12-718"><a href="#cb12-718" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-719"><a href="#cb12-719" aria-hidden="true" tabindex="-1"></a><span class="co"># This omits the `include_fields` option and downloads all the data for the University of Idaho and Boise State University from Fiscal Year 2013 to Fiscal Year 2024.</span></span>
+<span id="cb12-720"><a href="#cb12-720" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-721"><a href="#cb12-721" aria-hidden="true" tabindex="-1"></a><span class="co"># Build query parameters</span></span>
+<span id="cb12-722"><a href="#cb12-722" aria-hidden="true" tabindex="-1"></a>query_params <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb12-723"><a href="#cb12-723" aria-hidden="true" tabindex="-1"></a>  <span class="at">criteria =</span> <span class="fu">list</span>(</span>
+<span id="cb12-724"><a href="#cb12-724" aria-hidden="true" tabindex="-1"></a>    <span class="at">fiscal_years =</span> <span class="dv">2013</span><span class="sc">:</span><span class="dv">2024</span>, <span class="co"># Specify range of fiscal years</span></span>
+<span id="cb12-725"><a href="#cb12-725" aria-hidden="true" tabindex="-1"></a>    <span class="at">org_names =</span> <span class="fu">list</span>(<span class="st">"UNIVERSITY OF IDAHO"</span>, <span class="st">"BOISE STATE UNIVERSITY"</span>, <span class="st">"IDAHO STATE UNIVERSITY"</span>, <span class="st">"MONTANA STATE UNIVERSITY"</span>, <span class="st">"UNIVERSITY OF MONTANA"</span>, <span class="st">"WASHINGTON STATE UNIVERSITY"</span>)),</span>
+<span id="cb12-726"><a href="#cb12-726" aria-hidden="true" tabindex="-1"></a>  <span class="at">offset =</span> <span class="dv">0</span>, <span class="co"># Starting point for fetching results.  Unlikely you'd ever want to change this.</span></span>
+<span id="cb12-727"><a href="#cb12-727" aria-hidden="true" tabindex="-1"></a>  <span class="at">limit =</span> <span class="dv">500</span>, <span class="co"># Maximum number of results to fetch. Sometimes the API sets a maximum.  NIH does not.</span></span>
+<span id="cb12-728"><a href="#cb12-728" aria-hidden="true" tabindex="-1"></a>  <span class="at">sort_field =</span> <span class="st">"ProjectStartDate"</span>, <span class="co"># Field to sort by.  Largely irrelevant as our visualizations should control this.</span></span>
+<span id="cb12-729"><a href="#cb12-729" aria-hidden="true" tabindex="-1"></a>  <span class="at">sort_order =</span> <span class="st">"desc"</span> <span class="co"># Sort order</span></span>
+<span id="cb12-730"><a href="#cb12-730" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-731"><a href="#cb12-731" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-732"><a href="#cb12-732" aria-hidden="true" tabindex="-1"></a>printFields <span class="ot">&lt;-</span> <span class="st">"rpp,offset,id,agency,awardeeCity,awardeeCountryCode,awardeeDistrictCode,awardeeName,awardeeStateCode,awardeeZipCode,cfdaNumber,coPDPI,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,ueiNumber,fundProgramName,parentUeiNumber,pdPIName,perfCity,perfCountryCode,perfDistrictCode,perfLocation,perfStateCode,perfZipCode,poName,primaryProgram,transType,title,awardee,poPhone,poEmail,awardeeAddress,perfAddress,publicationResearch,publicationConference,fundAgencyCode,awardAgencyCode,projectOutComesReport,abstractText,piFirstName,piMiddeInitial,piLastName,piEmail"</span></span>
-<span id="cb12-733"><a href="#cb12-733" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-734"><a href="#cb12-734" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store results</span></span>
-<span id="cb12-735"><a href="#cb12-735" aria-hidden="true" tabindex="-1"></a>NSF5 <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
-<span id="cb12-736"><a href="#cb12-736" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-737"><a href="#cb12-737" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of results per page (as per API settings)</span></span>
-<span id="cb12-738"><a href="#cb12-738" aria-hidden="true" tabindex="-1"></a>results_per_page <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb12-732"><a href="#cb12-732" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert query parameters to JSON format. This part is tricky.  This line converts the list above to a format (json) that the API will recognize.  This is a place where Python is way better than R.</span></span>
+<span id="cb12-733"><a href="#cb12-733" aria-hidden="true" tabindex="-1"></a>query_json <span class="ot">&lt;-</span> <span class="fu">toJSON</span>(query_params, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>, <span class="at">null =</span> <span class="st">"null"</span>, <span class="at">pretty =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-734"><a href="#cb12-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-735"><a href="#cb12-735" aria-hidden="true" tabindex="-1"></a><span class="co"># Set header information for the request.  Some instructions to the API about our query.</span></span>
+<span id="cb12-736"><a href="#cb12-736" aria-hidden="true" tabindex="-1"></a>headers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Content-Type"</span> <span class="ot">=</span> <span class="st">"application/json"</span>)</span>
+<span id="cb12-737"><a href="#cb12-737" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-738"><a href="#cb12-738" aria-hidden="true" tabindex="-1"></a><span class="co"># Send a POST request and retrieve response data.  POST is just a type of API interaction.  response is a json object.  Click on it in your environment to see the hierarchical structure.</span></span>
 <span id="cb12-739"><a href="#cb12-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-740"><a href="#cb12-740" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable to keep track of the current page number</span></span>
-<span id="cb12-741"><a href="#cb12-741" aria-hidden="true" tabindex="-1"></a>current_page <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb12-742"><a href="#cb12-742" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-743"><a href="#cb12-743" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable to control the loop</span></span>
-<span id="cb12-744"><a href="#cb12-744" aria-hidden="true" tabindex="-1"></a>keep_going <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb12-745"><a href="#cb12-745" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-746"><a href="#cb12-746" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(keep_going) {</span>
-<span id="cb12-747"><a href="#cb12-747" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the offset for the current page</span></span>
-<span id="cb12-748"><a href="#cb12-748" aria-hidden="true" tabindex="-1"></a>    offset <span class="ot">&lt;-</span> (current_page <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> results_per_page <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb12-749"><a href="#cb12-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-750"><a href="#cb12-750" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the full URL with offset</span></span>
-<span id="cb12-751"><a href="#cb12-751" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, <span class="st">"&amp;offset="</span>, offset, <span class="st">"&amp;printFields="</span>, printFields)</span>
-<span id="cb12-752"><a href="#cb12-752" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-753"><a href="#cb12-753" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make the API call</span></span>
-<span id="cb12-754"><a href="#cb12-754" aria-hidden="true" tabindex="-1"></a>    response <span class="ot">&lt;-</span> <span class="fu">GET</span>(url)</span>
-<span id="cb12-755"><a href="#cb12-755" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-756"><a href="#cb12-756" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the call was successful</span></span>
-<span id="cb12-757"><a href="#cb12-757" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">status_code</span>(response) <span class="sc">==</span> <span class="dv">200</span>) {</span>
-<span id="cb12-758"><a href="#cb12-758" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract and parse the JSON data</span></span>
-<span id="cb12-759"><a href="#cb12-759" aria-hidden="true" tabindex="-1"></a>        json_data_NSF5 <span class="ot">&lt;-</span> <span class="fu">content</span>(response, <span class="at">type =</span> <span class="st">"text"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb12-760"><a href="#cb12-760" aria-hidden="true" tabindex="-1"></a>        parsed_data_NSF5 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(json_data_NSF5, <span class="at">flatten =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-740"><a href="#cb12-740" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">POST</span>(base_url, <span class="at">body =</span> query_json, <span class="at">encode =</span> <span class="st">"json"</span>, httr<span class="sc">::</span><span class="fu">add_headers</span>(<span class="at">.headers =</span> headers))</span>
+<span id="cb12-741"><a href="#cb12-741" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-742"><a href="#cb12-742" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the request was successful.  Sometimes the error is from our code.  But sometimes it is from the API call.  Status codes help us figure out where any problems might be.</span></span>
+<span id="cb12-743"><a href="#cb12-743" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">status_code</span>(response) <span class="sc">==</span> <span class="dv">200</span>) {</span>
+<span id="cb12-744"><a href="#cb12-744" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract and parse JSON data</span></span>
+<span id="cb12-745"><a href="#cb12-745" aria-hidden="true" tabindex="-1"></a>  json_data_NIH5 <span class="ot">&lt;-</span> <span class="fu">content</span>(response, <span class="at">as =</span> <span class="st">"text"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb12-746"><a href="#cb12-746" aria-hidden="true" tabindex="-1"></a>  parsed_data_NIH5 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(json_data_NIH5, <span class="at">flatten =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-747"><a href="#cb12-747" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-748"><a href="#cb12-748" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select columns based on the actual JSON data structure. The data frame (technically the tibble) we want is in the results component.  click on parsed_data and you'll see what I mean.</span></span>
+<span id="cb12-749"><a href="#cb12-749" aria-hidden="true" tabindex="-1"></a>  projects_df5 <span class="ot">&lt;-</span> parsed_data_NIH5<span class="sc">$</span>results</span>
+<span id="cb12-750"><a href="#cb12-750" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-751"><a href="#cb12-751" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-752"><a href="#cb12-752" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the data frame.  This is nice for debugging but you'll eventually want to stop doing this.</span></span>
+<span id="cb12-753"><a href="#cb12-753" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(projects_df5)</span></span>
+<span id="cb12-754"><a href="#cb12-754" aria-hidden="true" tabindex="-1"></a>  <span class="co"># knitr::kable(head(projects_df5))</span></span>
+<span id="cb12-755"><a href="#cb12-755" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb12-756"><a href="#cb12-756" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print an error message if data fetching failed</span></span>
+<span id="cb12-757"><a href="#cb12-757" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Failed to fetch data: Status code"</span>, <span class="fu">status_code</span>(response)))</span>
+<span id="cb12-758"><a href="#cb12-758" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the full response for debugging purposes</span></span>
+<span id="cb12-759"><a href="#cb12-759" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">content</span>(response, <span class="at">as =</span> <span class="st">"text"</span>))</span>
+<span id="cb12-760"><a href="#cb12-760" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb12-761"><a href="#cb12-761" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-762"><a href="#cb12-762" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract the 'award' data and add to the all_awards data frame</span></span>
-<span id="cb12-763"><a href="#cb12-763" aria-hidden="true" tabindex="-1"></a>        awards_data <span class="ot">&lt;-</span> parsed_data_NSF5<span class="sc">$</span>response<span class="sc">$</span>award</span>
-<span id="cb12-764"><a href="#cb12-764" aria-hidden="true" tabindex="-1"></a>        NSF5 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(NSF5, <span class="fu">as_tibble</span>(awards_data))</span>
-<span id="cb12-765"><a href="#cb12-765" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-766"><a href="#cb12-766" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Debug: Print the current page number and number of awards fetched</span></span>
-<span id="cb12-767"><a href="#cb12-767" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Page:"</span>, current_page, <span class="st">"- Awards fetched:"</span>, <span class="fu">length</span>(awards_data<span class="sc">$</span>id)))</span>
+<span id="cb12-762"><a href="#cb12-762" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-763"><a href="#cb12-763" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-764"><a href="#cb12-764" aria-hidden="true" tabindex="-1"></a><span class="in">```{r NSF5, eval = FALSE, message=FALSE}</span></span>
+<span id="cb12-765"><a href="#cb12-765" aria-hidden="true" tabindex="-1"></a><span class="co"># Base URL for the API with multiple awardees</span></span>
+<span id="cb12-766"><a href="#cb12-766" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://www.research.gov/awardapi-service/v1/awards.json?awardeeName=%22regents+of+the+university+of+idaho%22%20OR%20%22boise+state+university%22%20OR%20%22idaho+state+university%22%20OR%20%22montana+state+university%22%20OR%20%22university+of+montana%22%20OR%20%22washington+state+university%22"</span></span>
+<span id="cb12-767"><a href="#cb12-767" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-768"><a href="#cb12-768" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-769"><a href="#cb12-769" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if the current page has less than results_per_page awards, then it's the last page</span></span>
-<span id="cb12-770"><a href="#cb12-770" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">length</span>(awards_data<span class="sc">$</span>id) <span class="sc">&lt;</span> results_per_page) {</span>
-<span id="cb12-771"><a href="#cb12-771" aria-hidden="true" tabindex="-1"></a>            keep_going <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb12-772"><a href="#cb12-772" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb12-773"><a href="#cb12-773" aria-hidden="true" tabindex="-1"></a>            current_page <span class="ot">&lt;-</span> current_page <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb12-774"><a href="#cb12-774" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb12-775"><a href="#cb12-775" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb12-776"><a href="#cb12-776" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Failed to fetch data: Status code"</span>, <span class="fu">status_code</span>(response)))</span>
-<span id="cb12-777"><a href="#cb12-777" aria-hidden="true" tabindex="-1"></a>        keep_going <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb12-778"><a href="#cb12-778" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb12-779"><a href="#cb12-779" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-780"><a href="#cb12-780" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-781"><a href="#cb12-781" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-782"><a href="#cb12-782" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Excel for NSF5 and NIH5, warning=FALSE}</span></span>
-<span id="cb12-783"><a href="#cb12-783" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
-<span id="cb12-784"><a href="#cb12-784" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-785"><a href="#cb12-785" aria-hidden="true" tabindex="-1"></a><span class="co"># Write data frame to Excel file</span></span>
+<span id="cb12-769"><a href="#cb12-769" aria-hidden="true" tabindex="-1"></a>printFields <span class="ot">&lt;-</span> <span class="st">"rpp,offset,id,agency,awardeeCity,awardeeCountryCode,awardeeDistrictCode,awardeeName,awardeeStateCode,awardeeZipCode,cfdaNumber,coPDPI,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,ueiNumber,fundProgramName,parentUeiNumber,pdPIName,perfCity,perfCountryCode,perfDistrictCode,perfLocation,perfStateCode,perfZipCode,poName,primaryProgram,transType,title,awardee,poPhone,poEmail,awardeeAddress,perfAddress,publicationResearch,publicationConference,fundAgencyCode,awardAgencyCode,projectOutComesReport,abstractText,piFirstName,piMiddeInitial,piLastName,piEmail"</span></span>
+<span id="cb12-770"><a href="#cb12-770" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-771"><a href="#cb12-771" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store results</span></span>
+<span id="cb12-772"><a href="#cb12-772" aria-hidden="true" tabindex="-1"></a>NSF5 <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb12-773"><a href="#cb12-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-774"><a href="#cb12-774" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of results per page (as per API settings)</span></span>
+<span id="cb12-775"><a href="#cb12-775" aria-hidden="true" tabindex="-1"></a>results_per_page <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb12-776"><a href="#cb12-776" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-777"><a href="#cb12-777" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable to keep track of the current page number</span></span>
+<span id="cb12-778"><a href="#cb12-778" aria-hidden="true" tabindex="-1"></a>current_page <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb12-779"><a href="#cb12-779" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-780"><a href="#cb12-780" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable to control the loop</span></span>
+<span id="cb12-781"><a href="#cb12-781" aria-hidden="true" tabindex="-1"></a>keep_going <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb12-782"><a href="#cb12-782" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-783"><a href="#cb12-783" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(keep_going) {</span>
+<span id="cb12-784"><a href="#cb12-784" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the offset for the current page</span></span>
+<span id="cb12-785"><a href="#cb12-785" aria-hidden="true" tabindex="-1"></a>    offset <span class="ot">&lt;-</span> (current_page <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> results_per_page <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb12-786"><a href="#cb12-786" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-787"><a href="#cb12-787" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(projects_df5, "project_df5")</span></span>
-<span id="cb12-788"><a href="#cb12-788" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-789"><a href="#cb12-789" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(NSF5, "NSF5.xlsx")</span></span>
-<span id="cb12-790"><a href="#cb12-790" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-791"><a href="#cb12-791" aria-hidden="true" tabindex="-1"></a>NSF5 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"NSF5.xlsx"</span>)</span>
-<span id="cb12-792"><a href="#cb12-792" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::kable(head(NSFtoUI))</span></span>
-<span id="cb12-793"><a href="#cb12-793" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-794"><a href="#cb12-794" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-795"><a href="#cb12-795" aria-hidden="true" tabindex="-1"></a>After manipulating the API addresses, I now have data sets of NIH and</span>
-<span id="cb12-796"><a href="#cb12-796" aria-hidden="true" tabindex="-1"></a>NSF updated to include all 6 schools.</span>
-<span id="cb12-797"><a href="#cb12-797" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-798"><a href="#cb12-798" aria-hidden="true" tabindex="-1"></a>Now I am going to start manipulating the data.</span>
-<span id="cb12-799"><a href="#cb12-799" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-800"><a href="#cb12-800" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Transforming NSF5}</span></span>
-<span id="cb12-801"><a href="#cb12-801" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-802"><a href="#cb12-802" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called NSF5</span></span>
-<span id="cb12-803"><a href="#cb12-803" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-804"><a href="#cb12-804" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to date format</span></span>
-<span id="cb12-805"><a href="#cb12-805" aria-hidden="true" tabindex="-1"></a>NSF5<span class="sc">$</span><span class="st">"expDate"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSF5<span class="sc">$</span><span class="st">"expDate"</span>, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
-<span id="cb12-806"><a href="#cb12-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-807"><a href="#cb12-807" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for active grants </span></span>
-<span id="cb12-808"><a href="#cb12-808" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "expDate" on or after 03/20/2024</span></span>
-<span id="cb12-809"><a href="#cb12-809" aria-hidden="true" tabindex="-1"></a>NSF5_df_active_grants <span class="ot">&lt;-</span> NSF5 <span class="sc">%&gt;%</span></span>
-<span id="cb12-810"><a href="#cb12-810" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">expDate</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2024-03-20"</span>)) </span>
-<span id="cb12-811"><a href="#cb12-811" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-812"><a href="#cb12-812" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new data frame with filtered and selected variables from NSF5_df_active_grants</span></span>
-<span id="cb12-813"><a href="#cb12-813" aria-hidden="true" tabindex="-1"></a>newNSF5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-814"><a href="#cb12-814" aria-hidden="true" tabindex="-1"></a>  <span class="at">Organization =</span> NSF5_df_active_grants<span class="sc">$</span><span class="st">"awardeeName"</span>,</span>
-<span id="cb12-815"><a href="#cb12-815" aria-hidden="true" tabindex="-1"></a>  <span class="at">Amount_Awarded =</span> NSF5_df_active_grants<span class="sc">$</span><span class="st">"estimatedTotalAmt"</span></span>
-<span id="cb12-816"><a href="#cb12-816" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-817"><a href="#cb12-817" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-818"><a href="#cb12-818" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
-<span id="cb12-819"><a href="#cb12-819" aria-hidden="true" tabindex="-1"></a>newNSF5 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(newNSF5, <span class="at">Sponsor =</span> <span class="st">"NSF"</span>)</span>
-<span id="cb12-820"><a href="#cb12-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-821"><a href="#cb12-821" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
-<span id="cb12-822"><a href="#cb12-822" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newNSF5)</span>
-<span id="cb12-823"><a href="#cb12-823" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-824"><a href="#cb12-824" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-825"><a href="#cb12-825" aria-hidden="true" tabindex="-1"></a>**Table 9.** New NSF data from all schools.</span>
-<span id="cb12-826"><a href="#cb12-826" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-827"><a href="#cb12-827" aria-hidden="true" tabindex="-1"></a>I am going to rinse and repeat for NIH.</span>
-<span id="cb12-828"><a href="#cb12-828" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-829"><a href="#cb12-829" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Transforming NIH5 data}</span></span>
-<span id="cb12-830"><a href="#cb12-830" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a dataframe called projects_df5</span></span>
+<span id="cb12-787"><a href="#cb12-787" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the full URL with offset</span></span>
+<span id="cb12-788"><a href="#cb12-788" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, <span class="st">"&amp;offset="</span>, offset, <span class="st">"&amp;printFields="</span>, printFields)</span>
+<span id="cb12-789"><a href="#cb12-789" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-790"><a href="#cb12-790" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make the API call</span></span>
+<span id="cb12-791"><a href="#cb12-791" aria-hidden="true" tabindex="-1"></a>    response <span class="ot">&lt;-</span> <span class="fu">GET</span>(url)</span>
+<span id="cb12-792"><a href="#cb12-792" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-793"><a href="#cb12-793" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if the call was successful</span></span>
+<span id="cb12-794"><a href="#cb12-794" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">status_code</span>(response) <span class="sc">==</span> <span class="dv">200</span>) {</span>
+<span id="cb12-795"><a href="#cb12-795" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract and parse the JSON data</span></span>
+<span id="cb12-796"><a href="#cb12-796" aria-hidden="true" tabindex="-1"></a>        json_data_NSF5 <span class="ot">&lt;-</span> <span class="fu">content</span>(response, <span class="at">type =</span> <span class="st">"text"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb12-797"><a href="#cb12-797" aria-hidden="true" tabindex="-1"></a>        parsed_data_NSF5 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(json_data_NSF5, <span class="at">flatten =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-798"><a href="#cb12-798" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-799"><a href="#cb12-799" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extract the 'award' data and add to the all_awards data frame</span></span>
+<span id="cb12-800"><a href="#cb12-800" aria-hidden="true" tabindex="-1"></a>        awards_data <span class="ot">&lt;-</span> parsed_data_NSF5<span class="sc">$</span>response<span class="sc">$</span>award</span>
+<span id="cb12-801"><a href="#cb12-801" aria-hidden="true" tabindex="-1"></a>        NSF5 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(NSF5, <span class="fu">as_tibble</span>(awards_data))</span>
+<span id="cb12-802"><a href="#cb12-802" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-803"><a href="#cb12-803" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Debug: Print the current page number and number of awards fetched</span></span>
+<span id="cb12-804"><a href="#cb12-804" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Page:"</span>, current_page, <span class="st">"- Awards fetched:"</span>, <span class="fu">length</span>(awards_data<span class="sc">$</span>id)))</span>
+<span id="cb12-805"><a href="#cb12-805" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-806"><a href="#cb12-806" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check if the current page has less than results_per_page awards, then it's the last page</span></span>
+<span id="cb12-807"><a href="#cb12-807" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">length</span>(awards_data<span class="sc">$</span>id) <span class="sc">&lt;</span> results_per_page) {</span>
+<span id="cb12-808"><a href="#cb12-808" aria-hidden="true" tabindex="-1"></a>            keep_going <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb12-809"><a href="#cb12-809" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb12-810"><a href="#cb12-810" aria-hidden="true" tabindex="-1"></a>            current_page <span class="ot">&lt;-</span> current_page <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb12-811"><a href="#cb12-811" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb12-812"><a href="#cb12-812" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb12-813"><a href="#cb12-813" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Failed to fetch data: Status code"</span>, <span class="fu">status_code</span>(response)))</span>
+<span id="cb12-814"><a href="#cb12-814" aria-hidden="true" tabindex="-1"></a>        keep_going <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb12-815"><a href="#cb12-815" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-816"><a href="#cb12-816" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-817"><a href="#cb12-817" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-818"><a href="#cb12-818" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-819"><a href="#cb12-819" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Excel for NSF5 and NIH5, warning=FALSE}</span></span>
+<span id="cb12-820"><a href="#cb12-820" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb12-821"><a href="#cb12-821" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-822"><a href="#cb12-822" aria-hidden="true" tabindex="-1"></a><span class="co"># Write data frame to Excel file</span></span>
+<span id="cb12-823"><a href="#cb12-823" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-824"><a href="#cb12-824" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(projects_df5, "project_df5")</span></span>
+<span id="cb12-825"><a href="#cb12-825" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-826"><a href="#cb12-826" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(NSF5, "NSF5.xlsx")</span></span>
+<span id="cb12-827"><a href="#cb12-827" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-828"><a href="#cb12-828" aria-hidden="true" tabindex="-1"></a>NSF5 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"NSF5.xlsx"</span>)</span>
+<span id="cb12-829"><a href="#cb12-829" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::kable(head(NSFtoUI))</span></span>
+<span id="cb12-830"><a href="#cb12-830" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-831"><a href="#cb12-831" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-832"><a href="#cb12-832" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "is_active" of "TRUE"</span></span>
-<span id="cb12-833"><a href="#cb12-833" aria-hidden="true" tabindex="-1"></a>projects_df5_active_grants <span class="ot">&lt;-</span> projects_df5 <span class="sc">%&gt;%</span></span>
-<span id="cb12-834"><a href="#cb12-834" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">is_active</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"TRUE"</span>)</span>
-<span id="cb12-835"><a href="#cb12-835" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-836"><a href="#cb12-836" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column called estimated_cost_amt containing the sum of direct_cost_amt and indirect_cost_amt</span></span>
-<span id="cb12-837"><a href="#cb12-837" aria-hidden="true" tabindex="-1"></a>projects_df5_active_grants<span class="sc">$</span>estimated_cost_amt <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(projects_df5_active_grants[, <span class="fu">c</span>(<span class="st">"direct_cost_amt"</span>, <span class="st">"indirect_cost_amt"</span>)])</span>
+<span id="cb12-832"><a href="#cb12-832" aria-hidden="true" tabindex="-1"></a>After manipulating the API addresses, I now have data sets of NIH and</span>
+<span id="cb12-833"><a href="#cb12-833" aria-hidden="true" tabindex="-1"></a>NSF updated to include all 6 schools.</span>
+<span id="cb12-834"><a href="#cb12-834" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-835"><a href="#cb12-835" aria-hidden="true" tabindex="-1"></a>Now I am going to start manipulating the data.</span>
+<span id="cb12-836"><a href="#cb12-836" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-837"><a href="#cb12-837" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Transforming NSF5}</span></span>
 <span id="cb12-838"><a href="#cb12-838" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-839"><a href="#cb12-839" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new data frame with filtered and selected variables from projects_df5_active_grants</span></span>
-<span id="cb12-840"><a href="#cb12-840" aria-hidden="true" tabindex="-1"></a>newNIH5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-841"><a href="#cb12-841" aria-hidden="true" tabindex="-1"></a>  <span class="at">Organization =</span> projects_df5_active_grants<span class="sc">$</span><span class="st">"organization.org_name"</span>,</span>
-<span id="cb12-842"><a href="#cb12-842" aria-hidden="true" tabindex="-1"></a>  <span class="at">Amount_Awarded =</span> projects_df5_active_grants<span class="sc">$</span><span class="st">"estimated_cost_amt"</span></span>
-<span id="cb12-843"><a href="#cb12-843" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-844"><a href="#cb12-844" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-845"><a href="#cb12-845" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
-<span id="cb12-846"><a href="#cb12-846" aria-hidden="true" tabindex="-1"></a>newNIH5 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(newNIH5, <span class="at">Sponsor =</span> <span class="st">"NIH"</span>)</span>
-<span id="cb12-847"><a href="#cb12-847" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-848"><a href="#cb12-848" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
-<span id="cb12-849"><a href="#cb12-849" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newNIH5)</span>
-<span id="cb12-850"><a href="#cb12-850" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-851"><a href="#cb12-851" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-852"><a href="#cb12-852" aria-hidden="true" tabindex="-1"></a>**Table 10.** New NIH data from all schools.</span>
-<span id="cb12-853"><a href="#cb12-853" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-854"><a href="#cb12-854" aria-hidden="true" tabindex="-1"></a>Great! I have 2 data frames ready to put into my next visualization to</span>
-<span id="cb12-855"><a href="#cb12-855" aria-hidden="true" tabindex="-1"></a>address Question 3.</span>
-<span id="cb12-856"><a href="#cb12-856" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-857"><a href="#cb12-857" aria-hidden="true" tabindex="-1"></a><span class="fu">## Combining NIH and NSF for neighboring schools</span></span>
-<span id="cb12-858"><a href="#cb12-858" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-859"><a href="#cb12-859" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Visualizing all the schools from NIH and NSF, warning=FALSE}</span></span>
-<span id="cb12-860"><a href="#cb12-860" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character</span></span>
-<span id="cb12-861"><a href="#cb12-861" aria-hidden="true" tabindex="-1"></a>newNSF5 <span class="ot">&lt;-</span> newNSF5 <span class="sc">%&gt;%</span></span>
-<span id="cb12-862"><a href="#cb12-862" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Amount_Awarded =</span> <span class="fu">as.numeric</span>(Amount_Awarded))</span>
+<span id="cb12-839"><a href="#cb12-839" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a data frame called NSF5</span></span>
+<span id="cb12-840"><a href="#cb12-840" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-841"><a href="#cb12-841" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to date format</span></span>
+<span id="cb12-842"><a href="#cb12-842" aria-hidden="true" tabindex="-1"></a>NSF5<span class="sc">$</span><span class="st">"expDate"</span> <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(NSF5<span class="sc">$</span><span class="st">"expDate"</span>, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span>
+<span id="cb12-843"><a href="#cb12-843" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-844"><a href="#cb12-844" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for active grants </span></span>
+<span id="cb12-845"><a href="#cb12-845" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with a "expDate" on or after 03/20/2024</span></span>
+<span id="cb12-846"><a href="#cb12-846" aria-hidden="true" tabindex="-1"></a>NSF5_df_active_grants <span class="ot">&lt;-</span> NSF5 <span class="sc">%&gt;%</span></span>
+<span id="cb12-847"><a href="#cb12-847" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">expDate</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2024-03-20"</span>)) </span>
+<span id="cb12-848"><a href="#cb12-848" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-849"><a href="#cb12-849" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new data frame with filtered and selected variables from NSF5_df_active_grants</span></span>
+<span id="cb12-850"><a href="#cb12-850" aria-hidden="true" tabindex="-1"></a>newNSF5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-851"><a href="#cb12-851" aria-hidden="true" tabindex="-1"></a>  <span class="at">Organization =</span> NSF5_df_active_grants<span class="sc">$</span><span class="st">"awardeeName"</span>,</span>
+<span id="cb12-852"><a href="#cb12-852" aria-hidden="true" tabindex="-1"></a>  <span class="at">Amount_Awarded =</span> NSF5_df_active_grants<span class="sc">$</span><span class="st">"estimatedTotalAmt"</span></span>
+<span id="cb12-853"><a href="#cb12-853" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-854"><a href="#cb12-854" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-855"><a href="#cb12-855" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
+<span id="cb12-856"><a href="#cb12-856" aria-hidden="true" tabindex="-1"></a>newNSF5 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(newNSF5, <span class="at">Sponsor =</span> <span class="st">"NSF"</span>)</span>
+<span id="cb12-857"><a href="#cb12-857" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-858"><a href="#cb12-858" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
+<span id="cb12-859"><a href="#cb12-859" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newNSF5)</span>
+<span id="cb12-860"><a href="#cb12-860" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-861"><a href="#cb12-861" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-862"><a href="#cb12-862" aria-hidden="true" tabindex="-1"></a>**Table 9.** New NSF data from all schools.</span>
 <span id="cb12-863"><a href="#cb12-863" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-864"><a href="#cb12-864" aria-hidden="true" tabindex="-1"></a>combined_all_schools_active_grants_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb12-865"><a href="#cb12-865" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newNSF5, <span class="at">dataset =</span> <span class="st">"NSF"</span>),</span>
-<span id="cb12-866"><a href="#cb12-866" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newNIH5, <span class="at">dataset =</span> <span class="st">"NIH"</span>)</span>
-<span id="cb12-867"><a href="#cb12-867" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb12-864"><a href="#cb12-864" aria-hidden="true" tabindex="-1"></a>I am going to rinse and repeat for NIH.</span>
+<span id="cb12-865"><a href="#cb12-865" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-866"><a href="#cb12-866" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Transforming NIH5 data}</span></span>
+<span id="cb12-867"><a href="#cb12-867" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your data is stored in a dataframe called projects_df5</span></span>
 <span id="cb12-868"><a href="#cb12-868" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-869"><a href="#cb12-869" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a ggplot object</span></span>
-<span id="cb12-870"><a href="#cb12-870" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_all_schools_active_grants_df, <span class="fu">aes</span>(<span class="at">x =</span> Organization, <span class="at">y =</span> Amount_Awarded, <span class="at">fill =</span> Sponsor)) <span class="sc">+</span></span>
-<span id="cb12-871"><a href="#cb12-871" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
-<span id="cb12-872"><a href="#cb12-872" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stacked Bar Chart of Award Amounts by Sponsor and Organization"</span>,</span>
-<span id="cb12-873"><a href="#cb12-873" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Organization"</span>,</span>
-<span id="cb12-874"><a href="#cb12-874" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Amount Awarded"</span>,</span>
-<span id="cb12-875"><a href="#cb12-875" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sponsor"</span>) <span class="sc">+</span></span>
-<span id="cb12-876"><a href="#cb12-876" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-877"><a href="#cb12-877" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb12-878"><a href="#cb12-878" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb12-879"><a href="#cb12-879" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-880"><a href="#cb12-880" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-869"><a href="#cb12-869" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for grants with an "is_active" of "TRUE"</span></span>
+<span id="cb12-870"><a href="#cb12-870" aria-hidden="true" tabindex="-1"></a>projects_df5_active_grants <span class="ot">&lt;-</span> projects_df5 <span class="sc">%&gt;%</span></span>
+<span id="cb12-871"><a href="#cb12-871" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">is_active</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"TRUE"</span>)</span>
+<span id="cb12-872"><a href="#cb12-872" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-873"><a href="#cb12-873" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column called estimated_cost_amt containing the sum of direct_cost_amt and indirect_cost_amt</span></span>
+<span id="cb12-874"><a href="#cb12-874" aria-hidden="true" tabindex="-1"></a>projects_df5_active_grants<span class="sc">$</span>estimated_cost_amt <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(projects_df5_active_grants[, <span class="fu">c</span>(<span class="st">"direct_cost_amt"</span>, <span class="st">"indirect_cost_amt"</span>)])</span>
+<span id="cb12-875"><a href="#cb12-875" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-876"><a href="#cb12-876" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new data frame with filtered and selected variables from projects_df5_active_grants</span></span>
+<span id="cb12-877"><a href="#cb12-877" aria-hidden="true" tabindex="-1"></a>newNIH5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-878"><a href="#cb12-878" aria-hidden="true" tabindex="-1"></a>  <span class="at">Organization =</span> projects_df5_active_grants<span class="sc">$</span><span class="st">"organization.org_name"</span>,</span>
+<span id="cb12-879"><a href="#cb12-879" aria-hidden="true" tabindex="-1"></a>  <span class="at">Amount_Awarded =</span> projects_df5_active_grants<span class="sc">$</span><span class="st">"estimated_cost_amt"</span></span>
+<span id="cb12-880"><a href="#cb12-880" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-881"><a href="#cb12-881" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-882"><a href="#cb12-882" aria-hidden="true" tabindex="-1"></a>**Figure 6.** shows the award amounts of the active grants of each</span>
-<span id="cb12-883"><a href="#cb12-883" aria-hidden="true" tabindex="-1"></a>institution (and their various locations) sponsored by the NIH (coral)</span>
-<span id="cb12-884"><a href="#cb12-884" aria-hidden="true" tabindex="-1"></a>and NSF (blue).</span>
-<span id="cb12-885"><a href="#cb12-885" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-886"><a href="#cb12-886" aria-hidden="true" tabindex="-1"></a>I used the measures of active awards and their relative amounts from</span>
-<span id="cb12-887"><a href="#cb12-887" aria-hidden="true" tabindex="-1"></a>these sponsors to address how the U of I compares to neighboring</span>
-<span id="cb12-888"><a href="#cb12-888" aria-hidden="true" tabindex="-1"></a>institutions. Although not complex, these performance attributes capture</span>
-<span id="cb12-889"><a href="#cb12-889" aria-hidden="true" tabindex="-1"></a>important metrics nonetheless.</span>
+<span id="cb12-882"><a href="#cb12-882" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column named "Sponsor" with the desired values</span></span>
+<span id="cb12-883"><a href="#cb12-883" aria-hidden="true" tabindex="-1"></a>newNIH5 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(newNIH5, <span class="at">Sponsor =</span> <span class="st">"NIH"</span>)</span>
+<span id="cb12-884"><a href="#cb12-884" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-885"><a href="#cb12-885" aria-hidden="true" tabindex="-1"></a><span class="co"># View the modified data set</span></span>
+<span id="cb12-886"><a href="#cb12-886" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newNIH5)</span>
+<span id="cb12-887"><a href="#cb12-887" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-888"><a href="#cb12-888" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-889"><a href="#cb12-889" aria-hidden="true" tabindex="-1"></a>**Table 10.** New NIH data from all schools.</span>
 <span id="cb12-890"><a href="#cb12-890" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-891"><a href="#cb12-891" aria-hidden="true" tabindex="-1"></a>The limitations of this figure are first and foremost that it only</span>
-<span id="cb12-892"><a href="#cb12-892" aria-hidden="true" tabindex="-1"></a>addresses grants from the NIH and NSF, not the USDA and DOE. I chose to</span>
-<span id="cb12-893"><a href="#cb12-893" aria-hidden="true" tabindex="-1"></a>do this out of sake for convenience. Also, for the NIH, this time I</span>
-<span id="cb12-894"><a href="#cb12-894" aria-hidden="true" tabindex="-1"></a>added the indirect and direct costs to compute the award amount (in</span>
-<span id="cb12-895"><a href="#cb12-895" aria-hidden="true" tabindex="-1"></a>Figure 1., I only used direct cost). Further, because of the discrepant</span>
-<span id="cb12-896"><a href="#cb12-896" aria-hidden="true" tabindex="-1"></a>data sources, some of the institutions have multiple locations also</span>
-<span id="cb12-897"><a href="#cb12-897" aria-hidden="true" tabindex="-1"></a>shown in this figure. Although I could agglomerate the data so each</span>
-<span id="cb12-898"><a href="#cb12-898" aria-hidden="true" tabindex="-1"></a>institution has one reference point, I actually think this may be</span>
-<span id="cb12-899"><a href="#cb12-899" aria-hidden="true" tabindex="-1"></a>insightful to see how the smaller institutions compare to the larger</span>
-<span id="cb12-900"><a href="#cb12-900" aria-hidden="true" tabindex="-1"></a>ones.</span>
-<span id="cb12-901"><a href="#cb12-901" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-902"><a href="#cb12-902" aria-hidden="true" tabindex="-1"></a>All in all, from this figure, we can see the U of I compares well in the</span>
-<span id="cb12-903"><a href="#cb12-903" aria-hidden="true" tabindex="-1"></a>realm of NSF grants. This is not so much the case for the NIH grants.</span>
-<span id="cb12-904"><a href="#cb12-904" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-905"><a href="#cb12-905" aria-hidden="true" tabindex="-1"></a><span class="fu"># SUMMARY</span></span>
-<span id="cb12-906"><a href="#cb12-906" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-907"><a href="#cb12-907" aria-hidden="true" tabindex="-1"></a>In conclusion, this stuff is messy indeed! Throughout my three main</span>
-<span id="cb12-908"><a href="#cb12-908" aria-hidden="true" tabindex="-1"></a>visualizations, I found out what active grants the U of I has and how</span>
-<span id="cb12-909"><a href="#cb12-909" aria-hidden="true" tabindex="-1"></a>those compare across sponsors. I then expanded that information to</span>
-<span id="cb12-910"><a href="#cb12-910" aria-hidden="true" tabindex="-1"></a>compare specific sponsors to various other schools nearby. In general,</span>
-<span id="cb12-911"><a href="#cb12-911" aria-hidden="true" tabindex="-1"></a>we need more DOE and NIH work to be done. USDA and NSF are doing well,</span>
-<span id="cb12-912"><a href="#cb12-912" aria-hidden="true" tabindex="-1"></a>but we want to get back on the rise again (at least with the USDA).</span>
-<span id="cb12-913"><a href="#cb12-913" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-914"><a href="#cb12-914" aria-hidden="true" tabindex="-1"></a>I realized through this work that, as Barrie has alluded to, it indeed</span>
-<span id="cb12-915"><a href="#cb12-915" aria-hidden="true" tabindex="-1"></a>does take a lot of time going through these different data and finding</span>
-<span id="cb12-916"><a href="#cb12-916" aria-hidden="true" tabindex="-1"></a>what is similar/comparable and cleaning those aspects of the data in</span>
-<span id="cb12-917"><a href="#cb12-917" aria-hidden="true" tabindex="-1"></a>order to put visualizations together.</span>
+<span id="cb12-891"><a href="#cb12-891" aria-hidden="true" tabindex="-1"></a>Great! I have 2 data frames ready to put into my next visualization to</span>
+<span id="cb12-892"><a href="#cb12-892" aria-hidden="true" tabindex="-1"></a>address Question 3.</span>
+<span id="cb12-893"><a href="#cb12-893" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-894"><a href="#cb12-894" aria-hidden="true" tabindex="-1"></a><span class="fu">## Combining NIH and NSF for neighboring schools</span></span>
+<span id="cb12-895"><a href="#cb12-895" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-896"><a href="#cb12-896" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Visualizing all the schools from NIH and NSF, warning=FALSE}</span></span>
+<span id="cb12-897"><a href="#cb12-897" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character</span></span>
+<span id="cb12-898"><a href="#cb12-898" aria-hidden="true" tabindex="-1"></a>newNSF5 <span class="ot">&lt;-</span> newNSF5 <span class="sc">%&gt;%</span></span>
+<span id="cb12-899"><a href="#cb12-899" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Amount_Awarded =</span> <span class="fu">as.numeric</span>(Amount_Awarded))</span>
+<span id="cb12-900"><a href="#cb12-900" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-901"><a href="#cb12-901" aria-hidden="true" tabindex="-1"></a>combined_all_schools_active_grants_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb12-902"><a href="#cb12-902" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newNSF5, <span class="at">dataset =</span> <span class="st">"NSF"</span>),</span>
+<span id="cb12-903"><a href="#cb12-903" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(newNIH5, <span class="at">dataset =</span> <span class="st">"NIH"</span>)</span>
+<span id="cb12-904"><a href="#cb12-904" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb12-905"><a href="#cb12-905" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-906"><a href="#cb12-906" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a ggplot object</span></span>
+<span id="cb12-907"><a href="#cb12-907" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_all_schools_active_grants_df, <span class="fu">aes</span>(<span class="at">x =</span> Organization, <span class="at">y =</span> Amount_Awarded, <span class="at">fill =</span> Sponsor)) <span class="sc">+</span></span>
+<span id="cb12-908"><a href="#cb12-908" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb12-909"><a href="#cb12-909" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stacked Bar Chart of Award Amounts by Sponsor and Organization"</span>,</span>
+<span id="cb12-910"><a href="#cb12-910" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Organization"</span>,</span>
+<span id="cb12-911"><a href="#cb12-911" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Amount Awarded"</span>,</span>
+<span id="cb12-912"><a href="#cb12-912" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sponsor"</span>) <span class="sc">+</span></span>
+<span id="cb12-913"><a href="#cb12-913" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-914"><a href="#cb12-914" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb12-915"><a href="#cb12-915" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb12-916"><a href="#cb12-916" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-917"><a href="#cb12-917" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-918"><a href="#cb12-918" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-919"><a href="#cb12-919" aria-hidden="true" tabindex="-1"></a>I think it would be interesting to continue to explore and see how the U</span>
-<span id="cb12-920"><a href="#cb12-920" aria-hidden="true" tabindex="-1"></a>of I compares to other institutions with the other sponsors, and I</span>
-<span id="cb12-921"><a href="#cb12-921" aria-hidden="true" tabindex="-1"></a>wonder how data scientists wrap their heads around all these details!</span>
+<span id="cb12-919"><a href="#cb12-919" aria-hidden="true" tabindex="-1"></a>**Figure 6.** This figure shows the award amounts of the active grants of each</span>
+<span id="cb12-920"><a href="#cb12-920" aria-hidden="true" tabindex="-1"></a>institution (and their various locations) sponsored by the NIH (coral)</span>
+<span id="cb12-921"><a href="#cb12-921" aria-hidden="true" tabindex="-1"></a>and NSF (blue).</span>
 <span id="cb12-922"><a href="#cb12-922" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-923"><a href="#cb12-923" aria-hidden="true" tabindex="-1"></a><span class="fu"># APPENDIX</span></span>
-<span id="cb12-924"><a href="#cb12-924" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-925"><a href="#cb12-925" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Dictionary</span></span>
-<span id="cb12-926"><a href="#cb12-926" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-927"><a href="#cb12-927" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Load data dictionary, warning=FALSE}</span></span>
-<span id="cb12-928"><a href="#cb12-928" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a specific sheet from the Excel file</span></span>
-<span id="cb12-929"><a href="#cb12-929" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb12-930"><a href="#cb12-930" aria-hidden="true" tabindex="-1"></a>AwardsDictionary <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>)</span>
-<span id="cb12-931"><a href="#cb12-931" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-932"><a href="#cb12-932" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-933"><a href="#cb12-933" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning = FALSE}</span></span>
-<span id="cb12-934"><a href="#cb12-934" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-USDAtoUIDataDict</span></span>
-<span id="cb12-935"><a href="#cb12-935" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "USDAtoUI Data Dictionary"</span></span>
-<span id="cb12-936"><a href="#cb12-936" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-937"><a href="#cb12-937" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryUSDAtoUI <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"USDAtoUI"</span>)</span>
-<span id="cb12-938"><a href="#cb12-938" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryUSDAtoUI)</span>
-<span id="cb12-939"><a href="#cb12-939" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-940"><a href="#cb12-940" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-941"><a href="#cb12-941" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning = FALSE}</span></span>
-<span id="cb12-942"><a href="#cb12-942" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-DOEDataDict</span></span>
-<span id="cb12-943"><a href="#cb12-943" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "DOE Data Dictionary"</span></span>
-<span id="cb12-944"><a href="#cb12-944" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-945"><a href="#cb12-945" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryDOE <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"DOE"</span>)</span>
-<span id="cb12-946"><a href="#cb12-946" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryDOE)</span>
-<span id="cb12-947"><a href="#cb12-947" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-948"><a href="#cb12-948" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-951"><a href="#cb12-951" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-952"><a href="#cb12-952" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-project_dfDataDict</span></span>
-<span id="cb12-953"><a href="#cb12-953" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "project_df Data Dictionary"</span></span>
-<span id="cb12-954"><a href="#cb12-954" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-955"><a href="#cb12-955" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryproject_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"project_df"</span>)</span>
-<span id="cb12-956"><a href="#cb12-956" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryproject_df)</span>
-<span id="cb12-957"><a href="#cb12-957" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-958"><a href="#cb12-958" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-961"><a href="#cb12-961" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-962"><a href="#cb12-962" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-NSFtoUIDataDict</span></span>
-<span id="cb12-963"><a href="#cb12-963" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "NSF to UI Data Dictionary"</span></span>
-<span id="cb12-964"><a href="#cb12-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-965"><a href="#cb12-965" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryNSFtoUI <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"NSFtoUI"</span>)</span>
-<span id="cb12-966"><a href="#cb12-966" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryNSFtoUI)</span>
-<span id="cb12-967"><a href="#cb12-967" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-923"><a href="#cb12-923" aria-hidden="true" tabindex="-1"></a>I used the measures of active awards and their relative amounts from</span>
+<span id="cb12-924"><a href="#cb12-924" aria-hidden="true" tabindex="-1"></a>these sponsors to address how the U of I compares to neighboring</span>
+<span id="cb12-925"><a href="#cb12-925" aria-hidden="true" tabindex="-1"></a>institutions. Although not complex, these performance attributes capture</span>
+<span id="cb12-926"><a href="#cb12-926" aria-hidden="true" tabindex="-1"></a>important metrics nonetheless.</span>
+<span id="cb12-927"><a href="#cb12-927" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-928"><a href="#cb12-928" aria-hidden="true" tabindex="-1"></a>The limitations of this figure are first and foremost that it only</span>
+<span id="cb12-929"><a href="#cb12-929" aria-hidden="true" tabindex="-1"></a>addresses grants from the NIH and NSF, not the USDA and DOE. I chose to</span>
+<span id="cb12-930"><a href="#cb12-930" aria-hidden="true" tabindex="-1"></a>do this out of sake for convenience. Also, for the NIH, this time I</span>
+<span id="cb12-931"><a href="#cb12-931" aria-hidden="true" tabindex="-1"></a>added the indirect and direct costs to compute the award amount (in</span>
+<span id="cb12-932"><a href="#cb12-932" aria-hidden="true" tabindex="-1"></a>Figure 1., I only used direct cost). Further, because of the discrepant</span>
+<span id="cb12-933"><a href="#cb12-933" aria-hidden="true" tabindex="-1"></a>data sources, some of the institutions have multiple locations also</span>
+<span id="cb12-934"><a href="#cb12-934" aria-hidden="true" tabindex="-1"></a>shown in this figure. Although I could agglomerate the data so each</span>
+<span id="cb12-935"><a href="#cb12-935" aria-hidden="true" tabindex="-1"></a>institution has one reference point, I actually think this may be</span>
+<span id="cb12-936"><a href="#cb12-936" aria-hidden="true" tabindex="-1"></a>insightful to see how the smaller institutions compare to the larger</span>
+<span id="cb12-937"><a href="#cb12-937" aria-hidden="true" tabindex="-1"></a>ones.</span>
+<span id="cb12-938"><a href="#cb12-938" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-939"><a href="#cb12-939" aria-hidden="true" tabindex="-1"></a>All in all, from this figure, we can see the U of I compares well in the</span>
+<span id="cb12-940"><a href="#cb12-940" aria-hidden="true" tabindex="-1"></a>realm of NSF grants. This is not so much the case for the NIH grants.</span>
+<span id="cb12-941"><a href="#cb12-941" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-942"><a href="#cb12-942" aria-hidden="true" tabindex="-1"></a><span class="fu"># SUMMARY</span></span>
+<span id="cb12-943"><a href="#cb12-943" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-944"><a href="#cb12-944" aria-hidden="true" tabindex="-1"></a>In conclusion, this stuff is messy indeed! Throughout my three main</span>
+<span id="cb12-945"><a href="#cb12-945" aria-hidden="true" tabindex="-1"></a>visualizations, I found out what active grants the U of I has and how</span>
+<span id="cb12-946"><a href="#cb12-946" aria-hidden="true" tabindex="-1"></a>those compare across sponsors. I then expanded that information to</span>
+<span id="cb12-947"><a href="#cb12-947" aria-hidden="true" tabindex="-1"></a>compare specific sponsors to various other schools nearby. In general,</span>
+<span id="cb12-948"><a href="#cb12-948" aria-hidden="true" tabindex="-1"></a>we need more DOE and NIH work to be done. USDA and NSF are doing well,</span>
+<span id="cb12-949"><a href="#cb12-949" aria-hidden="true" tabindex="-1"></a>but we want to get back on the rise again (at least with the USDA).</span>
+<span id="cb12-950"><a href="#cb12-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-951"><a href="#cb12-951" aria-hidden="true" tabindex="-1"></a>I realized through this work that, as Barrie has alluded to, it indeed</span>
+<span id="cb12-952"><a href="#cb12-952" aria-hidden="true" tabindex="-1"></a>does take a lot of time going through these different data and finding</span>
+<span id="cb12-953"><a href="#cb12-953" aria-hidden="true" tabindex="-1"></a>what is similar/comparable and cleaning those aspects of the data in</span>
+<span id="cb12-954"><a href="#cb12-954" aria-hidden="true" tabindex="-1"></a>order to put visualizations together.</span>
+<span id="cb12-955"><a href="#cb12-955" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-956"><a href="#cb12-956" aria-hidden="true" tabindex="-1"></a>I think it would be interesting to continue to explore and see how the U</span>
+<span id="cb12-957"><a href="#cb12-957" aria-hidden="true" tabindex="-1"></a>of I compares to other institutions with the other sponsors, and I</span>
+<span id="cb12-958"><a href="#cb12-958" aria-hidden="true" tabindex="-1"></a>wonder how data scientists wrap their heads around all these details!</span>
+<span id="cb12-959"><a href="#cb12-959" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-960"><a href="#cb12-960" aria-hidden="true" tabindex="-1"></a><span class="fu"># APPENDIX</span></span>
+<span id="cb12-961"><a href="#cb12-961" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-962"><a href="#cb12-962" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Dictionary</span></span>
+<span id="cb12-963"><a href="#cb12-963" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-964"><a href="#cb12-964" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Load data dictionary, warning=FALSE}</span></span>
+<span id="cb12-965"><a href="#cb12-965" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a specific sheet from the Excel file</span></span>
+<span id="cb12-966"><a href="#cb12-966" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb12-967"><a href="#cb12-967" aria-hidden="true" tabindex="-1"></a>AwardsDictionary <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>)</span>
+<span id="cb12-968"><a href="#cb12-968" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-969"><a href="#cb12-969" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-970"><a href="#cb12-970" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning = FALSE}</span></span>
+<span id="cb12-971"><a href="#cb12-971" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-USDAtoUIDataDict</span></span>
+<span id="cb12-972"><a href="#cb12-972" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "USDAtoUI Data Dictionary"</span></span>
+<span id="cb12-973"><a href="#cb12-973" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-974"><a href="#cb12-974" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryUSDAtoUI <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"USDAtoUI"</span>)</span>
+<span id="cb12-975"><a href="#cb12-975" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryUSDAtoUI)</span>
+<span id="cb12-976"><a href="#cb12-976" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-977"><a href="#cb12-977" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-978"><a href="#cb12-978" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning = FALSE}</span></span>
+<span id="cb12-979"><a href="#cb12-979" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-DOEDataDict</span></span>
+<span id="cb12-980"><a href="#cb12-980" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "DOE Data Dictionary"</span></span>
+<span id="cb12-981"><a href="#cb12-981" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-982"><a href="#cb12-982" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryDOE <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"DOE"</span>)</span>
+<span id="cb12-983"><a href="#cb12-983" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryDOE)</span>
+<span id="cb12-984"><a href="#cb12-984" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-985"><a href="#cb12-985" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-988"><a href="#cb12-988" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-989"><a href="#cb12-989" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-project_dfDataDict</span></span>
+<span id="cb12-990"><a href="#cb12-990" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "project_df Data Dictionary"</span></span>
+<span id="cb12-991"><a href="#cb12-991" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-992"><a href="#cb12-992" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryproject_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"project_df"</span>)</span>
+<span id="cb12-993"><a href="#cb12-993" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryproject_df)</span>
+<span id="cb12-994"><a href="#cb12-994" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-995"><a href="#cb12-995" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-998"><a href="#cb12-998" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-999"><a href="#cb12-999" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-NSFtoUIDataDict</span></span>
+<span id="cb12-1000"><a href="#cb12-1000" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "NSF to UI Data Dictionary"</span></span>
+<span id="cb12-1001"><a href="#cb12-1001" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-1002"><a href="#cb12-1002" aria-hidden="true" tabindex="-1"></a>AwardsDictionaryNSFtoUI <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"AwardsDictionary.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"NSFtoUI"</span>)</span>
+<span id="cb12-1003"><a href="#cb12-1003" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(AwardsDictionaryNSFtoUI)</span>
+<span id="cb12-1004"><a href="#cb12-1004" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
