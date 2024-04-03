@@ -21,19 +21,12 @@ editor:
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)
 ```
 
-# PREABLE
+# PREAMBLE
 
-You may be wondering what this midterm assignment addresses... Well, in
-this workup, I will evaluate how the University of Idaho compares to
-neighboring institutions in terms of grants awarded and productivity
-from those awards.
-
-I will be evaluating award/grant data from four federal sponsors: The
+In this assignment I will be evaluating award/grant data from four federal sponsors: The
 National Science Foundation (NSF), The National Institutes of Health
 (NIH), The Department of Energy (DOE), and The US Department of
 Agriculture (USDA).
-
-Why is the question or purpose important? We shall find out!
 
 # DATA
 
@@ -46,44 +39,30 @@ library(dplyr)
 library(ggplot2)
 ```
 
-**1. Department of Agriculture (NIFA)** A snippet of the awards from
-USDA pertaining to UI are included below. See the data dictionary here
+**1. Department of Agriculture (NIFA)** See the data dictionary here
 @fig-USDAtoUIDataDict. This includes agricultural related grants all the
 way from the early 2000s.
 
-```{r USDAtoUI}
+```{r USDAtoUI, echo = FALSE}
 USDAtoUI<-read.csv("USDAtoUI.csv")
-knitr::kable(head(USDAtoUI))
+# knitr::kable(head(USDAtoUI))
 ```
 
-**2. Department of Energy (DOE)** A snippet of these awards (all awards,
-not just U of I's) are included below. ![DOE](DOE.png)
-
-The data dictionary for this extensive data set can be accessed here
+**2. Department of Energy (DOE)** The data dictionary for this extensive data set can be accessed here
 @fig-DOEDataDict. This data is not restricted to a particular award
 recipient.
 
-```{r DOE awards, message = FALSE}
+```{r DOE awards, message = FALSE, echo=FALSE}
 DOEawards<-read_excel("DOEawards.xlsx")
 #knitr::kable(head(DOEawards))
 ```
 
 **3. National Institutes of Health (NIH)** This data can be obtained
-from an Application Programming Interface (API).
-
-*Before this assingmnet, I had never heard of APIs. Apparently, they are
-fancy tools that allow different software components to communicate with
-each other.*
-
-Barrie graciously provided code to help us access this information.
-Again, a snippet is included. ![NIH](NIH.png)
-
-You can access this data's dictionary here @fig-project_dfDataDict. This
+from an Application Programming Interface (API). You can access this data's dictionary here @fig-project_dfDataDict. This
 is quite a large data set with information on awards (related to health
 sciences) recieved by BSU and U of I between 2013-2024. Of note, this is
 an example of heirarchal data- some cells appear to have no values in
 them becuase there are actually multiple variables within those cells.
-It gets complex!
 
 ```{r NIH API}
 # Set the base URL for the API
@@ -136,10 +115,7 @@ if (status_code(response) == 200) {
 
 **4. National Science Foundation (NSF)** The NSF also has an API, and
 the following code pulled down awards to the University of Idaho into a
-data frame called NSFtoUI. A snapshot of it is shown here.
-![NSF](NSF.png)
-
-See the data dictionary here @fig-NSFtoUIDataDict. Briefly, this data
+data frame called NSFtoUI. See the data dictionary here @fig-NSFtoUIDataDict. Briefly, this data
 set gives information on NSF grants awarded to the University of Idaho
 from 1975 to current day.
 
@@ -219,11 +195,6 @@ seeing how far into the future our current portfolio will exist. Are
 there a bunch of awards about to expire? Are there a bunch that just got
 funded and will be active for a while? Does this vary across sponsors?*
 
-To address this question, I am first going to play around with
-manipulating one dataset and going from there.
-
-## Practice with just "DOEawards"
-
 ```{r Transforming DOE data}
 # Assuming your data is stored in a data frame called DOEawards
 
@@ -242,11 +213,16 @@ DOEawards_df_active_grants <- DOEawards_df %>%
 # Remove dollar signs and convert "Amount Awarded to Date" to numeric format
 DOEawards_df_active_grants$"Amount Awarded to Date" <- as.numeric(gsub("\\$", "", DOEawards_df_active_grants$"Amount Awarded to Date"))
 
+# Split PI column by comma and extract last name
+PI_last_name <- sapply(strsplit(as.character(DOEawards_df_active_grants$PI), ", "), function(x) x[1])
+
 # Create a new data frame with filtered and selected variables from DOEawards_df_active_grants
 newDOEawards <- data.frame(
   Start_Date = DOEawards_df_active_grants$"Start Date",
   End_Date = DOEawards_df_active_grants$"End Date",
   PI = DOEawards_df_active_grants$PI,
+  PILastName = PI_last_name,  # New column for last name
+  PI_Grant = paste(PI_last_name, DOEawards_df_active_grants$"Register Number", sep = " "),  # New column combining last name and Register Number
   Amount_Awarded_to_Date = DOEawards_df_active_grants$"Amount Awarded to Date"
 )
 
@@ -254,19 +230,11 @@ newDOEawards <- data.frame(
 newDOEawards <- mutate(newDOEawards, Sponsor = "DOE")
 
 # View the modified data set
-head(newDOEawards)
+# head(newDOEawards)
 
 ```
 
-**Table 1.** Cleaned DOE data
-
-Ok. So, I have a new data frame to plot that only includes active awards
-at the U of I with the necessary variables. Hopefully, I will make the
-other data frames similarly and then combine and graph.
-
-## Let's trial the graph first!
-
-```{r Trial graphing newDOEawards}
+```{r Trial graphing newDOEawards, eval=FALSE}
 # Example visualization using both Start Date and End Date on the x-axis
 ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Amount_Awarded_to_Date)) +
   geom_segment(size = 3) +
@@ -279,11 +247,7 @@ ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = 
 
 ```
 
-**Figure 1.** This figure is an example of what I want to expand to all the data
-sets. Alternatively, I could color by sponsor when I will eventually be
-using multiple.
-
-```{r Coloring by sponsors}
+```{r Coloring by sponsors, eval = FALSE}
 # Example visualization using both Start Date and End Date on the x-axis
 ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor)) +
   geom_segment(size = 3) +
@@ -298,12 +262,7 @@ ggplot(data = newDOEawards, aes(x = Start_Date, xend = End_Date, y = PI, yend = 
 
 ```
 
-**Figure 2.** This figure is a similar premise to Figure 1, however, now I am
-coloring by sponsor.
-
-## Time to expand the idea to the other data sets
-
-First up, I am going to manipulate and make new data sets for all
+I am going to manipulate and make new data sets for all
 sponsors. Then I will combine them all and plot a summary figure.
 
 ```{r Transforming NSF}
@@ -324,17 +283,15 @@ newNSFtoUI <- data.frame(
   Start_Date = NSFtoUI_df_active_grants$"startDate",
   End_Date = NSFtoUI_df_active_grants$"expDate",
   PI = NSFtoUI_df_active_grants$"piLastName",
+  PI_Grant = paste(NSFtoUI_df_active_grants$"piLastName", NSFtoUI_df_active_grants$id, sep = " "),  # New column combining last name and id
   Amount_Awarded_to_Date = NSFtoUI_df_active_grants$"estimatedTotalAmt"
 )
-
 # Create a new column named "Sponsor" with the desired values
 newNSFtoUI <- mutate(newNSFtoUI, Sponsor = "NSF")
 
 # View the modified data set
-head(newNSFtoUI)
+# head(newNSFtoUI)
 ```
-
-**Table 2.** Cleaned NSF data
 
 ```{r Transforming NIH data}
 # Assuming your data is stored in a data frame called projects_df
@@ -352,21 +309,32 @@ projects_df_active_grants <- projects_df_df %>%
   filter(`is_active` == "TRUE")
 
 # Create a new data frame with filtered and selected variables from projects_df_active_grants
-newNIH <- data.frame(
-  Start_Date = projects_df_active_grants$"project_start_date",
-  End_Date = projects_df_active_grants$"project_end_date",
-  PI = projects_df_active_grants$"contact_pi_name",
-  Amount_Awarded_to_Date = projects_df_active_grants$"direct_cost_amt"
-)
-
+newNIH <- projects_df_active_grants %>%
+  mutate(
+    PI = str_to_title(contact_pi_name),  # Convert contact_pi_name to sentence case
+    PILastName1 = sapply(strsplit(as.character(PI), ", "), function(x) x[1]),  # Extract last name from PI column
+    PI_Grant = paste(PILastName1, project_serial_num, sep = " ")  # Combine PILastName1 and project_serial_num with a space
+  ) %>%
+  select(
+    Start_Date = project_start_date,
+    End_Date = project_end_date,
+    PI,
+    PI_Grant,
+    Amount_Awarded_to_Date = direct_cost_amt
+  )
 # Create a new column named "Sponsor" with the desired values
 newNIH <- mutate(newNIH, Sponsor = "NIH")
 
-# View the modified data set
-head(newNIH)
-```
+# Summarize the Amount_Awarded_to_Date for each unique PI_Grant while retaining other variables
+newNIH <- newNIH %>%
+  group_by(PI_Grant) %>%
+  mutate(Amount_Awarded_to_Date = sum(Amount_Awarded_to_Date, na.rm = TRUE)) %>%
+  distinct(PI_Grant, .keep_all = TRUE) %>%
+  ungroup()
 
-**Table 3.** Cleaned NIH data
+# View the modified data set
+# head(newNIH)
+```
 
 ```{r Transforming USDA data}
 # Assuming your data is stored in a data frame called USDAtoUI
@@ -391,111 +359,127 @@ newUSDAtoUI <- mutate(newUSDAtoUI, Sponsor = "USDA")
 newUSDAtoUI <- mutate(newUSDAtoUI, PI = "NA")
 
 # View the modified data set
-head(newUSDAtoUI)
+# head(newUSDAtoUI)
 ```
-
-**Table 4.** Cleaned USDA data
-
-Alrighty, now time to bind all the new data sets together and plot.
 
 ## Putting all the active awards from various sponsors together
-
 ```{r Visualizing new data frames from all sponsors, eval = FALSE}
+library(dplyr)
+
 # Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character
 newNSFtoUI <- newNSFtoUI %>%
   mutate(Amount_Awarded_to_Date = as.numeric(Amount_Awarded_to_Date))
 
+# Bind the rows of the datasets
 combined_active_grants_df <- bind_rows(
   mutate(newDOEawards, dataset = "DOE"),
   mutate(newNSFtoUI, dataset = "NSF"),
-  mutate(newNIH, dataset = "NIH"),
-  mutate(newUSDAtoUI, dataset = "USDA")
-) 
+  mutate(newNIH, dataset = "NIH")
+)
+
+# Sort PI_Grant by Start_Date
+combined_active_grants_df <- combined_active_grants_df %>%
+  arrange(Start_Date) %>%
+  mutate(
+    PI_Grant = factor(PI_Grant, levels = unique(PI_Grant))
+  )
 
 # Define custom colors for each sponsor
-sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red", "USDA" = "orange")
+sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red")
 
-# Plotting coloring by sponsor with color reflecting award amount
-ggplot(data = combined_active_grants_df, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor, alpha = Amount_Awarded_to_Date)) +
-  geom_segment(linewidth = 3) +  # Add segments for each grant
-  labs(title = "U of I Active Awards Amount Over Time by PI",
+# Filter the data to include only those with a start date from 2017 onwards
+combined_active_grants_df_filtered <- combined_active_grants_df %>%
+  filter(Start_Date >= as.Date("2017-01-01"))
+
+# Reorder PI_Grant by last name and start date
+combined_active_grants_df_filtered <- combined_active_grants_df_filtered %>%
+  mutate(Last_Name = sub("^(\\S+)\\s.*", "\\1", PI_Grant)) %>%
+  arrange(Last_Name, desc(Start_Date)) %>%
+  mutate(PI_Grant = factor(PI_Grant, levels = unique(PI_Grant)))
+
+# Plot the filtered data
+question1plot_filtered <- ggplot(data = combined_active_grants_df_filtered, aes(x = Start_Date, xend = End_Date, y = PI_Grant)) +
+  geom_segment(aes(yend = PI_Grant, color = Sponsor), size = 2) +
+  geom_text(aes(label = Amount_Awarded_to_Date, x = End_Date, y = PI_Grant), size = 2.5, fontface = "bold", color = "black", hjust = -0.1) +  # Changed hjust to position outside the bars
+  labs(title = "U of I Active Awards Amount Over Time by PI (Since 2017)",
        x = "Time",
-       y = "PI",
+       y = "PI Grant",
        color = "Sponsor") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6),  # Rotate x-axis text and increase font size
-        axis.text.y = element_text(size = 6),  # Increase font size of y-axis text
-        axis.title = element_text(size = 9),  # Increase font size of axis titles
-        legend.title = element_text(size = 10),  # Increase font size of legend title
-        legend.text = element_text(size = 9),  # Increase font size of legend text
-        plot.margin = margin(1, 1, 1, 1, "cm")) +  # Expand plot margins
-  scale_x_date(date_labels = "%m-%Y", date_breaks = "6 months") +
-  scale_color_manual(name = "Sponsor", values = sponsor_colors) +  # Assign custom colors to sponsors
-  scale_alpha_continuous(name = "Amount Awarded to Date")  # Use transparency to reflect award amount
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6),
+        axis.text.y = element_text(size = 6),
+        axis.title = element_text(size = 9),
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 9),
+        plot.margin = margin(1, 1, 1, 1, "cm")) +
+  scale_x_date(date_labels = "%m-%Y", date_breaks = "12 months") +
+  scale_color_manual(name = "Sponsor", values = sponsor_colors)
+
+question1plot_filtered
+
 
 ```
-```{r Saving Q1 plot}
+
+```{r Save}
 # Convert Amount_Awarded_to_Date to numeric for the data set where it's stored as character
 newNSFtoUI <- newNSFtoUI %>%
   mutate(Amount_Awarded_to_Date = as.numeric(Amount_Awarded_to_Date))
 
+# Bind the rows of the datasets
 combined_active_grants_df <- bind_rows(
   mutate(newDOEawards, dataset = "DOE"),
   mutate(newNSFtoUI, dataset = "NSF"),
-  mutate(newNIH, dataset = "NIH"),
-  mutate(newUSDAtoUI, dataset = "USDA")
-) 
+  mutate(newNIH, dataset = "NIH")
+)
+
+# Sort PI_Grant by Start_Date
+combined_active_grants_df <- combined_active_grants_df %>%
+  arrange(Start_Date) %>%
+  mutate(
+    PI_Grant = factor(PI_Grant, levels = unique(PI_Grant))
+  )
 
 # Define custom colors for each sponsor
-sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red", "USDA" = "orange")
+sponsor_colors <- c("DOE" = "blue", "NIH" = "green", "NSF" = "red")
 
+# Filter the data to include only those with a start date from 2017 onwards
+combined_active_grants_df_filtered <- combined_active_grants_df %>%
+  filter(Start_Date >= as.Date("2017-01-01"))
 
-question1plot <- # Plotting coloring by sponsor with color reflecting award amount
-ggplot(data = combined_active_grants_df, aes(x = Start_Date, xend = End_Date, y = PI, yend = PI, color = Sponsor, alpha = Amount_Awarded_to_Date)) +
-  geom_segment(linewidth = 3) +  # Add segments for each grant
-  labs(title = "U of I Active Awards Amount Over Time by PI",
+# Reorder PI_Grant by last name and start date
+combined_active_grants_df_filtered <- combined_active_grants_df_filtered %>%
+  mutate(Last_Name = sub("^(\\S+)\\s.*", "\\1", PI_Grant)) %>%
+  arrange(Last_Name, desc(Start_Date)) %>%
+  mutate(PI_Grant = factor(PI_Grant, levels = unique(PI_Grant)))
+
+# Plot the filtered data
+question1plot_filtered <- ggplot(data = combined_active_grants_df_filtered, aes(x = Start_Date, xend = End_Date, y = PI_Grant)) +
+  geom_segment(aes(yend = PI_Grant, color = Sponsor), size = 2) +
+  geom_text(aes(label = Amount_Awarded_to_Date, x = End_Date, y = PI_Grant), size = 2.5, fontface = "bold", color = "black", hjust = -0.1) +  # Changed hjust to position outside the bars
+  labs(title = "U of I Active Awards Amount Over Time by PI (Since 2017)",
        x = "Time",
-       y = "PI",
+       y = "PI Grant",
        color = "Sponsor") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6),  # Rotate x-axis text and increase font size
-        axis.text.y = element_text(size = 6),  # Increase font size of y-axis text
-        axis.title = element_text(size = 9),  # Increase font size of axis titles
-        legend.title = element_text(size = 10),  # Increase font size of legend title
-        legend.text = element_text(size = 9),  # Increase font size of legend text
-        plot.margin = margin(1, 1, 1, 1, "cm")) +  # Expand plot margins
-  scale_x_date(date_labels = "%m-%Y", date_breaks = "6 months") +
-  scale_color_manual(name = "Sponsor", values = sponsor_colors) +  # Assign custom colors to sponsors
-  scale_alpha_continuous(name = "Amount Awarded to Date")  # Use transparency to reflect award amount
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6),
+        axis.text.y = element_text(size = 6),
+        axis.title = element_text(size = 9),
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 9),
+        plot.margin = margin(1, 1, 1, 1, "cm")) +
+  scale_x_date(date_labels = "%m-%Y", date_breaks = "12 months") +
+  scale_color_manual(name = "Sponsor", values = sponsor_colors)
 
-ggsave("question1plot.pdf", plot = question1plot, width = 12, height = 10)
-
+ggsave("question1plot.png", plot = question1plot_filtered, width = 15, height = 10)
 ```
 
-![Question1Visualization](question1pic.png)
+![Question1Visualization](question1plot.png)
 
-**Figure 3.** This figure shows the PIs of currently active awards (to the best of
-my knowledge) here at the University of Idaho and their estimated
-amounts. Now, to be transparent, the USDA data did not have an end date
-in their data set, so I manually inputted the end to be the same as the
-beginning. Also, the USDA did not have PI names mentioned. Lastly,
-because the USDA also did not give us the current status of the grant, I
-only included those that began within in the past 5 years.
-
-Further limitations include that this figure does not address very well
-how the same PIs with various grants are displayed.
-
-Regardless, hopefully this figure is informative and helpful, at least
-for the NIH, NSF, and DOE!
+**Figure 3.** This figure shows U of I PI last names and their active grants they have received as of 2017. The bars are colored by sponsor and the text amount signifies the amount they have received for said award. The USDA data is not included due to a lack of necessary variables. The strengths of this figure is that it displays, rather than over plots, PIs who have multiple awards. Limitations are that this figure only includes grants that have started in 2017 and on. 
 
 # QUESTION 2
 
 *What is the proportional representation of new awards to the UI from
 these various sources over the past 5 to 10 years? Are there any trends
 that are encouraging or discouraging?*
-
-Again, to be begin to address this question, I am going to start with
-using just one data set for practice.
-
-## Practice with new grant counts for just "DOEawards"
 
 ```{r DOE New Grant Counts}
 # Assuming your data is stored in a data frame called DOEawards
@@ -520,6 +504,9 @@ new_grants_count <- DOEawards_df_new_grants %>%
   group_by(Year = lubridate::year(`Start Date`)) %>%
   summarise(Count = n())
 
+```
+
+```{r Plot practice, eval = FALSE}
 # Plotting
 ggplot(new_grants_count, aes(x = Year, y = Count)) +
   geom_bar(stat = "identity", fill = "skyblue") +
@@ -533,29 +520,16 @@ ggplot(new_grants_count, aes(x = Year, y = Count)) +
   theme(axis.text = element_text(size = 12),
         axis.title = element_text(size = 14, face = "bold"),
         plot.title = element_text(size = 16, face = "bold"))
-
 ```
 
-**Figure 4.** This figure captures the number of new grants the DOE awarded to the
-University of Idaho during the past 10 years.
-
-As we can see, there is not much from the past 10 years!
-
-## Now to expand to the other data sets
-
-I am first going to filter and make separate data frames for all
-sponsors and then combine and graph. (I am using a similar approach to
-answering Question 1.)
 
 ```{r Finishing DOE new grants count}
 # Create a new column named "Sponsor" with the desired values
 DOE_new_grants_count <- mutate(new_grants_count, Sponsor = "DOE")
 
 # View the modified data set
-head(DOE_new_grants_count)
+# head(DOE_new_grants_count)
 ```
-
-**Table 5.** DOE new grants count
 
 ```{r NSF New Grant Counts}
 # Assuming your data is stored in a data frame called NSFtoUI
@@ -586,10 +560,8 @@ NSF_new_grants_count <- NSFtoUI_df_new_grants %>%
 NSF_new_grants_count <- mutate(NSF_new_grants_count, Sponsor = "NSF")
 
 # View the modified data set
-head(NSF_new_grants_count)
+# head(NSF_new_grants_count)
 ```
-
-**Table 6.** NSF new grants count
 
 ```{r NIH New Grant Counts}
 # Assuming your data is stored in a data frame called projects_df
@@ -620,10 +592,8 @@ projects_df_new_grants_count <- projects_df_new_grants %>%
 NIH_new_grants_count <- mutate(projects_df_new_grants_count, Sponsor = "NIH")
 
 # View the modified data set
-head(NIH_new_grants_count)
+# head(NIH_new_grants_count)
 ```
-
-**Table 7.** NIH new grants count
 
 ```{r USDA New Grant Counts}
 # Assuming your data is stored in a data frame called USDAtoUI
@@ -647,13 +617,8 @@ USDA2_df_new_grants_count <- USDA2_df_new_grants %>%
 USDA2_new_grants_count <- mutate(USDA2_df_new_grants_count, Sponsor = "USDA")
 
 # View the modified dataset
-head(USDA2_new_grants_count)
+# head(USDA2_new_grants_count)
 ```
-
-**Table 8.** USDA new grants count
-
-Now let's combine the individual, mutated data frame for each sponsor
-and put them altogether for a visualization.
 
 ## Putting all the sponsors together
 
@@ -671,7 +636,7 @@ combined_grant_counts_df <- bind_rows(
 ggplot(combined_grant_counts_df, aes(x = Year, y = Count, color = dataset)) +
   geom_line() +
   # geom_point(data = filter(combined_grant_counts_df, Sponsor == "NIH"), color = "green", size = 3) +  # Add points for Dataset 3- no longer need upon updating
-  labs(title = "Trends Across Multiple Datasets",
+  labs(title = "Trends Across Multiple Datasets During the Last Decade",
        x = "Year",
        y = "Count") +
   theme_minimal() +
@@ -707,8 +672,8 @@ State University?*
 *Note that “performing” can mean a variety of different things. You must
 choose your metrics of performance and justify them.*
 
-Let's start by fetching the data. I am going to use the API sources for
-this question (NIH and NSF).
+I am going to use the API sources for
+this question (NIH and NSF) by manipulating the API addresses and then manipulating the data. 
 
 ```{r NIH5 API}
 # Set the base URL for the API
@@ -827,11 +792,6 @@ NSF5 <- read_excel("NSF5.xlsx")
 #knitr::kable(head(NSFtoUI))
 ```
 
-After manipulating the API addresses, I now have data sets of NIH and
-NSF updated to include all 6 schools.
-
-Now I am going to start manipulating the data.
-
 ```{r Transforming NSF5}
 
 # Assuming your data is stored in a data frame called NSF5
@@ -854,12 +814,8 @@ newNSF5 <- data.frame(
 newNSF5 <- mutate(newNSF5, Sponsor = "NSF")
 
 # View the modified data set
-head(newNSF5)
+# head(newNSF5)
 ```
-
-**Table 9.** New NSF data from all schools.
-
-I am going to rinse and repeat for NIH.
 
 ```{r Transforming NIH5 data}
 # Assuming your data is stored in a dataframe called projects_df5
@@ -881,13 +837,8 @@ newNIH5 <- data.frame(
 newNIH5 <- mutate(newNIH5, Sponsor = "NIH")
 
 # View the modified data set
-head(newNIH5)
+# head(newNIH5)
 ```
-
-**Table 10.** New NIH data from all schools.
-
-Great! I have 2 data frames ready to put into my next visualization to
-address Question 3.
 
 ## Combining NIH and NSF for neighboring schools
 
@@ -904,7 +855,7 @@ combined_all_schools_active_grants_df <- bind_rows(
 # Create a ggplot object
 ggplot(combined_all_schools_active_grants_df, aes(x = Organization, y = Amount_Awarded, fill = Sponsor)) +
   geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Stacked Bar Chart of Award Amounts by Sponsor and Organization",
+  labs(title = "Bar Chart of Award Amounts by Sponsor and Organization",
        x = "Organization",
        y = "Amount Awarded",
        fill = "Sponsor") +
@@ -932,7 +883,7 @@ data sources, some of the institutions have multiple locations also
 shown in this figure. Although I could agglomerate the data so each
 institution has one reference point, I actually think this may be
 insightful to see how the smaller institutions compare to the larger
-ones.
+ones. In general, I could clean this figure up to look a little nicer. 
 
 All in all, from this figure, we can see the U of I compares well in the
 realm of NSF grants. This is not so much the case for the NIH grants.
@@ -949,7 +900,7 @@ but we want to get back on the rise again (at least with the USDA).
 I realized through this work that, as Barrie has alluded to, it indeed
 does take a lot of time going through these different data and finding
 what is similar/comparable and cleaning those aspects of the data in
-order to put visualizations together.
+order to put visualizations together. Further, I learned the hard way that **LESS IS MORE!** 
 
 I think it would be interesting to continue to explore and see how the U
 of I compares to other institutions with the other sponsors, and I
