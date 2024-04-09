@@ -9,6 +9,7 @@ author: "Heidi Sellmann"
 date: "2024-04-09"
 categories: [Portfolio, DataViz, Network, Observable, Assignment]
 description: "Cool!"
+image: "download.jpg"
 code-fold: true
 code-tools: true
 
