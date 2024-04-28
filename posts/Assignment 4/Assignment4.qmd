@@ -181,7 +181,7 @@ ggplot(Cytokine_zscore_long, aes(x = Pig, y = Expression_Z_Scores, fill = Region
 ```
 
 ```{r Save Zscore cyotkines complex}
-ggsave("ZscoreCytokinesComplex.pdf")
+ggsave("ZscoreCytokinesComplex.png")
 ```
 
 **Figure 5.** Box and whisker plots of individual pigs and their overall cytokine expression z scores. Colors represent respective cytokines and respective regions.
