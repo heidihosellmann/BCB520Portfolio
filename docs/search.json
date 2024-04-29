@@ -347,7 +347,7 @@
     "href": "posts/Assignment 9 Final/Assignment 9 Final.html",
     "title": "Final Assignment - Polishing Up My Figures",
     "section": "",
-    "text": "Code\nknitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)"
+    "text": "Codeknitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)"
   },
   {
     "objectID": "posts/Assignment 9 Final/Assignment 9 Final.html#what-do-you-think",

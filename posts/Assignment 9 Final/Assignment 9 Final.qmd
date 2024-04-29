@@ -12,6 +12,10 @@ image: "grandFinale.jpg"
 description: "Missing data is not meaningless!"
 code-fold: true
 code-tools: true
+code-link: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r}
@@ -22,7 +26,7 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, error=FALSE, message=FALSE)
 
 In this final assignment - the grand finale for BCB 520 - I am polishing up one of the figures in my thesis/manuscript... stacked bar charts!
 
-```{r Load libraries, warning = FALSE, message=FALSE, echo=FALSE}
+```{r Load libraries, warning = FALSE, message=FALSE, output = FALSE}
 library(phyloseq);packageVersion("phyloseq")
 library(tidyverse);packageVersion("tidyverse")
 library(vegan);packageVersion("vegan")
@@ -50,7 +54,7 @@ custom_col30_C <- c(
  "#66FFFF", "#660033", "#D9D9D9", "#666699", "#660066")
 ```
 
-```{r Create top 20 genera plot HM and IF}
+```{r Create top 20 genera plot HM and IF, echo=FALSE, output = FALSE}
 #HM
 top20generaPlotHM <- ggplot(genus_glom_rel_HM_data_clean_wide_ordered_Top20_LONG, aes(x = Sample_ID, y = Abundance, fill=Top20genus)) + 
   facet_wrap(Diet~Week, scales = "free_x") +
@@ -112,6 +116,8 @@ top20generaPlotIF
 # using lebeller above to add Week label!
 
 ```
+![HMTop20](top20generaPlotHM.png)
+![IFTop20](top20generaPlotIF.png)
 
 ## What do you think? 
 
@@ -124,7 +130,7 @@ genus_glom_rel_HM_data_clean_wide_ordered_Top20_LONG_0s <- readRDS("genus_glom_r
 genus_glom_rel_IF_data_clean_wide_ordered_Top20_LONG_0s <- readRDS("genus_glom_rel_IF_data_clean_wide_ordered_Top20_LONG_0s.rds")
 ```
 
-```{r HM 0s plot, warning=FALSE}
+```{r HM 0s plot, warning=FALSE, echo=FALSE, output = FALSE}
 #HM
 top20generaPlotHM0s <- ggplot(genus_glom_rel_HM_data_clean_wide_ordered_Top20_LONG_0s, aes(x = Sample_ID, y = Abundance, fill=Top20genus)) + 
   facet_wrap(Diet~Week, scales = "free_x") +
@@ -156,7 +162,7 @@ top20generaPlotHM0s
 # using lebeller above to add Week label!
 ```
 
-```{r IF 0s plot, warning=FALSE}
+```{r IF 0s plot, warning=FALSE, echo=FALSE, output = FALSE}
 #IF
 top20generaPlotIF0s <- ggplot(genus_glom_rel_IF_data_clean_wide_ordered_Top20_LONG_0s, aes(x = Sample_ID, y = Abundance, fill=Top20genus)) + 
   facet_wrap(Diet~Week, scales = "free_x") +
@@ -187,6 +193,9 @@ top20generaPlotIF0s
 
 # using lebeller above to add Week label!
 ```
+
+![HMTop20w0s](top20generaPlotHM0s.png)
+![IFTop20w0s](top20generaPlotIF0s.png)
 
 ## Do you see the difference? 
 
