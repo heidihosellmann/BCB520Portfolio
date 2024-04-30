@@ -205,4 +205,14 @@ Barrie was right! This is easier to follow. And shocker, my advisor likes it muc
 
 Sometimes what seems "unimportant" actually is important. Grateful for this class and all it continues to teach me, data-viz-wise and otherwise.
 
+# MORE FIGURUES
 
+Just for fun! Here's a few examples for how I simplified the data. 
+
+![JaccDiet](PCoA_Jac_genus_biologicals_all_ellipse.png)
+
+![JaccWeek](PCoA_Jac_genus_biologicals_all_week_ellipse.png)
+
+![VectorsWeek](HMIFBrayNMDSNoFacetAllTaxaVectorsALL.png)
+
+![VectorsWeek](HMIFBrayNMDSNoFacetAllTaxaWeekVectorsFade.png)
